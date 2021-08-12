@@ -59,7 +59,9 @@ jobs:
       run: |
         dir 
         dir MicroservicesAng
-        dir 'src/MicroservicesPortChooser/MicroservicesPortChooserWeb/wwwroot'
+        dir src/MicroservicesPortChooser/MicroservicesPortChooserWeb/wwwroot
+        del src/MicroservicesPortChooser/MicroservicesPortChooserWeb/wwwroot/index.html
+        copy MicroservicesAng/*.* src/MicroservicesPortChooser/MicroservicesPortChooserWeb/wwwroot/
 
 
     - name: Set up .NET Core
