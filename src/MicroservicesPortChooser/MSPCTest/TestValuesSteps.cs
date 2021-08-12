@@ -1,4 +1,5 @@
-﻿using LightBDD.XUnit2;
+﻿using LightBDD.Framework;
+using LightBDD.XUnit2;
 using MicroservicesPortChooserBL;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,15 @@ namespace MSPCTest
         {
             var mspc = new MSPC();
             var port = mspc.GetDeterministicPort(name);
+            StepExecution.Current.Comment($"generated port for {name} is {port}");
             Assert.Equal(portChoosed,port);
+        }
+        void Then_The_Port_Choosed_Can_Be_Anything_But(UInt16 portChoosed)
+        {
+            var mspc = new MSPC();
+            var port = mspc.GetNonDeterministicPort(name);
+            StepExecution.Current.Comment($"generated port for {name} is {port}");
+            Assert.NotEqual(portChoosed, port);
         }
     }
 }
