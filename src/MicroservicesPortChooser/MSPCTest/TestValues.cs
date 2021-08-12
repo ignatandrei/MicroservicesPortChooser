@@ -3,7 +3,6 @@ using LightBDD.XUnit2;
 using LightBDD.Framework.Scenarios;
 using System;
 using Xunit;
-[assembly: LightBddScope]
 namespace MSPCTest
 {
     [FeatureDescription(
