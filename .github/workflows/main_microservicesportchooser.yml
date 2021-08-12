@@ -3,6 +3,10 @@
 
 name: Azure App Service - MicroservicesPortChooser(Production), Build and deploy DotnetCore app
 
+env:
+  AZURE_WEBAPP_NAME: BuffetEmail    # set this to your application's name
+  DOTNET_ROOT: 'src/MicroservicesPortChooser/MicroservicesPortChooserWeb'      # set this to the path to your web app project, defaults to the repository root
+  DOTNET_VERSION: '5.0.x'           # set this to the dot net version to use
 on:
   push:
     branches:
@@ -21,7 +25,7 @@ jobs:
     - name: Set up .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: '5.0.x'
+        dotnet-version: ${{ env.DOTNET_VERSION }} 
 
     - name: Build with dotnet
       run: | 
@@ -34,7 +38,7 @@ jobs:
         cd src 
         cd MicroservicesPortChooser
         cd MicroservicesPortChooserWeb        
-        dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        dotnet publish -c Release -o myapp
 
     - name: Run Azure webapp deploy action using publish profile credentials
       uses: azure/webapps-deploy@v2
