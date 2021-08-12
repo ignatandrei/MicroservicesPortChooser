@@ -13,6 +13,10 @@ export class MPCv1Service {
     var url =environment.url +'api/v1/PortChooser/GetDeterministicPortFrom/'+appName;
     return this.http.get<string>(url);
   }
+  nonDeterministic(appName: string) : Observable<string> {
+    var url =environment.url +'api/v1/PortChooser/GetNonDeterministicPortFrom/'+appName;
+    return this.http.get<string>(url);
+  }
 
   
 }
