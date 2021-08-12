@@ -1,4 +1,4 @@
-<p>Version 1 - Get Port from name</p>
+<p>Version 1 - Get Port for microservice from name</p>
 
 <form class="example-form">
   <mat-form-field class="example-full-width" appearance="fill">
@@ -10,6 +10,18 @@
       placeholder="Please enter your microservice name"
       value=""
     />
+    
+  </mat-form-field>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>PC Name</mat-label>
+    <input
+      [(ngModel)]="pcName"
+      name="pcName"
+      matInput
+      placeholder="Please enter your PC name or localhost"
+
+    />
+    
   </mat-form-field>
 
   <button
@@ -31,3 +43,5 @@
     Random Scoped,Non-deterministic
   </button>
 </form>
+
+{{ fullName}}
