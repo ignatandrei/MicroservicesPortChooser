@@ -34,7 +34,14 @@ jobs:
         cd MicroservicesAng
         npm ci
         npm run build
-        
+
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: MPCAngular
+        path: 'src/MicroservicesAng/dist/'
+        retention-days: 1
+
   build-and-deploy:
     runs-on: windows-latest
     needs: buildAngular
@@ -42,6 +49,17 @@ jobs:
     steps:
     - name: 'Checkout Github Action'
       uses: actions/checkout@master
+    
+    - name: Download angular static site
+      uses: actions/download-artifact@v2
+      with:
+        name: MPCAngular
+    
+    - name: Verify downloads
+      run: |
+        dir 
+        dir dist
+        dir 'src/MicroservicesPortChooser/MicroservicesPortChooserWeb/wwwroot'
 
 
     - name: Set up .NET Core
