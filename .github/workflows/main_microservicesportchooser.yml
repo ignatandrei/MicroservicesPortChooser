@@ -58,7 +58,7 @@ jobs:
     - name: Verify downloads
       run: |
         dir 
-        dir dist
+        dir MicroservicesAng
         dir 'src/MicroservicesPortChooser/MicroservicesPortChooserWeb/wwwroot'
 
 
