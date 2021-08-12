@@ -18,6 +18,9 @@ using System.Threading.Tasks;
 
 namespace MicroservicesPortChooserWeb
 {
+    /// <summary>
+    /// https://github.com/dotnet/aspnet-api-versioning
+    /// </summary>
     public class Startup
     {
         public Startup(IConfiguration configuration)
