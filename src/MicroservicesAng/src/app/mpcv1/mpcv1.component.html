@@ -1,14 +1,33 @@
-<p>Version 1</p>
+<p>Version 1 - Get Port from name</p>
 
 <form class="example-form">
-    <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Microservice name</mat-label>
-      <input [(ngModel)]="appName" name="appName" matInput placeholder="Please enter your microservice name" value="">
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Please enter your microservice name</mat-label>
+    <input
+      [(ngModel)]="appName"
+      name="appName"
+      matInput
+      placeholder="Please enter your microservice name"
+      value=""
+    />
+  </mat-form-field>
 
-    </mat-form-field>
-  
-    <button mat-raised-button color="primary" (click)="onDeterministic()">Static, Deterministic</button>
-    
-    &nbsp;&nbsp;&nbsp;
-    <button mat-raised-button color="warn" (click)="onNonDeterministic()">Non-deterministic</button>
-  </form>
+  <button
+    [disabled]="appName?.length == 0 ? 'disabled' : 'false'"
+    mat-raised-button
+    color="primary"
+    (click)="onDeterministic()"
+  >
+    Static, Deterministic
+  </button>
+
+  &nbsp;&nbsp;&nbsp;
+  <button
+    [disabled]="appName?.length == 0 ? 'disabled' : 'false'"
+    mat-raised-button
+    color="warn"
+    (click)="onNonDeterministic()"
+  >
+    Random Scoped,Non-deterministic
+  </button>
+</form>

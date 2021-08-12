@@ -22,4 +22,10 @@ export class MPCv1Component implements OnInit {
      );
   }
 
+  onNonDeterministic(): void {
+    this.mpcv1Service.nonDeterministic(this.appName).subscribe(
+      v=> window.alert(v)
+    );
+  }
+
 }
