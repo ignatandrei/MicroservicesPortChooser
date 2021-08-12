@@ -1,1 +1,14 @@
-<p>mpcv1 works!</p>
+<p>Version 1</p>
+
+<form class="example-form">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Microservice name</mat-label>
+      <input [(ngModel)]="appName" name="appName" matInput placeholder="Please enter your microservice name" value="">
+
+    </mat-form-field>
+  
+    <button mat-raised-button color="primary"(click)="onDeterministic()">Static, Deterministic</button>
+    
+    &nbsp;&nbsp;&nbsp;
+    <button mat-raised-button color="warn">Non-deterministic</button>
+  </form>

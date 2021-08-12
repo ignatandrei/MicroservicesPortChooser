@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MPCv1Service } from '../services/mpcv1.service';
 
 @Component({
   selector: 'app-mpcv1',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MPCv1Component implements OnInit {
 
-  constructor() { }
+  appName: string = '';
+  constructor(private mpcv1Service: MPCv1Service) { }
 
   ngOnInit(): void {
+
+  }
+
+  onDeterministic(): void {
+
+     this.mpcv1Service.deterministic(this.appName).subscribe(
+       v=> window.alert(v)
+     );
   }
 
 }
