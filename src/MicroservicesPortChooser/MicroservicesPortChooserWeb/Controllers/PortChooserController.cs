@@ -8,8 +8,10 @@ using System.Threading.Tasks;
 
 namespace MicroservicesPortChooserWeb.Controllers
 {
+    [ApiVersion("1.0")]
+    //[ApiVersion("2.0")]
     [ApiController]
-    [Route("[controller]/[action]")]
+    [Route("api/v{version:apiVersion}/[controller]/[action]")]
     public class PortChooserController : ControllerBase
     {
 
@@ -20,6 +22,7 @@ namespace MicroservicesPortChooserWeb.Controllers
             _logger = logger;
         }
 
+        //[MapToApiVersion("2.0")]
         [HttpGet("{name}")]
         public ActionResult<UInt16> GetDeterministicPortFrom([FromServices] MSPC mspc, string name)
         {
