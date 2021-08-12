@@ -20,6 +20,7 @@ namespace MicroservicesPortChooserWeb
 {
     /// <summary>
     /// https://github.com/dotnet/aspnet-api-versioning
+    /// https://github.com/dotnet/aspnet-api-versioning/wiki/Versioning-via-the-URL-Path
     /// </summary>
     public class Startup
     {

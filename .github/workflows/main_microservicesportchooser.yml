@@ -24,10 +24,17 @@ jobs:
         dotnet-version: '5.0.x'
 
     - name: Build with dotnet
-      run: dotnet build --configuration Release
+      run: | 
+        cd src 
+        cd MicroservicesPortChooser
+        dotnet build --configuration Release
 
     - name: dotnet publish
-      run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+      run: | 
+        cd src 
+        cd MicroservicesPortChooser
+        cd MicroservicesPortChooserWeb        
+        dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
     - name: Run Azure webapp deploy action using publish profile credentials
       uses: azure/webapps-deploy@v2
