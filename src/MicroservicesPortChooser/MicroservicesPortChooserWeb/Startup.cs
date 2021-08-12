@@ -1,20 +1,14 @@
+using AMSWebAPI;
 using MicroservicesPortChooserBL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MicroservicesPortChooserWeb
 {
@@ -56,6 +50,8 @@ namespace MicroservicesPortChooserWeb
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseHttpsRedirection();
+
             app.UseSwagger();
 
             app.UseSwaggerUI(c =>
@@ -68,8 +64,9 @@ namespace MicroservicesPortChooserWeb
             }
                 );
 
-            app.UseHttpsRedirection();
-
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+            
             app.UseRouting();
 
             app.UseAuthorization();
@@ -77,6 +74,8 @@ namespace MicroservicesPortChooserWeb
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.UseAMS();
+                endpoints.MapFallbackToFile("/static/{**slug}", "index.html");
             });
         }
     }
