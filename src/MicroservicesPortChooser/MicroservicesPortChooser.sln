@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroservicesPortChooserBL"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSPCTest", "MSPCTest\MSPCTest.csproj", "{022A7BDB-ED33-404D-8308-18E10F93E191}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroservicesPortChooserWeb", "MicroservicesPortChooserWeb\MicroservicesPortChooserWeb.csproj", "{FC7132E4-F425-4477-96D9-BF98CAFBFD77}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{022A7BDB-ED33-404D-8308-18E10F93E191}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{022A7BDB-ED33-404D-8308-18E10F93E191}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{022A7BDB-ED33-404D-8308-18E10F93E191}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC7132E4-F425-4477-96D9-BF98CAFBFD77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC7132E4-F425-4477-96D9-BF98CAFBFD77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC7132E4-F425-4477-96D9-BF98CAFBFD77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC7132E4-F425-4477-96D9-BF98CAFBFD77}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
