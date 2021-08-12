@@ -4,8 +4,8 @@
 name: Azure App Service - MicroservicesPortChooser(Production), Build and deploy DotnetCore app
 
 env:
-  AZURE_WEBAPP_NAME: BuffetEmail    # set this to your application's name
-  DOTNET_ROOT: 'src/MicroservicesPortChooser/MicroservicesPortChooserWeb'      # set this to the path to your web app project, defaults to the repository root
+  AZURE_WEBAPP_NAME: MicroservicesPortChooser    # set this to your application's name
+  AZURE_WEBAPP_PACKAGE_PATH: 'src/MicroservicesPortChooser/MicroservicesPortChooserWeb'      # set this to the path to your web app project, defaults to the repository root
   DOTNET_VERSION: '5.0.x'           # set this to the dot net version to use
 on:
   push:
@@ -38,13 +38,13 @@ jobs:
         cd src 
         cd MicroservicesPortChooser
         cd MicroservicesPortChooserWeb        
-        dotnet publish -c Release -o myapp
+        dotnet publish -r linux-x64 -c Release -o myapp 
 
     - name: Run Azure webapp deploy action using publish profile credentials
       uses: azure/webapps-deploy@v2
       with:
-        app-name: MicroservicesPortChooser
+        app-name: ${{ env.AZURE_WEBAPP_NAME }} 
         slot-name: Production
         publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DA15D25732214C4F9D5221C46C4E89E1 }}
-        package: ${{env.DOTNET_ROOT}}/myapp
+        package: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/myapp'
 
