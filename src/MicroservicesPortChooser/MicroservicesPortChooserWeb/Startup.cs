@@ -29,6 +29,17 @@ namespace MicroservicesPortChooserWeb
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<MSPC>();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: "AllowAll",
+                                  builder => builder
+                                            .AllowAnyHeader()
+                                            .AllowAnyMethod()
+                                            .AllowAnyOrigin()
+            });
+
+
             services.AddApiVersioning();
             services.AddVersionedApiExplorer(options =>
             {
@@ -50,6 +61,7 @@ namespace MicroservicesPortChooserWeb
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCors("AllowAll");
             app.UseHttpsRedirection();
 
             app.UseSwagger();

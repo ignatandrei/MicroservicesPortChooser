@@ -13,11 +13,33 @@ on:
       - main
 
 jobs:
-  build-and-deploy:
-    runs-on: windows-latest
+  buildAngular:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.6.x]
 
     steps:
-    # checkout the repo
+    - name: 'Checkout Github Action'
+      uses: actions/checkout@master
+
+    - name: Node ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: npm install and npm run build
+      run: |
+        cd src
+        cd MicroservicesAng
+        npm ci
+        npm run build
+        
+  build-and-deploy:
+    runs-on: windows-latest
+    needs: buildAngular
+
+    steps:
     - name: 'Checkout Github Action'
       uses: actions/checkout@master
 
