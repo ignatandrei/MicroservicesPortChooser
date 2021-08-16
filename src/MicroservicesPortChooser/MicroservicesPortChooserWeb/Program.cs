@@ -19,31 +19,15 @@ namespace MicroservicesPortChooserWeb
             CreateHostBuilder(args).Build().Run();
         }
 
-        private static async Task<int> GetPort(string url)
-        {
-            HttpClient httpClient=null;
-            try{
-            //https://microservicesportchooser.azurewebsites.net/api/v1/PortChooser/GetDeterministicPortFrom/{name}
-            httpClient =new HttpClient();
-            
-            var port = await httpClient.GetStringAsync(url);            
-            return int.Parse(port);
-            // Console.WriteLine(port);
-            }
-            catch  {
-                return -1;
-            }
-            finally{
-                httpClient?.Dispose();
-            }
-            
-        }
+        
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder
+                    .UseStartup<Startup>()
+                    .UseUrls;
                 });
     }
 }
