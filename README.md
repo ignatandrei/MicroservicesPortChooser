@@ -40,9 +40,6 @@ axios.get('https://microservicesportchooser.azurewebsites.net/api/v1/PortChooser
   });      
 ```
 
-### 
-
-Or add reference to the NuGet in your application.
 
 ### Releases
 Windows x64: TBD
