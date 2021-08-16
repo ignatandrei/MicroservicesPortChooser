@@ -8,6 +8,7 @@ env:
   AZURE_WEBAPP_PACKAGE_PATH: 'src/MicroservicesPortChooser/MicroservicesPortChooserWeb'      # set this to the path to your web app project, defaults to the repository root
   DOTNET_VERSION: '5.0.x'           # set this to the dot net version to use
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
