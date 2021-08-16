@@ -90,3 +90,14 @@ jobs:
         publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DA15D25732214C4F9D5221C46C4E89E1 }}
         package: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/myapp'
 
+    - name: package
+      run: |
+        cd src
+        cd MicroservicesPortChooser
+        cd MSPCWebExtension
+        dotnet pack -c Release -o nugetPackage
+    - name: upload artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: NuGetPortChooser
+        path: 'src/MicroservicesPortChooser/MSPCWebExtension/nugetPackage/'

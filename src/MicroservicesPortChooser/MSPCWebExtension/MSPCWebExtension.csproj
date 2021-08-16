@@ -7,5 +7,37 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.2.0" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+    <None Include="../../../MSPCWebExtension.md" Pack="true" PackagePath="\" />
+    <None Include="../../../docs/MSPCWebExtension.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <Version>2021.8.16.2300</Version>
+    <PackageVersion>2021.8.16.2300</PackageVersion>
+    <Authors>Andrei Ignat</Authors>
+    <PackageId>MicroservicesPortChooser</PackageId>
+    <Description>This package lets put a single port for your microservice. </Description>
+    <Title>Microservices Port Chooser</Title>
+    <PackageTags>C#;.NET;ASP.NET Core</PackageTags>
+    <PackageReadmeFile>MSPCWebExtension.md</PackageReadmeFile>
+    <PackageIcon>MSPCWebExtension.png</PackageIcon>
+    <RepositoryUrl>https://github.com/ignatandrei/MicroservicesPortChooser</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/ignatandrei/MicroservicesPortChooser</PackageProjectUrl>
+    <RepositoryType>GIT</RepositoryType>
+    <Copyright>MIT</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <IncludeSymbols>true</IncludeSymbols>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <Deterministic>true</Deterministic>
+    <DebugType>embedded</DebugType>
+
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+
 
 </Project>

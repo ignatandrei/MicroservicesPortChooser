@@ -15,7 +15,7 @@ namespace MSPCWebExtension
             {
                 //https://microservicesportchooser.azurewebsites.net/api/v1/PortChooser/GetDeterministicPortFrom/{name}
                 httpClient = new HttpClient();
-
+                httpClient.Timeout=TimeSpan.FromSeconds(25);
                 var port = await httpClient.GetStringAsync(url);
                 return int.Parse(port);
                 // Console.WriteLine(port);
