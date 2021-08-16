@@ -10,6 +10,13 @@ https://microservicesportchooser.azurewebsites.net/
 ### Swagger / OpenAPI
 https://microservicesportchooser.azurewebsites.net/swagger/index.html
 
+### How to use
+Make a HttpClient and call the service with the following url:
+https://microservicesportchooser.azurewebsites.net/api/v1/PortChooser/GetDeterministicPortFrom/{serviceName}
+
+
+Or add reference to the NuGet in your application.
+
 ### Releases
 Windows x64: TBD
 
