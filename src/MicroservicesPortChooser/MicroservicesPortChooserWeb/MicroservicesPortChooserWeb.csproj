@@ -8,10 +8,12 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.5" />
+    <PackageReference Include="ThisAssembly" Version="1.0.8" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\MicroservicesPortChooserBL\MicroservicesPortChooserBL.csproj" />
+    <ProjectReference Include="..\MSPCWebExtension\MSPCWebExtension.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AMSWebAPI" Version="2021.7.6.628" />

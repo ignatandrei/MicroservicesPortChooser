@@ -9,7 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-
+using MSPCWebExtension;
 namespace MicroservicesPortChooserWeb
 {
     public class Program
@@ -27,7 +27,10 @@ namespace MicroservicesPortChooserWeb
                 {
                     webBuilder
                     .UseStartup<Startup>()
-                    .UseUrls;
+                    .UseAutomaticUrls(
+                        ThisAssembly.Project.AssemblyName,
+                        Environment.MachineName
+                        );
                 });
     }
 }

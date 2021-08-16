@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -29,12 +30,26 @@ namespace MSPCWebExtension
             }
 
         }
-        public static IWebHostBuilder UseAutomaticUrls(this IWebHostBuilder hostBuilder, string appName)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="hostBuilder">extension</param>
+        /// <param name="appName">you can use ThisAssembly.Project.AssemblyName </param>
+        /// <param name="hostName">you can use Environment.MachineName</param>
+        /// <param name="urlServices">any url + <see cref="hostname" /> that return the port </param>
+        /// <returns></returns>
+        public static IWebHostBuilder UseAutomaticUrls(
+            this IWebHostBuilder hostBuilder, 
+            string appName,
+            string hostName= "localhost",
+            string urlServices = "https://microservicesportchooser.azurewebsites.net/api/v1/PortChooser/GetDeterministicPortFrom/"
+
+            )
         {
             if (string.IsNullOrWhiteSpace(appName))
                 return hostBuilder;
 
-            var port = GetPort("https://microservicesportchooser.azurewebsites.net/api/v1/PortChooser/GetDeterministicPortFrom/" + appName)
+            var port = GetPort( urlServices + appName)
                 
                 .GetAwaiter()
                 .GetResult()
@@ -42,12 +57,10 @@ namespace MSPCWebExtension
 
             if (port < 0)
                 return hostBuilder;
+            if(string.IsNullOrWhiteSpace(hostName))
+                hostName = Environment.MachineName;
 
-            var host = hostBuilder.GetSetting("hostName");
-            if (string.IsNullOrWhiteSpace(host))
-                host = Environment.MachineName;
-
-            hostBuilder.yser
+            hostBuilder.UseUrls($"http://{hostName}:{port}");
             return hostBuilder;
         }
     }
