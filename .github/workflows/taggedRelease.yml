@@ -75,7 +75,7 @@ jobs:
       with:
         type: 'zip'
         filename: 'releaseLin.zip'
-        directory: '${{github.workspace}}\src\MicroservicesPortChooser\MicroservicesPortChooserWeb\${{env.AZURE_WEBAPP_NAME}}linX64\'
+        path: '${{github.workspace}}\src\MicroservicesPortChooser\MicroservicesPortChooserWeb\${{env.AZURE_WEBAPP_NAME}}linX64\'
         exclusions: '*.git* /*node_modules/* .editorconfig'       
 
     - name: Archive Release Windows
@@ -83,7 +83,7 @@ jobs:
       with:
         type: 'zip'
         filename: 'releaseWin.zip'
-        directory: '${{github.workspace}}\src\MicroservicesPortChooser\MicroservicesPortChooserWeb\${{env.AZURE_WEBAPP_NAME}}WinX64\'
+        path: '${{github.workspace}}\src\MicroservicesPortChooser\MicroservicesPortChooserWeb\${{env.AZURE_WEBAPP_NAME}}WinX64\'
         exclusions: '*.git* /*node_modules/* .editorconfig'       
 
     - name: verify releases
