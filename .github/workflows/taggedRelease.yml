@@ -72,21 +72,21 @@ jobs:
         
     - name: verify releases
       run: |
-        dir env:
-        echo "!!!1"
+        # dir env:
+        # echo "!!!1"
         
-        dir src/MicroservicesPortChooser/MicroservicesPortChooserWeb/${{env.AZURE_WEBAPP_NAME}}WinX64
-        echo "!!!2"
+        # dir src/MicroservicesPortChooser/MicroservicesPortChooserWeb/${{env.AZURE_WEBAPP_NAME}}WinX64
+        # echo "!!!2"
         
-        dir src/MicroservicesPortChooser/MicroservicesPortChooserWeb/${{env.AZURE_WEBAPP_NAME}}linX64
-        echo "!!!3"
-        echo "$env:GITHUB_WORKSPACE"
-        dir $env:GITHUB_WORKSPACE
-        echo "!!!4"
-        echo "$env:GITHUB_WORKSPACE"
-        dir $env:GITHUB_WORKSPACE\src\MicroservicesPortChooser\MicroservicesPortChooserWeb\${{env.AZURE_WEBAPP_NAME}}WinX64
-        echo "!!!"
-        echo "$env:GITHUB_WORKSPACE"
+        # dir src/MicroservicesPortChooser/MicroservicesPortChooserWeb/${{env.AZURE_WEBAPP_NAME}}linX64
+        # echo "!!!3"
+        # echo "$env:GITHUB_WORKSPACE"
+        # dir $env:GITHUB_WORKSPACE
+        # echo "!!!4"
+        # echo "$env:GITHUB_WORKSPACE"
+        # dir $env:GITHUB_WORKSPACE\src\MicroservicesPortChooser\MicroservicesPortChooserWeb\${{env.AZURE_WEBAPP_NAME}}WinX64
+        # echo "!!!"
+        # echo "$env:GITHUB_WORKSPACE"
         dir $env:GITHUB_WORKSPACE\src\MicroservicesPortChooser\MicroservicesPortChooserWeb\${{env.AZURE_WEBAPP_NAME}}linX64
 
     - name: publish release
@@ -96,6 +96,6 @@ jobs:
         prerelease: true    
         automatic_release_tag: "latest"    
         files: |
-          '${{github.workspace}}/src/MicroservicesPortChooser/MicroservicesPortChooserWeb/${{env.AZURE_WEBAPP_NAME}}linX64/**'
-          '${{github.workspace}}/src/MicroservicesPortChooser/MicroservicesPortChooserWeb/${{env.AZURE_WEBAPP_NAME}}WinX64/**'
+          '${{github.workspace}}\src\MicroservicesPortChooser\MicroservicesPortChooserWeb\${{env.AZURE_WEBAPP_NAME}}linX64\**'
+          '${{github.workspace}}\src\MicroservicesPortChooser\MicroservicesPortChooserWeb\${{env.AZURE_WEBAPP_NAME}}WinX64\**'
           
