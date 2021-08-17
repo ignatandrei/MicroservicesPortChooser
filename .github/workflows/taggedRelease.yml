@@ -35,7 +35,7 @@ jobs:
         path: 'src/MicroservicesAng/dist/'
         retention-days: 1
 
-  build-and-deploy:
+  build-and-put-releases:
     runs-on: windows-latest
     needs: buildAngular
 
@@ -73,7 +73,8 @@ jobs:
     - uses: "marvinpinto/action-automatic-releases@latest"
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        prerelease: true        
+        prerelease: true    
+        automatic_release_tag: "latest"    
         files: |
           'src/MicroservicesPortChooser/MicroservicesPortChooserWeb/${{env.AZURE_WEBAPP_NAME}}linX64/'
           'src/MicroservicesPortChooser/MicroservicesPortChooserWeb/${{env.AZURE_WEBAPP_NAME}}WinX64/'
