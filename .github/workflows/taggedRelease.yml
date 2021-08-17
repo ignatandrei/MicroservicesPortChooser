@@ -105,11 +105,11 @@ jobs:
         # echo "$env:GITHUB_WORKSPACE"
         dir $env:GITHUB_WORKSPACE\release*.zip
         dir $env:GITHUB_WORKSPACE\src\MicroservicesPortChooser\MicroservicesPortChooserWeb\${{env.AZURE_WEBAPP_NAME}}linX64
-    - name: ReleaseWin
+    - name: ReleaseWindowsAndLinux
       uses: softprops/action-gh-release@v1
       with:
         files:  |
-            releaseLin.txt
+            releaseLin.zip
             releaseWin.zip
     # - name: publish release
     #   uses: "marvinpinto/action-automatic-releases@latest"
