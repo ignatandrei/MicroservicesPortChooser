@@ -1,0 +1,81 @@
+name: "tagged-release"
+
+on:
+  push:
+    tags:
+      - "v*"
+
+
+jobs:
+  buildAngular:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.6.x]
+
+    steps:
+    - name: 'Checkout Github Action'
+      uses: actions/checkout@master
+
+    - name: Node ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: npm install and npm run build
+      run: |
+        cd src
+        cd MicroservicesAng
+        npm ci
+        npm run build
+
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: MPCAngular
+        path: 'src/MicroservicesAng/dist/'
+        retention-days: 1
+
+  build-and-deploy:
+    runs-on: windows-latest
+    needs: buildAngular
+
+    steps:
+    - name: 'Checkout Github Action'
+      uses: actions/checkout@master
+    
+    - name: Download angular static site
+      uses: actions/download-artifact@v2
+      with:
+        name: MPCAngular
+    
+    - name: Verify downloads
+      run: |
+        dir 
+        dir MicroservicesAng
+        dir src/MicroservicesPortChooser/MicroservicesPortChooserWeb/wwwroot
+        del src/MicroservicesPortChooser/MicroservicesPortChooserWeb/wwwroot/index.html
+        copy MicroservicesAng/*.* src/MicroservicesPortChooser/MicroservicesPortChooserWeb/wwwroot/
+
+
+    - name: Set up .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }} 
+
+    - name: making releases
+      run: |
+        cd src
+        cd MicroservicesPortChooser
+        cd MicroservicesPortChooserWeb
+        dotnet publish -r win-x64 -c Release -o ${{env.AZURE_WEBAPP_NAME}}WinX64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=true -p:PublishPackageVersion=1.0.0
+        dotnet publish -r linux-x64 -c Release -o ${{env.AZURE_WEBAPP_NAME}}linX64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=true -p:PublishPackageVersion=1.0.0
+
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          files: |
+            'src/MicroservicesPortChooser/MicroservicesPortChooserWeb/${{env.AZURE_WEBAPP_NAME}}linX64/'
+            'src/MicroservicesPortChooser/MicroservicesPortChooserWeb/${{env.AZURE_WEBAPP_NAME}}WinX64/'
+            
