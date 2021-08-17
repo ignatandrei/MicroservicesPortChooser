@@ -109,18 +109,18 @@ jobs:
         cd src
         cd MicroservicesPortChooser
         cd MicroservicesPortChooserWeb
-        dotnet publish -r win-x64 -c Release -o ${{AZURE_WEBAPP_NAME}}WinX64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed = true -p:PublishPackageVersion=1.0.0
-        dotnet publish -r linux-x64 -c Release -o ${{AZURE_WEBAPP_NAME}}linX64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed = true -p:PublishPackageVersion=1.0.0
+        dotnet publish -r win-x64 -c Release -o ${{env.AZURE_WEBAPP_NAME}}WinX64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed = true -p:PublishPackageVersion=1.0.0
+        dotnet publish -r linux-x64 -c Release -o ${{env.AZURE_WEBAPP_NAME}}linX64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed = true -p:PublishPackageVersion=1.0.0
     - name: upload artifacts web win
       uses: actions/upload-artifact@v2
       with:
         name: WebServiceWinx64
-        path: 'src/MicroservicesPortChooser/MicroservicesPortChooserWeb/${{AZURE_WEBAPP_NAME}}WinX64/'
+        path: 'src/MicroservicesPortChooser/MicroservicesPortChooserWeb/${{env.AZURE_WEBAPP_NAME}}WinX64/'
 
     - name: upload artifacts web linux
       uses: actions/upload-artifact@v2
       with:
         name: WebServiceLinx64
-        path: 'src/MicroservicesPortChooser/MicroservicesPortChooserWeb/${{AZURE_WEBAPP_NAME}}linX64/'
+        path: 'src/MicroservicesPortChooser/MicroservicesPortChooserWeb/${{env.AZURE_WEBAPP_NAME}}linX64/'
 
 
