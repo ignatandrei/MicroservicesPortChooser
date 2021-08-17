@@ -5,7 +5,6 @@ on:
     tags:
       - "v*"
 
-
 jobs:
   buildAngular:
     runs-on: ubuntu-latest
