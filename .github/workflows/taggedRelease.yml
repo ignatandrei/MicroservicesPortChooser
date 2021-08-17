@@ -96,6 +96,6 @@ jobs:
         prerelease: true    
         automatic_release_tag: "latest"    
         files: |
-          '${{github.workspace}}/src/MicroservicesPortChooser/MicroservicesPortChooserWeb/${{env.AZURE_WEBAPP_NAME}}linX64/'
-          '${{github.workspace}}/src/MicroservicesPortChooser/MicroservicesPortChooserWeb/${{env.AZURE_WEBAPP_NAME}}WinX64/'
+          '${{github.workspace}}/src/MicroservicesPortChooser/MicroservicesPortChooserWeb/${{env.AZURE_WEBAPP_NAME}}linX64/**'
+          '${{github.workspace}}/src/MicroservicesPortChooser/MicroservicesPortChooserWeb/${{env.AZURE_WEBAPP_NAME}}WinX64/**'
           
