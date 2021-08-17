@@ -72,6 +72,7 @@ jobs:
         
     - name: verify releases
       run: |
+        dir env:
         dir src/MicroservicesPortChooser/MicroservicesPortChooserWeb/${{env.AZURE_WEBAPP_NAME}}WinX64
         dir src/MicroservicesPortChooser/MicroservicesPortChooserWeb/${{env.AZURE_WEBAPP_NAME}}linX64
         dir ${{ env.DOC_ROOT }}
