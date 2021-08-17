@@ -69,7 +69,23 @@ jobs:
         cd MicroservicesPortChooserWeb
         dotnet publish -r win-x64 -c Release -o ${{env.AZURE_WEBAPP_NAME}}WinX64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=true
         dotnet publish -r linux-x64 -c Release -o ${{env.AZURE_WEBAPP_NAME}}linX64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=true 
-        
+
+    - name: Archive Release Linux
+      uses: thedoctor0/zip-release@master
+      with:
+        type: 'zip'
+        filename: 'releaseLin.zip'
+        directory: '${{github.workspace}}\src\MicroservicesPortChooser\MicroservicesPortChooserWeb\${{env.AZURE_WEBAPP_NAME}}linX64\'
+        exclusions: '*.git* /*node_modules/* .editorconfig'       
+
+    - name: Archive Release Windows
+      uses: thedoctor0/zip-release@master
+      with:
+        type: 'zip'
+        filename: 'releaseWin.zip'
+        directory: '${{github.workspace}}\src\MicroservicesPortChooser\MicroservicesPortChooserWeb\${{env.AZURE_WEBAPP_NAME}}WinX64\'
+        exclusions: '*.git* /*node_modules/* .editorconfig'       
+
     - name: verify releases
       run: |
         # dir env:
@@ -87,6 +103,7 @@ jobs:
         # dir $env:GITHUB_WORKSPACE\src\MicroservicesPortChooser\MicroservicesPortChooserWeb\${{env.AZURE_WEBAPP_NAME}}WinX64
         # echo "!!!"
         # echo "$env:GITHUB_WORKSPACE"
+        dir $env:GITHUB_WORKSPACE\releaseWin.zip
         dir $env:GITHUB_WORKSPACE\src\MicroservicesPortChooser\MicroservicesPortChooserWeb\${{env.AZURE_WEBAPP_NAME}}linX64
 
     - name: publish release
@@ -96,6 +113,6 @@ jobs:
         prerelease: true    
         automatic_release_tag: "latest"    
         files: |
-          '${{github.workspace}}\src\MicroservicesPortChooser\MicroservicesPortChooserWeb\${{env.AZURE_WEBAPP_NAME}}linX64\**'
-          '${{github.workspace}}\src\MicroservicesPortChooser\MicroservicesPortChooserWeb\${{env.AZURE_WEBAPP_NAME}}WinX64\**'
+          '${{github.workspace}}\releaseWin.zip'
+          '${{github.workspace}}\releaseLin.zip'
           
