@@ -84,10 +84,10 @@ jobs:
         dir $env:GITHUB_WORKSPACE
         echo "!!!4"
         echo "$env:GITHUB_WORKSPACE"
-        dir $env:GITHUB_WORKSPACE\MicroservicesPortChooser\MicroservicesPortChooserWeb\${{env.AZURE_WEBAPP_NAME}}WinX64
+        dir $env:GITHUB_WORKSPACE\src\MicroservicesPortChooser\MicroservicesPortChooserWeb\${{env.AZURE_WEBAPP_NAME}}WinX64
         echo "!!!"
         echo "$env:GITHUB_WORKSPACE"
-        dir $env:GITHUB_WORKSPACE\MicroservicesPortChooser\MicroservicesPortChooserWeb\${{env.AZURE_WEBAPP_NAME}}linX64
+        dir $env:GITHUB_WORKSPACE\src\MicroservicesPortChooser\MicroservicesPortChooserWeb\${{env.AZURE_WEBAPP_NAME}}linX64
 
     - name: publish release
       uses: "marvinpinto/action-automatic-releases@latest"
