@@ -74,9 +74,9 @@ jobs:
       run: |
         dir src/MicroservicesPortChooser/MicroservicesPortChooserWeb/${{env.AZURE_WEBAPP_NAME}}WinX64
         dir src/MicroservicesPortChooser/MicroservicesPortChooserWeb/${{env.AZURE_WEBAPP_NAME}}linX64
-        dir ${{ github.GITHUB_WORKSPACE }}
-        dir ${{ github.GITHUB_WORKSPACE }}\MicroservicesPortChooser\MicroservicesPortChooserWeb\${{env.AZURE_WEBAPP_NAME}}WinX64
-        dir ${{ github.GITHUB_WORKSPACE }}\MicroservicesPortChooser\MicroservicesPortChooserWeb\${{env.AZURE_WEBAPP_NAME}}linX64
+        dir ${{ env.DOC_ROOT }}
+        dir ${{ env.DOC_ROOT }}\MicroservicesPortChooser\MicroservicesPortChooserWeb\${{env.AZURE_WEBAPP_NAME}}WinX64
+        dir ${{ env.DOC_ROOT }}\MicroservicesPortChooser\MicroservicesPortChooserWeb\${{env.AZURE_WEBAPP_NAME}}linX64
 
     - name: publish release
       uses: "marvinpinto/action-automatic-releases@latest"
