@@ -103,16 +103,21 @@ jobs:
         # dir $env:GITHUB_WORKSPACE\src\MicroservicesPortChooser\MicroservicesPortChooserWeb\${{env.AZURE_WEBAPP_NAME}}WinX64
         # echo "!!!"
         # echo "$env:GITHUB_WORKSPACE"
-        dir $env:GITHUB_WORKSPACE\releaseWin.zip
+        dir $env:GITHUB_WORKSPACE\release*.zip
         dir $env:GITHUB_WORKSPACE\src\MicroservicesPortChooser\MicroservicesPortChooserWeb\${{env.AZURE_WEBAPP_NAME}}linX64
-
-    - name: publish release
-      uses: "marvinpinto/action-automatic-releases@latest"
+    - name: ReleaseWin
+      uses: softprops/action-gh-release@v1
       with:
-        repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        prerelease: true    
-        automatic_release_tag: "latest"    
-        files: |
-          '${{github.workspace}}\releaseWin.zip'
-          '${{github.workspace}}\releaseLin.zip'
+        files:  |
+            releaseLin.txt
+            releaseWin.zip
+    # - name: publish release
+    #   uses: "marvinpinto/action-automatic-releases@latest"
+    #   with:
+    #     repo_token: "${{ secrets.GITHUB_TOKEN }}"
+    #     prerelease: true    
+    #     automatic_release_tag: "latest"    
+    #     files: |
+    #       '${{github.workspace}}\releaseWin.zip'
+    #       '${{github.workspace}}\releaseLin.zip'
           
