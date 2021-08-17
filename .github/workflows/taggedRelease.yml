@@ -73,10 +73,20 @@ jobs:
     - name: verify releases
       run: |
         dir env:
+        echo "!!!"
+        
         dir src/MicroservicesPortChooser/MicroservicesPortChooserWeb/${{env.AZURE_WEBAPP_NAME}}WinX64
+        echo "!!!"
+        
         dir src/MicroservicesPortChooser/MicroservicesPortChooserWeb/${{env.AZURE_WEBAPP_NAME}}linX64
+        echo "!!!"
+        echo "${{ env.GITHUB_WORKSPACE }}"
         dir ${{ env.GITHUB_WORKSPACE }}
+        echo "!!!"
+        echo "${{ env.GITHUB_WORKSPACE }}"
         dir ${{ env.GITHUB_WORKSPACE }}\MicroservicesPortChooser\MicroservicesPortChooserWeb\${{env.AZURE_WEBAPP_NAME}}WinX64
+        echo "!!!"
+        echo "${{ env.GITHUB_WORKSPACE }}"
         dir ${{ env.GITHUB_WORKSPACE }}\MicroservicesPortChooser\MicroservicesPortChooserWeb\${{env.AZURE_WEBAPP_NAME}}linX64
 
     - name: publish release
