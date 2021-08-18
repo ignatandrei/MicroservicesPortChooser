@@ -28,7 +28,7 @@ namespace MicroservicesPortChooserWeb
                   description,
                     new OpenApiInfo()
                     {
-                        Title = $"Sample API {description}",
+                        Title = $"{ThisAssembly.Project.AssemblyName} {description}",
                         Version = description,
                     });
             }
