@@ -1,6 +1,6 @@
 using LightBDD.Framework;
-using LightBDD.XUnit2;
 using LightBDD.Framework.Scenarios;
+using LightBDD.XUnit2;
 using System;
 using Xunit;
 namespace MSPCTest
@@ -42,6 +42,22 @@ namespace MSPCTest
 
                    _ => Then_The_Port_Choosed_Can_Be_Anything_But(port)
                    );
+        }
+        [Scenario]
+
+        [Label("port same")]
+
+        [Trait("Category", "Easy")]
+        [InlineData("MicroservicesPort")]
+        public void TestDeterministicPortWithTagNull(string name)
+        {
+            Runner.RunScenario(
+
+       _ => When_Having_The_MicroService_Name(name),
+
+
+       _ => Then_The_Port_With_Tag_Is_Same_With_Port_Without_Tag()
+       );
         }
     }
 }

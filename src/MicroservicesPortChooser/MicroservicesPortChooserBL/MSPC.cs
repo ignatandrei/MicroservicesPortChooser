@@ -52,5 +52,15 @@ namespace MicroservicesPortChooserBL
             var remainder = hash % UInt16.MaxValue;
             return (UInt16)remainder;
         }
+
+
+        public UInt16 GetDeterministicPort(string name, string tag)
+        {
+            if (string.IsNullOrWhiteSpace(tag))
+                return GetDeterministicPort(name);
+            // from Ciprian Apetrei a simple suggestion
+            var hash = (name + "_" + tag).GetHashCode();
+            return Convert.ToUInt16 (Math.Abs(Convert.ToInt16((hash >> 16) ^ hash))); 
+        }
     }
 }

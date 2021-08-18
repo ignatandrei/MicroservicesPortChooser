@@ -31,5 +31,15 @@ namespace MSPCTest
             StepExecution.Current.Comment($"generated port for {name} is {port}");
             Assert.NotEqual(portChoosed, port);
         }
+        void Then_The_Port_With_Tag_Is_Same_With_Port_Without_Tag()
+        {
+            var mspc = new MSPC();
+            var portNotTag = mspc.GetDeterministicPort(name);
+            StepExecution.Current.Comment($"generated port for {name} is {portNotTag}");
+            var portTag= mspc.GetDeterministicPort(name,"");
+            StepExecution.Current.Comment($"generated port with tag for {name} is {portTag}");
+            Assert.Equal(portTag, portNotTag);
+        }
+
     }
 }
