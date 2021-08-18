@@ -42,9 +42,10 @@ axios.get('https://microservicesportchooser.azurewebsites.net/api/v1/PortChooser
 
 
 ### Releases
-Windows x64: TBD
 
-Linux x64: TBD
+Windows x64: https://github.com/ignatandrei/MicroservicesPortChooser/releases/download/v1.0.0.22/releaseWin.zip/
+
+Linux x64: https://github.com/ignatandrei/MicroservicesPortChooser/releases/download/v1.0.0.22/releaseLin.zip/
 
 Dotnet Tool: TBD
 
