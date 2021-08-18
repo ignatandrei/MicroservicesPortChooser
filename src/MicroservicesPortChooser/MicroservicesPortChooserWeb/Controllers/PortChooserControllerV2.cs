@@ -11,8 +11,8 @@ namespace MicroservicesPortChooserWeb.Controllers
 {
     [ApiVersion("2.0")]
     [ApiController]
-    [Route("api/v{version:apiVersion}/[controller]/[action]")]
-    [ControllerName(nameof(PortChooserController))]
+    [Route("api/v{version:apiVersion}/PortChooser/[action]")]
+    //[ControllerName("PortChooser")]
     public class PortChooserControllerV2 : ControllerBase
     {
         private readonly ILogger<PortChooserControllerV2> _logger;
@@ -22,7 +22,7 @@ namespace MicroservicesPortChooserWeb.Controllers
             _logger = logger;
         }
 
-        [HttpGet("{name}/{tag}")]
+        [HttpGet("{name}/{tag?}")]
         public ActionResult<UInt16> GetDeterministicPortFrom([FromServices] MSPC mspc, string name, string tag)
         {
             return mspc.GetDeterministicPort(name,tag);

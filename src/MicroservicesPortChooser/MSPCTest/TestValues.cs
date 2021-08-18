@@ -59,5 +59,22 @@ namespace MSPCTest
        _ => Then_The_Port_With_Tag_Is_Same_With_Port_Without_Tag()
        );
         }
+
+        [Scenario]
+
+        [Label("generating ports")]
+
+        [Trait("Category", "Easy")]
+        [InlineData("test","asd" ,3345)]
+        public void TestDeterministicPortWithTag(string name, string tag, UInt16 port)
+        {
+            Runner.RunScenario(
+
+                   _ => When_Having_The_MicroService_Name_And_Tag(name,tag),
+
+
+                   _ => Then_The_Port_Choosed_With_Tag_Is(port)
+                   );
+        }
     }
 }

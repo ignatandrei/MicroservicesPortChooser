@@ -58,9 +58,16 @@ namespace MicroservicesPortChooserBL
         {
             if (string.IsNullOrWhiteSpace(tag))
                 return GetDeterministicPort(name);
-            // from Ciprian Apetrei a simple suggestion
-            var hash = (name + "_" + tag).GetHashCode();
-            return Convert.ToUInt16 (Math.Abs(Convert.ToInt16((hash >> 16) ^ hash))); 
+
+
+            return GetDeterministicPort(name + "_" + tag);
+
+            //// overflow for parameters test asd 
+            //var hash = (name + "_" + tag).GetHashCode();
+            //Console.WriteLine(hash);
+            //var int16Val = Convert.ToInt16((hash >> 16) ^ hash);
+            //var abs = Math.Abs(int16Val);
+            //return Convert.ToUInt16 (abs); 
         }
     }
 }

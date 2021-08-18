@@ -1,0 +1,49 @@
+<p>Version 2 - Get Port for microservice from name + tag (multiple instances on same PC)</p>
+
+<form class="example-form">
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Please enter your microservice name</mat-label>
+    <input
+      [(ngModel)]="appName"
+      name="appName"
+      matInput
+      placeholder="Please enter your microservice name"
+      value=""
+    />
+    
+  </mat-form-field>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Please enter your tag name</mat-label>
+    <input
+      [(ngModel)]="tag"
+      name="tag"
+      matInput
+      placeholder="Please enter your microservice tag"
+      value=""
+    />
+    
+  </mat-form-field>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>PC Name</mat-label>
+    <input
+      [(ngModel)]="pcName"
+      name="pcName"
+      matInput
+      placeholder="Please enter your PC name or localhost"
+
+    />
+    
+  </mat-form-field>
+
+  <button
+    [disabled]="appName?.length == 0 ? 'disabled' : 'false'"
+    mat-raised-button
+    color="primary"
+    (click)="onDeterministic()"
+  >
+    Static, Deterministic
+  </button>
+
+</form>
+
+{{ fullName}}

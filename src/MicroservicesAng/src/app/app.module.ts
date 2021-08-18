@@ -43,12 +43,14 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MPCv1Component } from './mpcv1/mpcv1.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { Mpcv2Component } from './mpcv2/mpcv2.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PrimaryNavigComponent,
-    MPCv1Component
+    MPCv1Component,
+    Mpcv2Component
   ],
   imports: [
     BrowserModule,

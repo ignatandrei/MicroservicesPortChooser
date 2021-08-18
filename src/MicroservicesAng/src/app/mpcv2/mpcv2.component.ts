@@ -2,14 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { MPCService } from '../services/mpcv1.service';
 
 @Component({
-  selector: 'app-mpcv1',
-  templateUrl: './mpcv1.component.html',
-  styleUrls: ['./mpcv1.component.css']
+  selector: 'app-mpcv2',
+  templateUrl: './mpcv2.component.html',
+  styleUrls: ['./mpcv2.component.css']
 })
-export class MPCv1Component implements OnInit {
+export class Mpcv2Component implements OnInit {
 
   appName: string = '';
   pcName: string=  'localhost';
+  tag: string = '';
   fullName: string = '';
   constructor(private MPCService: MPCService) { }
 
@@ -23,15 +24,9 @@ export class MPCv1Component implements OnInit {
   
   onDeterministic(): void {
 
-     this.MPCService.deterministic(this.appName).subscribe(
+     this.MPCService.deterministicV2(this.appName,this.tag).subscribe(
        v=> window.alert(this.constructFullName(v))
      );
-  }
-
-  onNonDeterministic(): void {
-    this.MPCService.nonDeterministic(this.appName).subscribe(
-      v=> window.alert(this.constructFullName(v))
-    );
   }
 
 }

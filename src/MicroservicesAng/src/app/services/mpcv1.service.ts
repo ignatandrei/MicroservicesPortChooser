@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class MPCv1Service {
+export class MPCService {
   constructor(private http: HttpClient) { }
   
   deterministic(appName: string) : Observable<string> {
@@ -18,5 +18,8 @@ export class MPCv1Service {
     return this.http.get<string>(url);
   }
 
-  
+  deterministicV2(appName: string, tag: string) : Observable<string> {
+    var url =environment.url +'api/v2/PortChooser/GetDeterministicPortFrom/'+appName + "/"+tag;
+    return this.http.get<string>(url);
+  }
 }
