@@ -32,7 +32,7 @@ namespace MSPCTest
 
         [Label("generating ports")]
         [Trait("Category", "Easy")]
-        [InlineData("MicroservicesPort", 28026)]
+        [InlineData("MicroservicesPort", 0)]
         public void TestNonDeterministicPort(string name, UInt16 port)
         {
             Runner.RunScenario(
@@ -76,5 +76,22 @@ namespace MSPCTest
                    _ => Then_The_Port_Choosed_With_Tag_Is(port)
                    );
         }
+
+        //[Scenario]
+
+        //[Label("generating ports")]
+
+        //[Trait("Category", "Easy")]
+        //[InlineData("test", "asd", 0)]
+        //public void TestNonDeterministicCiprianPortWithTag(string name, string tag, UInt16 port)
+        //{
+        //    Runner.RunScenario(
+
+        //           _ => When_Having_The_MicroService_Name_And_Tag(name, tag),
+
+
+        //           _ => Then_The_Port_Choosed_CiprianMethod_With_Tag_Is_Not(port)
+        //           );
+        //}
     }
 }

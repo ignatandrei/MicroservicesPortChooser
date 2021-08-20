@@ -62,12 +62,14 @@ namespace MicroservicesPortChooserBL
 
             return GetDeterministicPort(name + "_" + tag);
 
-            //// overflow for parameters test asd 
-            //var hash = (name + "_" + tag).GetHashCode();
-            //Console.WriteLine(hash);
-            //var int16Val = Convert.ToInt16((hash >> 16) ^ hash);
-            //var abs = Math.Abs(int16Val);
-            //return Convert.ToUInt16 (abs); 
         }
+        //public UInt16 GetNonDeterministicCiprianPort(string name, string tag)
+        //{
+        //    var hash = (name + "_" + tag).GetHashCode();
+        //    //Console.WriteLine(hash);
+        //    var int16Val = Convert.ToInt16((hash >> 16) ^ hash & 0xFFFF);
+        //    return Convert.ToUInt16 (Math.Abs(int16Val)); 
+
+        //}
     }
 }

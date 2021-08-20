@@ -54,5 +54,12 @@ namespace MSPCTest
             StepExecution.Current.Comment($"generated port for {name} is {port}");
             Assert.Equal(portChoosed, port);
         }
+        //void Then_The_Port_Choosed_CiprianMethod_With_Tag_Is_Not(UInt16 portChoosed)
+        //{
+        //    var mspc = new MSPC();
+        //    var port = mspc.GetNonDeterministicCiprianPort(name, tag);
+        //    StepExecution.Current.Comment($"generated port for {name} is {port}");
+        //    Assert.NotEqual(portChoosed, port);
+        //}
     }
 }
