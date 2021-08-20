@@ -1,7 +1,7 @@
-<p>Version 1 - Get Port for microservice from name</p>
+<p class='first-element-help'>Version 1 - Get Port for microservice from name</p>
 
 <form class="example-form">
-  <mat-form-field class="example-full-width" appearance="fill">
+  <mat-form-field class="example-full-width formAppName-help" appearance="fill" name="">
     <mat-label>Please enter your microservice name</mat-label>
     <input
       [(ngModel)]="appName"
@@ -24,7 +24,7 @@
     
   </mat-form-field>
 
-  <button
+  <button class="generatePort-help"
     [disabled]="appName?.length == 0 ? 'disabled' : 'false'"
     mat-raised-button
     color="primary"
@@ -34,7 +34,7 @@
   </button>
 
   &nbsp;&nbsp;&nbsp;
-  <button
+  <button 
     [disabled]="appName?.length == 0 ? 'disabled' : 'false'"
     mat-raised-button
     color="warn"
