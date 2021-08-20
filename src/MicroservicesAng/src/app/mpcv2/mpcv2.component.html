@@ -1,7 +1,12 @@
-<p>Version 2 - Get Port for microservice from name + tag (multiple instances on same PC)</p>
-
-<form class="example-form">
-  <mat-form-field class="example-full-width" appearance="fill">
+<p class='first-element-help'>Version 2 - Get Port for microservice from name + tag (multiple instances on same PC)
+<button  mat-mini-fab
+(click)="onHelp()"
+>
+<mat-icon>help</mat-icon>
+</button>
+</p>
+<form class="example-form" >
+  <mat-form-field class="example-full-width formAppName-help" appearance="fill">
     <mat-label>Please enter your microservice name</mat-label>
     <input
       [(ngModel)]="appName"
@@ -12,7 +17,7 @@
     />
     
   </mat-form-field>
-  <mat-form-field class="example-full-width" appearance="fill">
+  <mat-form-field class="example-full-width formTag-help" appearance="fill">
     <mat-label>Please enter your tag name</mat-label>
     <input
       [(ngModel)]="tag"
@@ -35,7 +40,7 @@
     
   </mat-form-field>
 
-  <button
+  <button class="generatePort-help"
     [disabled]="appName?.length == 0 ? 'disabled' : 'false'"
     mat-raised-button
     color="primary"
