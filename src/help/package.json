@@ -1,5 +1,8 @@
 {
   "devDependencies": {
     "playwright": "^1.14.0"
+  },
+  "dependencies": {
+    "fs": "^0.0.1-security"
   }
 }
