@@ -10,6 +10,8 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using MSPCWebExtension;
+using System.IO;
+
 namespace MicroservicesPortChooserWeb
 {
     public class Program
@@ -30,9 +32,13 @@ namespace MicroservicesPortChooserWeb
                     //cannout use his own url ;-)
                     //.UseAutomaticUrls(
                     //    ThisAssembly.Project.AssemblyName,
-                    //    Environment.MachineName
+                    //    $"http://{Environment.MachineName}",
+                    //    //download app and use your own url
+                    //    "https://microservicesportchooser.azurewebsites.net/",
+                    //    new DirectoryInfo(Environment.CurrentDirectory).Name
                     //    )
                     ;
+                   
                 });
     }
 }
