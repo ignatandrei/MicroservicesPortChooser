@@ -16,7 +16,10 @@ https://microservicesportchooser.azurewebsites.net/swagger/index.html
 Make a HttpClient and call the service with the following url:
 https://microservicesportchooser.azurewebsites.net/api/v1/PortChooser/GetDeterministicPortFrom/{serviceName}
 
-Or add the Nuget package https://www.nuget.org/packages/MicroservicesPortChooser/
+Or add the Nuget package 
+<a href='https://www.nuget.org/packages/MicroservicesPortChooser/' target='_blank'>
+![Nuget](https://img.shields.io/nuget/v/MicroservicesPortChooser)
+</a>
 
 ### Express
 
@@ -53,4 +56,5 @@ Versioning: https://microservicesportchooser.azurewebsites.net/ams
 
 Source Code: https://github.com/ignatandrei/MicroservicesPortChooser/
 
+Nuget : ![Nuget](https://img.shields.io/nuget/v/MicroservicesPortChooser)
 PR Welcomed!
