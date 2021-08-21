@@ -50,11 +50,13 @@ Windows x64: https://github.com/ignatandrei/MicroservicesPortChooser/releases/la
 
 Linux x64: https://github.com/ignatandrei/MicroservicesPortChooser/releases/latest/download/releaseLin.zip/
 
-Dotnet Tool: TBD
-
 Versioning: https://microservicesportchooser.azurewebsites.net/ams
 
 Source Code: https://github.com/ignatandrei/MicroservicesPortChooser/
 
-Nuget : ![Nuget](https://img.shields.io/nuget/v/MicroservicesPortChooser)
+Nuget : <a href='https://www.nuget.org/packages/MicroservicesPortChooser/' target='_blank'>
+![Nuget](https://img.shields.io/nuget/v/MicroservicesPortChooser)
+</a>
+
+
 PR Welcomed!
