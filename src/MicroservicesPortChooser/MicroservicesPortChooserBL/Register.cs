@@ -20,19 +20,20 @@ namespace MicroservicesPortChooserBL
         {
             return register.ToArray().Select(it => it.Value).ToArray();
         }
-        public static Register AddNew(string host, UInt16 port, string tag = "")
+        public static Register AddNew(string name,string host, UInt16 port, string tag = "")
         {
-            return AddRegister(new Register(host, port, tag));
+            return AddRegister(new Register(name, host, port, tag));
         }
-        public Register(string host,UInt16 port, string tag="")
+        public Register(string name,string host,UInt16 port, string tag="")
         {
             dateRegistered = DateTime.UtcNow;
+            this.Name = name;
             this.HostName = host;
             this.Port = port;
             this.Tag = tag;
             
         }
-        public DateTimeOffset dateRegistered = DateTime.Now;
+        public DateTimeOffset dateRegistered { get; init; }
         public string UniqueID
         {
             get

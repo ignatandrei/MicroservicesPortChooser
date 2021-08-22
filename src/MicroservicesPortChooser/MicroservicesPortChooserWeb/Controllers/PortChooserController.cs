@@ -27,7 +27,7 @@ namespace MicroservicesPortChooserWeb.Controllers
             var host = this.Request.Host.Host;
 
             var port = mspc.GetDeterministicPort(name);
-            return Register.AddNew(host, port, "").Port;
+            return Register.AddNew(name,host, port, "").Port;
             
         }
         [HttpGet("{name}")]
@@ -37,7 +37,7 @@ namespace MicroservicesPortChooserWeb.Controllers
             var host = this.Request.Host.Host;
 
             var port = mspc.GetNonDeterministicPort(name); 
-            return Register.AddNew(host, port, "").Port;
+            return Register.AddNew(name,host, port, "").Port;
             
         }
 

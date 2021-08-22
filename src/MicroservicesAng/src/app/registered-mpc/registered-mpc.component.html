@@ -1,1 +1,30 @@
 <p>Number services registered: {{data.length}}</p>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Number</th>
+            <th > Name </th>
+            <th > Date registered </th>
+            <th > Tag</th>
+            <th> Details </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of data; let i = index">
+            <td > {{i+1}} </td>
+            <td> 
+                <a href="http://{{item.hostName}}:{{item.port}}/" target="_blank">{{item.name}}</a>
+                </td>
+                <td> 
+                    UTC: {{item.dateRegistered}}
+                    <br/>
+                    Local: {{item.dateRegistered.toLocaleString()}}
+                </td>   
+
+                
+                <td > {{item.tag}} </td>
+                <td > {{item | json }} </td>
+        </tr>
+    </tbody>
+</table>

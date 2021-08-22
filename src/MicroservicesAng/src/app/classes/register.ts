@@ -2,7 +2,7 @@
 export class Register{
 
     dateRegistered : Date = new Date();
-    UniqueID: string = "";
+    uniqueID: string = "";
     name :string= "";
     hostName :string= "";
     port : number=0;
