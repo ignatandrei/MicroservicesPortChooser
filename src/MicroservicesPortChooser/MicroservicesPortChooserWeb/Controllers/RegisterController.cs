@@ -14,6 +14,7 @@ namespace MicroservicesPortChooserWeb.Controllers
     [ApiController]
     public class RegisterController : ControllerBase
     {
+        [HttpGet]
         public Register[] GetAll()
         {
             return Register.RegisteredMSPC();

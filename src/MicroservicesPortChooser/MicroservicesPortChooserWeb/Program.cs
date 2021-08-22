@@ -29,7 +29,7 @@ namespace MicroservicesPortChooserWeb
                 {
                     webBuilder
                     .UseStartup<Startup>()
-                    //cannout use his own url ;-)
+                    //cannout use his own url ;-) 
     //                .UseAutomaticUrls(
     //ThisAssembly.Project.AssemblyName,
     //$"http://{Environment.MachineName}"

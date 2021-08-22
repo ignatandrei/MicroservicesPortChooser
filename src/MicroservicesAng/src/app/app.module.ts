@@ -44,13 +44,15 @@ import { MPCv1Component } from './mpcv1/mpcv1.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Mpcv2Component } from './mpcv2/mpcv2.component';
+import { RegisteredMPCComponent } from './registered-mpc/registered-mpc.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PrimaryNavigComponent,
     MPCv1Component,
-    Mpcv2Component
+    Mpcv2Component,
+    RegisteredMPCComponent
   ],
   imports: [
     BrowserModule,
