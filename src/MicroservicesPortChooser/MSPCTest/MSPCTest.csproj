@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MicroservicesPortChooserBL\MicroservicesPortChooserBL.csproj" />
+    <ProjectReference Include="..\MicroservicesPortChooserWeb\MicroservicesPortChooserWeb.csproj" />
   </ItemGroup>
 
 </Project>

@@ -11,13 +11,26 @@ namespace MicroservicesPortChooserBL
     {
         private static ConcurrentDictionary<string, Register> register = new ConcurrentDictionary<string, Register>();
         
-        public static void AddRegister(Register r)
+        public static Register AddRegister(Register r)
         {
             register.AddOrUpdate(r.UniqueID, r, (key, r) => r);
+            return r;
         }
-        public Register()
+        public static Register[] RegisteredMSPC()
+        {
+            return register.ToArray().Select(it => it.Value).ToArray();
+        }
+        public static Register AddNew(string host, UInt16 port, string tag = "")
+        {
+            return AddRegister(new Register(host, port, tag));
+        }
+        public Register(string host,UInt16 port, string tag="")
         {
             dateRegistered = DateTime.UtcNow;
+            this.HostName = host;
+            this.Port = port;
+            this.Tag = tag;
+            
         }
         public DateTimeOffset dateRegistered = DateTime.Now;
         public string UniqueID

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MicroservicesPortChooserBL;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -7,9 +8,15 @@ using System.Threading.Tasks;
 
 namespace MicroservicesPortChooserWeb.Controllers
 {
-    [Route("api/[controller]")]
+    [ApiVersion("1.0")]
+    [ApiVersion("2.0")]
+    [Route("api/v{version:apiVersion}/[controller]/[action]")]
     [ApiController]
     public class RegisterController : ControllerBase
     {
+        public Register[] GetAll()
+        {
+            return Register.RegisteredMSPC();
+        }
     }
 }

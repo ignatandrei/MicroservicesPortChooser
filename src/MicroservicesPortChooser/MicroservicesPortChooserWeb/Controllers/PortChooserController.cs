@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 namespace MicroservicesPortChooserWeb.Controllers
 {
     [ApiVersion("1.0")]
-    //[ApiVersion("2.0")]
     [ApiController]
     [Route("api/v{version:apiVersion}/[controller]/[action]")]
     public class PortChooserController : ControllerBase
@@ -22,16 +21,24 @@ namespace MicroservicesPortChooserWeb.Controllers
             _logger = logger;
         }
 
-        //[MapToApiVersion("2.0")]
         [HttpGet("{name}")]
         public ActionResult<UInt16> GetDeterministicPortFrom([FromServices] MSPC mspc, string name)
         {
-            return mspc.GetDeterministicPort(name);
+            var host = this.Request.Host.Host;
+
+            var port = mspc.GetDeterministicPort(name);
+            return Register.AddNew(host, port, "").Port;
+            
         }
         [HttpGet("{name}")]
         public ActionResult<UInt16> GetNonDeterministicPortFrom([FromServices] MSPC mspc, string name)
         {
-            return mspc.GetNonDeterministicPort(name);
+
+            var host = this.Request.Host.Host;
+
+            var port = mspc.GetNonDeterministicPort(name); 
+            return Register.AddNew(host, port, "").Port;
+            
         }
 
     }
