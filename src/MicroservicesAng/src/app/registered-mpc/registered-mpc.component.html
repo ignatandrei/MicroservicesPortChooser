@@ -14,7 +14,10 @@
         <tr *ngFor="let item of data; let i = index">
             <td > {{i+1}} </td>
             <td> 
-                <a href="http://{{item.hostName}}:{{item.port}}/" target="_blank">{{item.name}}:{{item.port}}</a>
+                <a href="http://{{item.hostName}}:{{item.port}}/" target="_blank">{{item.name}}</a>
+                <br />
+                Port: {{item.port}}
+                Host: {{item.hostName}}
                 </td>
                 <td> 
                     Local: {{item.dateRegistered | date:'long'}}
