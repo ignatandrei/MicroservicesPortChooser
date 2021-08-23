@@ -1,12 +1,12 @@
 <p>Number services registered: {{data.length}}</p>
 
-<table border="1">
+<table matSort border="1" (matSortChange)="sortData($event)">
     <thead>
         <tr>
             <th>Number</th>
-            <th > Name </th>
-            <th > Date registered </th>
-            <th > Tag</th>
+            <th mat-sort-header="uniqueID" > Name </th>
+            <th mat-sort-header="dateRegistered" > Date registered </th>
+            <th mat-sort-header="tag" > Tag</th>
             <th> Details </th>
         </tr>
     </thead>
@@ -14,12 +14,12 @@
         <tr *ngFor="let item of data; let i = index">
             <td > {{i+1}} </td>
             <td> 
-                <a href="http://{{item.hostName}}:{{item.port}}/" target="_blank">{{item.name}}</a>
+                <a href="http://{{item.hostName}}:{{item.port}}/" target="_blank">{{item.name}}:{{item.port}}</a>
                 </td>
                 <td> 
-                    UTC: {{item.dateRegistered}}
+                    Local: {{item.dateRegistered | date:'long'}}
                     <br/>
-                    Local: {{item.dateRegistered.toLocaleString()}}
+                    UTC:{{item.dateRegistered.toLocaleString()}}
                 </td>   
 
                 
