@@ -69,7 +69,8 @@ jobs:
         cd MicroservicesPortChooserWeb
         dotnet publish -r win-x64 -c Release -o ${{env.AZURE_WEBAPP_NAME}}WinX64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=true
         dotnet publish -r linux-x64 -c Release -o ${{env.AZURE_WEBAPP_NAME}}linX64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=true 
-
+        dotnet publish -r win-x64 -c Release -o ${{env.AZURE_WEBAPP_NAME}}IISWinX64 --self-contained false -p:PublishSingleFile=false -p:PublishTrimmed=false
+        
     - name: Archive Release Linux
       uses: thedoctor0/zip-release@master
       with:
@@ -85,6 +86,15 @@ jobs:
         filename: 'releaseWin.zip'
         path: '${{github.workspace}}\src\MicroservicesPortChooser\MicroservicesPortChooserWeb\${{env.AZURE_WEBAPP_NAME}}WinX64\'
         exclusions: '*.git* /*node_modules/* .editorconfig'       
+
+    - name: Archive Release IIS
+      uses: thedoctor0/zip-release@master
+      with:
+        type: 'zip'
+        filename: 'releaseIISWin.zip'
+        path: '${{github.workspace}}\src\MicroservicesPortChooser\MicroservicesPortChooserWeb\${{env.AZURE_WEBAPP_NAME}}IISWinX64\'
+        exclusions: '*.git* /*node_modules/* .editorconfig'       
+
 
     - name: verify releases
       run: |
@@ -111,6 +121,7 @@ jobs:
         files:  |
             releaseLin.zip
             releaseWin.zip
+            releaseIISWin.zip
     # - name: publish release
     #   uses: "marvinpinto/action-automatic-releases@latest"
     #   with:
