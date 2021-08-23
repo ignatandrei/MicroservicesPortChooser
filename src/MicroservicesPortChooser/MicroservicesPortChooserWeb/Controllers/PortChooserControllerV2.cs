@@ -25,7 +25,7 @@ namespace MicroservicesPortChooserWeb.Controllers
         [HttpGet("{name}/{tag?}")]
         public ActionResult<UInt16> GetDeterministicPortFrom([FromServices] MSPC mspc, string name, string tag)
         {
-            var host = this.Request.HttpContext.Connection.RemoteIpAddress?.ToString();
+            var host = this.Request.GetRemoteIP();
 
             var port =mspc.GetDeterministicPort(name,tag);
             return Register.AddNew(name,host, port, tag).Port;
