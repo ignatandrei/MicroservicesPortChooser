@@ -24,6 +24,11 @@ namespace MicroservicesPortChooserBL
         {
             return AddRegister(new Register(name, host, port, tag));
         }
+        public static bool UnRegister(string host, UInt16 port)
+        {
+            var r = new Register(host, host, port);
+            return register.Remove(r.UniqueID, out _);
+        }
         public Register(string name,string host,UInt16 port, string tag="")
         {
             dateRegistered = DateTime.UtcNow;

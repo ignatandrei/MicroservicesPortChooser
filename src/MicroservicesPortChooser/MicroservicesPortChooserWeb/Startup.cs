@@ -2,6 +2,7 @@ using AMSWebAPI;
 using MicroservicesPortChooserBL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -64,7 +65,10 @@ namespace MicroservicesPortChooserWeb
             }
             app.UseCors("AllowAll");
             //app.UseHttpsRedirection();
-
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
             app.UseSwagger();
 
             app.UseSwaggerUI(c =>

@@ -24,7 +24,7 @@ namespace MicroservicesPortChooserWeb.Controllers
         [HttpGet("{name}")]
         public ActionResult<UInt16> GetDeterministicPortFrom([FromServices] MSPC mspc, string name)
         {
-            var host = this.Request.Host.Host;
+            var host = this.Request.HttpContext.Connection.RemoteIpAddress?.ToString();
 
             var port = mspc.GetDeterministicPort(name);
             return Register.AddNew(name,host, port, "").Port;
@@ -34,7 +34,7 @@ namespace MicroservicesPortChooserWeb.Controllers
         public ActionResult<UInt16> GetNonDeterministicPortFrom([FromServices] MSPC mspc, string name)
         {
 
-            var host = this.Request.Host.Host;
+            var host = this.Request.HttpContext.Connection.RemoteIpAddress?.ToString();
 
             var port = mspc.GetNonDeterministicPort(name); 
             return Register.AddNew(name,host, port, "").Port;
