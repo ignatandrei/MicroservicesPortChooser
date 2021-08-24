@@ -31,7 +31,7 @@ namespace MicroservicesPortChooserBL
         }
         public Register()
         {
-
+            this.dateRegistered = DateTime.UtcNow;
         }
         public Register(string name,string host,UInt16 port, string tag="")
         {
