@@ -33,14 +33,14 @@ namespace MicroservicesPortChooserBL
         {
             this.dateRegistered = DateTime.UtcNow;
         }
-        public Register(string name,string host,UInt16 port, string tag="")
+        public Register(string name,string host,UInt16 port, string tag="", string authority="http")
         {
             this.dateRegistered = DateTime.UtcNow;
             this.Name = name;
             this.HostName = host;
             this.Port = port;
             this.Tag = tag;
-            
+            Authority = authority;
         }
         public DateTimeOffset dateRegistered { get; private set; }
         public string UniqueID
@@ -54,5 +54,6 @@ namespace MicroservicesPortChooserBL
         public string HostName { get; set; }
         public UInt16 Port { get; set; }
         public string Tag { get; set; }
+        public string Authority { get; }
     }
 }
