@@ -29,16 +29,20 @@ namespace MicroservicesPortChooserBL
             var r = new Register(host, host, port);
             return register.Remove(r.UniqueID, out _);
         }
+        public Register()
+        {
+
+        }
         public Register(string name,string host,UInt16 port, string tag="")
         {
-            dateRegistered = DateTime.UtcNow;
+            this.dateRegistered = DateTime.UtcNow;
             this.Name = name;
             this.HostName = host;
             this.Port = port;
             this.Tag = tag;
             
         }
-        public DateTimeOffset dateRegistered { get; init; }
+        public DateTimeOffset dateRegistered { get; private set; }
         public string UniqueID
         {
             get

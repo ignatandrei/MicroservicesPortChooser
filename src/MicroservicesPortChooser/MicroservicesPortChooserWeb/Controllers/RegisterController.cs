@@ -19,6 +19,13 @@ namespace MicroservicesPortChooserWeb.Controllers
         {
             return Register.RegisteredMSPC();
         }
+        [HttpPost]
+        public Register AddNew(Register r)
+        {
+            //do copy constructor
+            return Register.AddRegister(r);
+
+        }
         [HttpDelete("{host}/{port}")]
         public bool UnRegister(string host, UInt16 port)
         {

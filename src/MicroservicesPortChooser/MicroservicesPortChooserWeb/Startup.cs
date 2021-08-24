@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using MSPCWebExtension;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace MicroservicesPortChooserWeb
@@ -41,7 +42,7 @@ namespace MicroservicesPortChooserWeb
                                             );
             });
 
-
+            services.AddHostedService<DiscoveryAndRegister>();
             services.AddApiVersioning();
             services.AddVersionedApiExplorer(options =>
             {
