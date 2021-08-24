@@ -14,9 +14,13 @@
     <None Include="../../../docs/MSPCWebExtension.png" Pack="true" PackagePath="\" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="HttpClientGenerator" Version="0.5.3" OutputItemType="Analyzer"  />
     <PackageReference Include="AMS_Base" Version="2021.7.6.628" />
     <PackageReference Include="RSCG_AMS" Version="2021.7.6.628" ReferenceOutputAssembly="false" OutputItemType="Analyzer" />
     <PackageReference Include="xunit.extensibility.core" Version="2.4.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MicroservicesPortChooserBL\MicroservicesPortChooserBL.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
