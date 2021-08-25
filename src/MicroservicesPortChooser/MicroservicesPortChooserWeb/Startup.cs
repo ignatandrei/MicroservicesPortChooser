@@ -1,4 +1,5 @@
 using AMSWebAPI;
+using Hellang.Middleware.ProblemDetails;
 using MicroservicesPortChooserBL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -55,6 +56,10 @@ namespace MicroservicesPortChooserWeb
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = ThisAssembly.Project.AssemblyName, Version = "v1" });
             });
+            services.AddProblemDetails(c=>
+            {
+                c.IncludeExceptionDetails = (context, ex) => true;                
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,6 +69,7 @@ namespace MicroservicesPortChooserWeb
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseProblemDetails(it=>);
             app.UseCors("AllowAll");
             //app.UseHttpsRedirection();
             app.UseForwardedHeaders(new ForwardedHeadersOptions
