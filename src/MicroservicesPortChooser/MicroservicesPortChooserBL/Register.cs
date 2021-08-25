@@ -20,9 +20,9 @@ namespace MicroservicesPortChooserBL
         {
             return register.ToArray().Select(it => it.Value).ToArray();
         }
-        public static Register AddNew(string name,string host, UInt16 port, string tag = "")
+        public static Register AddNew(string name,string host, UInt16 port, string tag = "",string authority="http")
         {
-            return AddRegister(new Register(name, host, port, tag));
+            return AddRegister(new Register(name, host, port, tag, authority));
         }
         public static bool UnRegister(string host, UInt16 port)
         {
