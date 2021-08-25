@@ -58,11 +58,11 @@ namespace MSPCWebExtension
                         try
                         {
                             await p.AddNew(r);
-                            Console.WriteLine("done register");
+                            Console.WriteLine($"done register {item}");
                         }
                         catch(Exception ex)
                         {
-                            Console.WriteLine("error : " + ex.Message);
+                            Console.WriteLine("error register: " + ex.Message);
                         }
                     }
                     

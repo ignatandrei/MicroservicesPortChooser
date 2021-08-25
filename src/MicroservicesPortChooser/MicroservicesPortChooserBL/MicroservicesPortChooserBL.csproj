@@ -16,7 +16,7 @@
   <ItemGroup>
     <PackageReference Include="AMS_Base" Version="2021.7.6.628" />
     <PackageReference Include="Dapper.Contrib" Version="2.0.78" />
-    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="5.0.9" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="5.0.9" />
     <PackageReference Include="RSCG_AMS" Version="2021.7.6.628" ReferenceOutputAssembly="false" OutputItemType="Analyzer" />
   </ItemGroup>
 

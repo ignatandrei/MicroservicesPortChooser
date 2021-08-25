@@ -22,22 +22,22 @@ namespace MicroservicesPortChooserWeb.Controllers
         }
 
         [HttpGet("{name}")]
-        public ActionResult<UInt16> GetDeterministicPortFrom([FromServices] MSPC mspc, string name)
+        public async Task<UInt16> GetDeterministicPortFrom([FromServices] MSPC mspc, string name)
         {
             var host = this.Request.GetRemoteIP();
 
             var port = mspc.GetDeterministicPort(name);
-            return Register.AddNew(name,host, port, "").Port;
+            return (await Register.AddNew(name,host, port, "")).Port;
             
         }
         [HttpGet("{name}")]
-        public ActionResult<UInt16> GetNonDeterministicPortFrom([FromServices] MSPC mspc, string name)
+        public async Task<UInt16> GetNonDeterministicPortFrom([FromServices] MSPC mspc, string name)
         {
 
             var host = this.Request.GetRemoteIP();
 
             var port = mspc.GetNonDeterministicPort(name); 
-            return Register.AddNew(name,host, port, "").Port;
+            return (await Register.AddNew(name,host, port, "")).Port;
             
         }
 

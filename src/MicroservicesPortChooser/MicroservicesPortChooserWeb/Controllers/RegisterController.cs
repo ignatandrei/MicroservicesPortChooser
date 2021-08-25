@@ -20,7 +20,14 @@ namespace MicroservicesPortChooserWeb.Controllers
             return Register.RegisteredMSPC();
         }
         [HttpPost]
-        public Register AddNew(Register r)
+        public Task<int> LoadFromDatabase()
+        {
+            //do copy constructor
+            return Register.LoadFromDatabase();
+
+        }
+        [HttpPost]
+        public Task<Register> AddNew(Register r)
         {
             //do copy constructor
             return Register.AddRegister(r);

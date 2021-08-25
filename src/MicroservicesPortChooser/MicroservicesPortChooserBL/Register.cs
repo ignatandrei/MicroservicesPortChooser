@@ -12,34 +12,41 @@ namespace MicroservicesPortChooserBL
     public class Register
     {
         private static ConcurrentDictionary<string, Register> register = new ConcurrentDictionary<string, Register>();
-        static string DbName = "Data Source=MSPC.sqlite";
-        public static Register AddRegister(Register r)
+        static string DbName = "Data Source=MSPC.db";
+        public async static Task<Register> AddRegister(Register r)
         {
-            //using var connection = new SqliteConnection(DbName);
-            //connection.Execute(
-            //    "insert into MSPC_Register(Name, Hostname,Port, Tag, Authority) values" +
-            //    "(@Name, @Hostname,@Port, @Tag, @Authority) " , register);
+            var parameters = new DynamicParameters();
+            parameters.Add("@Name", r.Name);
+            parameters.Add("@HostName", r.HostName);
+            parameters.Add("@Port", r.Port);
+            parameters.Add("@Tag", r.Tag);
+            parameters.Add("@Authority", r.Authority);
+            using var connection = new SqliteConnection(DbName);
+            
+            await connection.ExecuteAsync(
+                "insert into MSPC_Register(Name, Hostname,Port, Tag, Authority) values" +
+                "(@Name, @HostName,@Port, @Tag, @Authority)", parameters);
             register.AddOrUpdate(r.UniqueID, r, (key, r) => r);
-            return r;
+            return r; 
         }
         public static Register[] RegisteredMSPC()
         {
             return register.ToArray().Select(it => it.Value).ToArray();
         }
-        public static Register AddNew(string name,string host, UInt16 port, string tag = "",string authority="http")
+        public static Task<Register> AddNew(string name,string host, UInt16 port, string tag = "",string authority="http")
         {
             return AddRegister(new Register(name, host, port, tag, authority));
-        }
+        } 
         public static bool UnRegister(string host, UInt16 port)
         {
-            //using var connection = new SqliteConnection(DbName);
-            //connection.Execute(
-            //    "delete from MSPC_Register where Host= @host and Port= @port " 
-            //    , new { host, port});
+            using var connection = new SqliteConnection(DbName);
+            connection.Execute(
+                "delete from MSPC_Register where Hostname= @host and Port= @port "
+                , new { host, port });
             var r = new Register(host, host, port);
             return register.Remove(r.UniqueID, out _);
         }
-        public async Task<int> LoadFromDatabase()
+        public static async Task<int> LoadFromDatabase()
         {
             using var connection = new SqliteConnection(DbName);
             var data = await connection.QueryAsync<Register>("select * from MSPC_Register");
@@ -47,7 +54,7 @@ namespace MicroservicesPortChooserBL
             {
                 register.AddOrUpdate(r.UniqueID, r, (key, r) => r);
             }
-            return register.Count;
+            return data.Count();
         }
         public Register()
         {
