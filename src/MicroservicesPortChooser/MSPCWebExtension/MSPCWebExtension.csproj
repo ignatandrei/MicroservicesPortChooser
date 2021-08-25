@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -14,13 +14,17 @@
     <None Include="../../../docs/MSPCWebExtension.png" Pack="true" PackagePath="\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="HttpClientGenerator" Version="0.5.3" OutputItemType="Analyzer"  />
+    <PackageReference Include="HttpClientGenerator" Version="0.5.3" OutputItemType="Analyzer" />
     <PackageReference Include="AMS_Base" Version="2021.7.6.628" />
     <PackageReference Include="RSCG_AMS" Version="2021.7.6.628" ReferenceOutputAssembly="false" OutputItemType="Analyzer" />
+    <PackageReference Include="Teronis.MSBuild.Packaging.ProjectBuildInPackage" Version="0.1.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="xunit.extensibility.core" Version="2.4.1" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MicroservicesPortChooserBL\MicroservicesPortChooserBL.csproj" />
+    <ProjectReference Include="..\MicroservicesPortChooserBL\MicroservicesPortChooserBL.csproj" PrivateAssets="all" />
   </ItemGroup>
 
   <PropertyGroup>
