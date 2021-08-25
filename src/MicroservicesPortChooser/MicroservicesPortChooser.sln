@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MSPCTest", "MSPCTest\MSPCTe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroservicesPortChooserWeb", "MicroservicesPortChooserWeb\MicroservicesPortChooserWeb.csproj", "{FC7132E4-F425-4477-96D9-BF98CAFBFD77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSPCWebExtension", "MSPCWebExtension\MSPCWebExtension.csproj", "{37A534A8-6851-4304-A5B6-2EFD9FCA4C5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MSPCWebExtension", "MSPCWebExtension\MSPCWebExtension.csproj", "{37A534A8-6851-4304-A5B6-2EFD9FCA4C5A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

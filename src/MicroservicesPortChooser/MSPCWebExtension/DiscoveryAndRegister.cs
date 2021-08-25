@@ -54,8 +54,16 @@ namespace MSPCWebExtension
                     var p = new PortService(h);
                     foreach (var item in add) {
                         var u = new Uri(item);
-                        var r = new Register(configData.appName,u.Host, (UInt16)u.Port,configData.tag, u.Authority);
-                        await p.AddNew(r);
+                        var r = new Register(configData.appName, u.Host, (UInt16)u.Port, configData.tag, u.Authority);
+                        try
+                        {
+                            await p.AddNew(r);
+                            Console.WriteLine("done register");
+                        }
+                        catch(Exception ex)
+                        {
+                            Console.WriteLine("error : " + ex.Message);
+                        }
                     }
                     
                     //Console.WriteLine("not null!!!" + string.Join(",", add));

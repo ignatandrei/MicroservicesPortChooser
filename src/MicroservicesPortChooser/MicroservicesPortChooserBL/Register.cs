@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Dapper;
+using Microsoft.Data.Sqlite;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +12,13 @@ namespace MicroservicesPortChooserBL
     public class Register
     {
         private static ConcurrentDictionary<string, Register> register = new ConcurrentDictionary<string, Register>();
-        
+        static string DbName = "Data Source=MSPC.sqlite";
         public static Register AddRegister(Register r)
         {
+            //using var connection = new SqliteConnection(DbName);
+            //connection.Execute(
+            //    "insert into MSPC_Register(Name, Hostname,Port, Tag, Authority) values" +
+            //    "(@Name, @Hostname,@Port, @Tag, @Authority) " , register);
             register.AddOrUpdate(r.UniqueID, r, (key, r) => r);
             return r;
         }
@@ -26,8 +32,22 @@ namespace MicroservicesPortChooserBL
         }
         public static bool UnRegister(string host, UInt16 port)
         {
+            //using var connection = new SqliteConnection(DbName);
+            //connection.Execute(
+            //    "delete from MSPC_Register where Host= @host and Port= @port " 
+            //    , new { host, port});
             var r = new Register(host, host, port);
             return register.Remove(r.UniqueID, out _);
+        }
+        public async Task<int> LoadFromDatabase()
+        {
+            using var connection = new SqliteConnection(DbName);
+            var data = await connection.QueryAsync<Register>("select * from MSPC_Register");
+            foreach(var r in data)
+            {
+                register.AddOrUpdate(r.UniqueID, r, (key, r) => r);
+            }
+            return register.Count;
         }
         public Register()
         {
