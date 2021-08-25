@@ -69,7 +69,7 @@ namespace MicroservicesPortChooserWeb
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseProblemDetails(it=>);
+            app.UseProblemDetails();
             app.UseCors("AllowAll");
             //app.UseHttpsRedirection();
             app.UseForwardedHeaders(new ForwardedHeadersOptions
