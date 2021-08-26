@@ -24,3 +24,21 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
         });
 
 ```
+
+If you want just to register your service,download the app.
+Then put this in Startup.cs of your microservice:
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+   services.AddHostedService<DiscoveryAndRegister>();
+```
+
+and in appsettings.json
+```json
+"MSPC": {
+  "tag": "Here_You_Can_Put_Tags",
+  "appName": "Port Chooser ",
+  "registerUrl": "https://microservicesportchooser.azurewebsites.net/api/v1/",
+}
+```
+And see the result at https://microservicesportchooser.azurewebsites.net/static/services
