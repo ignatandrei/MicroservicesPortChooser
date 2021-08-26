@@ -79,7 +79,7 @@ namespace MicroservicesPortChooserBL
         }
         public string Name { get; set; }
         public string HostName { get; set; }
-        public UInt16 Port { get; set; }
+        public int Port { get; set; }
         public string Tag { get; set; }
         public string Authority { get; }
     }

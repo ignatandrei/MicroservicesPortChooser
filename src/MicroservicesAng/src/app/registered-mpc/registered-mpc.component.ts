@@ -13,9 +13,13 @@ export class RegisteredMPCComponent implements OnInit {
   constructor(private mpcService: MPCService) { }
 
   ngOnInit(): void {
+    this.LoadData();
+  }
+  LoadData() : void {
     this.mpcService.getRegisterMS().subscribe(
       data => this.data = data
     );
+
   }
   compare(a: number | string |Date, b: number | string|Date, isAsc: boolean) : number {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
@@ -38,8 +42,11 @@ export class RegisteredMPCComponent implements OnInit {
       }
     });
   }
-}
-function sort(sort: any, Sort: any) {
-  throw new Error('Function not implemented.');
+
+  loadFromDatabase() {
+    this.mpcService.loadFromDatabase().subscribe(
+      it => this.LoadData()
+    );
+  }
 }
 

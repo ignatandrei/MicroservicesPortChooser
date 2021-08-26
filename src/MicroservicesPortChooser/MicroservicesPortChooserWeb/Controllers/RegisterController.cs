@@ -19,7 +19,7 @@ namespace MicroservicesPortChooserWeb.Controllers
         {
             return Register.RegisteredMSPC();
         }
-        [HttpPost]
+        [HttpGet]
         public Task<int> LoadFromDatabase()
         {
             //do copy constructor

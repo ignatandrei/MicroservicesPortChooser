@@ -22,7 +22,7 @@ namespace MicroservicesPortChooserWeb.Controllers
         }
 
         [HttpGet("{name}")]
-        public async Task<UInt16> GetDeterministicPortFrom([FromServices] MSPC mspc, string name)
+        public async Task<int> GetDeterministicPortFrom([FromServices] MSPC mspc, string name)
         {
             var host = this.Request.GetRemoteIP();
 
@@ -31,7 +31,7 @@ namespace MicroservicesPortChooserWeb.Controllers
             
         }
         [HttpGet("{name}")]
-        public async Task<UInt16> GetNonDeterministicPortFrom([FromServices] MSPC mspc, string name)
+        public async Task<int> GetNonDeterministicPortFrom([FromServices] MSPC mspc, string name)
         {
 
             var host = this.Request.GetRemoteIP();

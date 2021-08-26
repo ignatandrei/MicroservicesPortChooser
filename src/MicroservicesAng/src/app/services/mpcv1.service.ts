@@ -27,4 +27,8 @@ export class MPCService {
     var url =environment.url +'api/v1/Register/GetAll/';
     return this.http.get<Register[]>(url);
   }
+  loadFromDatabase(): Observable<number> {
+    var url =environment.url +'api/v1/Register/LoadFromDatabase/';
+    return this.http.get<number>(url);
+  }
 }
