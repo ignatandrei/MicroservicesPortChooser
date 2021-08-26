@@ -12,7 +12,18 @@
     </thead>
     <tbody>
         <tr *ngFor="let item of data; let i = index">
-            <td > {{i+1}} </td>
+            <td > {{i+1}} 
+                <button 
+                mat-raised-button
+                color="warn"
+                (click)="deleteFromDatabase(item)"
+                >
+                Delete
+                </button>
+                
+
+
+            </td>
             <td> 
                 <a href="http://{{item.hostName}}:{{item.port}}/" target="_blank">{{item.name}}</a>
                 <br />
@@ -34,7 +45,7 @@
 
 <button 
 mat-raised-button
-color="warn"
+color="primary"
 (click)="loadFromDatabase()"
 >
 LoadFromDatabase

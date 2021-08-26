@@ -31,4 +31,8 @@ export class MPCService {
     var url =environment.url +'api/v1/Register/LoadFromDatabase/';
     return this.http.get<number>(url);
   }
+  deleteFromDatabase(port: number, host:string) : Observable<boolean> {
+    var url =environment.url +'api/v1/Register/UnRegister/'+ host + "/"+ port;
+    return this.http.delete<boolean>(url);
+  }
 }

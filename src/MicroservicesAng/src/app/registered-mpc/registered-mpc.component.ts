@@ -48,5 +48,10 @@ export class RegisteredMPCComponent implements OnInit {
       it => this.LoadData()
     );
   }
+  deleteFromDatabase(register: Register) {
+    this.mpcService.deleteFromDatabase(register.port,register.hostName).subscribe(
+      it => this.LoadData()
+    );
+  }
 }
 

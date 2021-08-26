@@ -17,12 +17,20 @@ namespace MicroservicesPortChooserWeb
 
             ip = req.HttpContext.Connection.RemoteIpAddress?.ToString();
             if (!string.IsNullOrWhiteSpace(ip))
+            {
+                if (ip == "::1")
+                    ip = Environment.MachineName;
                 return ip;
 
+            }
             ip = GetHeaderValue(req,"REMOTE_ADDR").FirstCsv();
             if (!string.IsNullOrWhiteSpace(ip))
-                return ip;
+            {
+                if (ip == "::1")
+                    ip = Environment.MachineName;
 
+                return ip;
+            }
             return "not_found_ip";
 
         }
