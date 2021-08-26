@@ -54,7 +54,10 @@ namespace MSPCWebExtension
                     var p = new PortService(h);
                     foreach (var item in add) {
                         var u = new Uri(item);
-                        var r = new Register(configData.appName, u.Host, (UInt16)u.Port, configData.tag, u.Authority);
+                        string host = u.Host;
+                        if (host == "[::]")
+                            host = Environment.MachineName;
+                        var r = new Register(configData.appName, host, u.Port, configData.tag, u.Authority);
                         try
                         {
                             await p.AddNew(r);

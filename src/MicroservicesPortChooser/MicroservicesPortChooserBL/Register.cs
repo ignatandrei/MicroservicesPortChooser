@@ -60,7 +60,7 @@ namespace MicroservicesPortChooserBL
         {
             this.dateRegistered = DateTime.UtcNow;
         }
-        public Register(string name,string host,UInt16 port, string tag="", string authority="http")
+        public Register(string name,string host,int port, string tag="", string authority="http")
         {
             this.dateRegistered = DateTime.UtcNow;
             this.Name = name;
