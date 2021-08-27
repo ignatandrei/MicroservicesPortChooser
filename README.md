@@ -1,8 +1,6 @@
 # MicroservicesPortChooser
 If you have multiple microservices and do not know how to choose a port, generate same static port number every time for the name of the application
 
-## Application Examples:
-
 ## Demo 
 
 https://microservicesportchooser.azurewebsites.net/
@@ -10,7 +8,7 @@ https://microservicesportchooser.azurewebsites.net/
 ## Swagger / OpenAPI
 https://microservicesportchooser.azurewebsites.net/swagger/index.html
 
-## How to deploy 
+## How to deploy on your  microservice platform
 
 Download your release :
 ### Windows x64: 
@@ -38,7 +36,7 @@ NGINX : read https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/linux-
 APACHE: https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/linux-apache?view=aspnetcore-5.0
 
 
-## How to use
+## How to use in your application
 
 ### .NET Core
 Make a HttpClient and call the service with the following url:
