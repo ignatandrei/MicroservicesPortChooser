@@ -18,7 +18,7 @@
     />
     
   </mat-form-field>
-  <mat-form-field class="example-full-width" appearance="fill">
+  <!-- <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>PC Name</mat-label>
     <input
       [(ngModel)]="pcName"
@@ -28,7 +28,7 @@
 
     />
     
-  </mat-form-field>
+  </mat-form-field> -->
 
   <button class="generatePort-help"
     [disabled]="appName?.length == 0 ? 'disabled' : 'false'"
@@ -51,3 +51,7 @@
 </form>
 
 {{ fullName}}
+
+<a mat-list-item routerLink="/static/services">
+Registered Services
+</a>
