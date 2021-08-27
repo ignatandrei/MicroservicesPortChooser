@@ -10,6 +10,34 @@ https://microservicesportchooser.azurewebsites.net/
 ## Swagger / OpenAPI
 https://microservicesportchooser.azurewebsites.net/swagger/index.html
 
+## How to deploy 
+
+Download your release :
+### Windows x64: 
+
+Download https://github.com/ignatandrei/MicroservicesPortChooser/releases/latest/download/releaseWin.zip/
+
+and start the application with the following command:  
+
+MicroservicesPortChooser --urls http://0.0.0.0:24079
+
+Read more at https://docs.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/endpoints?view=aspnetcore-5.0
+
+### IIS x64: 
+
+Download https://github.com/ignatandrei/MicroservicesPortChooser/releases/latest/download/releaseIISWin.zip/
+
+Install ASP.NET Core Module from https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/aspnet-core-module?view=aspnetcore-5.0
+
+Read more https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/iis/?view=aspnetcore-5.0
+
+### Linux x64: 
+
+Download https://github.com/ignatandrei/MicroservicesPortChooser/releases/latest/download/releaseLin.zip/
+NGINX : read https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/linux-nginx?view=aspnetcore-5.0
+APACHE: https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/linux-apache?view=aspnetcore-5.0
+
+
 ## How to use
 
 ### .NET Core
@@ -47,6 +75,8 @@ axios.get('https://microservicesportchooser.azurewebsites.net/api/v1/PortChooser
 ### Releases
 
 Windows x64: https://github.com/ignatandrei/MicroservicesPortChooser/releases/latest/download/releaseWin.zip/
+
+IIS x64: https://github.com/ignatandrei/MicroservicesPortChooser/releases/latest/download/releaseIISWin.zip/
 
 Linux x64: https://github.com/ignatandrei/MicroservicesPortChooser/releases/latest/download/releaseLin.zip/
 
