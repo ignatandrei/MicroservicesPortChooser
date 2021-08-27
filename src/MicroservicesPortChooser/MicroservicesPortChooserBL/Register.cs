@@ -21,11 +21,12 @@ namespace MicroservicesPortChooserBL
             parameters.Add("@Port", r.Port);
             parameters.Add("@Tag", r.Tag);
             parameters.Add("@Authority", r.Authority);
+            parameters.Add("@PCName", r.PCName);
             using var connection = new SqliteConnection(DbName);
             
             await connection.ExecuteAsync(
-                "insert into MSPC_Register(Name, Hostname,Port, Tag, Authority) values" +
-                "(@Name, @HostName,@Port, @Tag, @Authority)", parameters);
+                "insert into MSPC_Register(Name, Hostname,Port, Tag, Authority, PCName) values" +
+                "(@Name, @HostName,@Port, @Tag, @Authority,@PCName)", parameters);
             register.AddOrUpdate(r.UniqueID, r, (key, r) => r);
             return r; 
         }
@@ -77,6 +78,7 @@ namespace MicroservicesPortChooserBL
                 return $"{HostName}_{Port}";
             }
         }
+        public string PCName { get; set; }
         public string Name { get; set; }
         public string HostName { get; set; }
         public int Port { get; set; }

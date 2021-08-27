@@ -51,6 +51,7 @@ namespace MSPCWebExtension
                             host = Environment.MachineName;
 
                         var r = new Register(configData.appName, host, u.Port, configData.tag, u.Authority);
+                        r.PCName = Environment.MachineName;
                         try
                         {
                             await p.AddNew(r);
