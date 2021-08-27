@@ -2,12 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { Register } from '../classes/register';
 import { MPCService } from '../services/mpcv1.service';
 import {Sort} from '@angular/material/sort';
+import Tabulator from 'tabulator-tables';
 @Component({
   selector: 'app-registered-mpc',
   templateUrl: './registered-mpc.component.html',
   styleUrls: ['./registered-mpc.component.css']
 })
 export class RegisteredMPCComponent implements OnInit {
+
+  tab = document.createElement('div');
 
   data: Register[]=[];
   constructor(private mpcService: MPCService) { }
@@ -17,10 +20,49 @@ export class RegisteredMPCComponent implements OnInit {
   }
   LoadData() : void {
     this.mpcService.getRegisterMS().subscribe(
-      data => this.data = data
+      data => {
+        this.data = data;
+        this.drawTable(data);
+      }
     );
 
   }
+  private drawTable(tableData:Register[]): void {
+    var hot= new Tabulator(this.tab, {
+      data: tableData,
+      clipboard:true,           
+      reactiveData:true, //enable data reactivity
+      columns: [
+        {title:"ID", field:"name", formatter:function(cell, formatterParams, onRendered){
+          return JSON.stringify( cell.getRow().getPosition()+1) ; 
+          
+       },
+      // cellClick: (e, cell) => {
+      //   var r = cell.getData() as Register;
+      //   this.deleteFromDatabase(r); 
+      // }
+    
+       },
+       {title:"hostName", field:"hostName", sorter:"string", headerFilter:true},
+        {title:"Name", field:"name", sorter:"string",  headerFilter:true} ,
+        {title:"dateRegistered", field:"dateRegistered", sorter:"string"  ,headerFilter:true},
+        {title:"tag", field:"tag", sorter:"string"  ,headerFilter:true},
+        {title:"pcName", field:"pcName", sorter:"string" ,headerFilter:true},
+        {title:"Details", field:"pcName", sorter:"string", formatter:function(cell, formatterParams, onRendered){
+      
+          return JSON.stringify( cell.getData()); //return the contents of the cell;
+      }},
+        
+
+      ],
+      layout: 'fitColumns'
+      
+    });
+    var x =document.getElementById('my-tabular-table');
+    if(x) x.appendChild(this.tab);
+    hot.redraw(true);
+  }
+
   compare(a: number | string |Date, b: number | string|Date, isAsc: boolean) : number {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }

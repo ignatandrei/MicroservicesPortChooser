@@ -42,7 +42,7 @@
         </tr>
     </tbody>
 </table>
-
+<br />
 <button 
 mat-raised-button
 color="primary"
@@ -50,3 +50,9 @@ color="primary"
 >
 LoadFromDatabase
 </button>
+
+<br />
+<br />
+<div [hidden]="data.length<15" >Fast searching</div>
+
+<div id="my-tabular-table" [hidden]="data.length<15" ></div>

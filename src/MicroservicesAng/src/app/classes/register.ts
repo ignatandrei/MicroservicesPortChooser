@@ -7,4 +7,5 @@ export class Register{
     hostName :string= "";
     port : number=0;
     tag : string= "";
+    pcName:string = "";
 }
