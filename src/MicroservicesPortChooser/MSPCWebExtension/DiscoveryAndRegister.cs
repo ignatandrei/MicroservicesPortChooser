@@ -15,14 +15,6 @@ using System.Threading.Tasks;
 
 namespace MSPCWebExtension
 {
-    class ConfigDataMSPC
-    {
-        public string tag { get; set; }
-
-        public string appName { get; set; }
-        public string registerUrl { get; set; }
-
-    }
     public class DiscoveryAndRegister : BackgroundService
     {
         private readonly IConfiguration config;
@@ -55,8 +47,9 @@ namespace MSPCWebExtension
                     foreach (var item in add) {
                         var u = new Uri(item);
                         string host = u.Host;
-                        if (host == "[::]")
+                        if (host == "[::]" || host=="0.0.0.0")
                             host = Environment.MachineName;
+
                         var r = new Register(configData.appName, host, u.Port, configData.tag, u.Authority);
                         try
                         {
