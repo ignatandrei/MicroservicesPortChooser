@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using MSPCWebExtension;
+using NetCore2Blockly;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace MicroservicesPortChooserWeb
@@ -60,6 +61,7 @@ namespace MicroservicesPortChooserWeb
             {
                 c.IncludeExceptionDetails = (context, ex) => true;                
             });
+            services.AddBlockly();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -71,6 +73,8 @@ namespace MicroservicesPortChooserWeb
             }
             app.UseProblemDetails();
             app.UseCors("AllowAll");
+            app.UseBlocklyUI();
+            app.UseBlockly();
             //app.UseHttpsRedirection();
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
