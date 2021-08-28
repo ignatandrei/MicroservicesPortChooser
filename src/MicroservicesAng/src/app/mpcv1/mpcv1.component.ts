@@ -51,6 +51,11 @@ export class MPCv1Component implements OnInit, AfterViewInit {
         type: 'next',
       },
     ];
+    this.shepherdService.steps = [];
+    if (this.shepherdService.tourObject) {
+      this.shepherdService.tourObject.steps = [];
+    }
+
 
     this.shepherdService.defaultStepOptions = {
       cancelIcon: {
