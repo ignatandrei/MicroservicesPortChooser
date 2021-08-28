@@ -3,6 +3,9 @@ import { Register } from '../classes/register';
 import { MPCService } from '../services/mpcv1.service';
 import {Sort} from '@angular/material/sort';
 import Tabulator from 'tabulator-tables';
+import { AngularCsv } from 'angular-csv-ext/dist/Angular-csv';
+
+
 @Component({
   selector: 'app-registered-mpc',
   templateUrl: './registered-mpc.component.html',
@@ -18,6 +21,12 @@ export class RegisteredMPCComponent implements OnInit {
   ngOnInit(): void {
     this.LoadData();
   }
+  exportToCSV() {
+    new AngularCsv(this.data, 'RegisteredMPC', {
+      headers: ["Name", "HostName", "DateRegistered", "Tag", "PCName","Port","Tag","Authority"]
+    });
+  }
+
   LoadData() : void {
     this.mpcService.getRegisterMS().subscribe(
       data => {

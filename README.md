@@ -1,6 +1,8 @@
 # MicroservicesPortChooser
 If you have multiple microservices and do not know how to choose a port, generate same static port number every time for the name of the application
 
+Also, you can have a list of the microservices and their ports.
+
 ## Demo 
 
 https://microservicesportchooser.azurewebsites.net/
@@ -46,8 +48,8 @@ Or add the Nuget package
 <a href='https://www.nuget.org/packages/MicroservicesPortChooser/' target='_blank'>
 ![Nuget](https://img.shields.io/nuget/v/MicroservicesPortChooser)
 </a>
-
-### Express
+and follow the instructions
+### Expres
 
 ```javascript
 const express = require('express');
