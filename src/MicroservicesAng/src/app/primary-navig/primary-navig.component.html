@@ -33,45 +33,6 @@
           format_list_numbered
         </mat-icon>
         Version</a>
-      <a mat-list-item href="https://microservicesportchooser.azurewebsites.net/" target="_blank">
-        <mat-icon>
-          https
-        </mat-icon>
-        Demo</a>
-      <a mat-list-item href="https://github.com/ignatandrei/MicroservicesPortChooser/" target="_blank">
-        <mat-icon>
-          source
-        </mat-icon>
-        Github</a>
-      <mat-divider></mat-divider>
-      <a mat-list-item href="https://www.nuget.org/packages/MicroservicesPortChooser/" target="_blank">
-        <mat-icon>
-          code
-        </mat-icon>
-        Use in .NET Core</a>
-      <a mat-list-item href="https://github.com/ignatandrei/MicroservicesPortChooser#express" target="_blank">
-        <mat-icon>
-          code
-        </mat-icon>Use in Express.js</a>
-      <mat-divider></mat-divider>
-      <a mat-list-item href="https://github.com/ignatandrei/MicroservicesPortChooser/releases/latest/download/releaseLin.zip/" target="_blank">
-        
-        <mat-icon>
-          file_download
-        </mat-icon>
-        Download Linux</a>      
-      <a mat-list-item href="https://github.com/ignatandrei/MicroservicesPortChooser/releases/latest/download/releaseWin.zip/" target="_blank">
-        
-        <mat-icon>
-          file_download
-        </mat-icon>
-        Download Windows</a> 
-        <a mat-list-item href="https://github.com/ignatandrei/MicroservicesPortChooser/releases/latest/download/releaseIISWin.zip/" target="_blank">
-        
-          <mat-icon>
-            file_download
-          </mat-icon>
-          Download IIS</a> 
         <mat-divider></mat-divider>
       <a mat-list-item href="https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers" target="_blank">Wikipedia list</a>
       <a mat-list-item href="https://web.mit.edu/rhel-doc/4/RH-DOCS/rhel-sg-en-4/ch-ports.html" target="_blank">RHEL list</a>
@@ -90,6 +51,54 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>Micro Port Chooser </span>
+
+      <span class="example-spacer"></span>
+
+      <button mat-button [matMenuTriggerFor]="download">
+        <mat-icon>
+          file_download
+        </mat-icon>
+        </button>
+<mat-menu #download="matMenu">
+  <a mat-list-item href="https://github.com/ignatandrei/MicroservicesPortChooser/releases/latest/download/releaseLin.zip/" target="_blank">
+    Download Linux</a>      
+  <a mat-list-item href="https://github.com/ignatandrei/MicroservicesPortChooser/releases/latest/download/releaseWin.zip/" target="_blank">    
+    Download Windows</a> 
+    <a mat-list-item href="https://github.com/ignatandrei/MicroservicesPortChooser/releases/latest/download/releaseIISWin.zip/" target="_blank">
+      Download IIS</a> 
+</mat-menu>
+
+
+<button mat-button [matMenuTriggerFor]="examples">
+  <mat-icon>
+    source
+  </mat-icon>
+  </button>
+
+<mat-menu #examples="matMenu">
+  <a mat-list-item href="https://github.com/ignatandrei/MicroservicesPortChooser/" target="_blank">
+    <mat-icon>
+      source
+    </mat-icon>
+    Github</a>
+  <mat-divider></mat-divider>
+  <a mat-list-item href="https://www.nuget.org/packages/MicroservicesPortChooser/" target="_blank">
+    <mat-icon>
+      code
+    </mat-icon>
+    Use in .NET Core</a>
+  <a mat-list-item href="https://github.com/ignatandrei/MicroservicesPortChooser#express" target="_blank">
+    <mat-icon>
+      code
+    </mat-icon>Use in Express.js</a>
+    <a mat-list-item href="https://microservicesportchooser.azurewebsites.net/" target="_blank">
+      <mat-icon>
+        https
+      </mat-icon>
+      Demo online</a>
+  
+</mat-menu>
+
     </mat-toolbar>
     <!-- Add Content Here -->
     <router-outlet></router-outlet>
