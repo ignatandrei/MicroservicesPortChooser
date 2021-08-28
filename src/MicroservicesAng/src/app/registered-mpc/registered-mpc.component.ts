@@ -23,7 +23,9 @@ export class RegisteredMPCComponent implements OnInit {
   }
   exportToCSV() {
     new AngularCsv(this.data, 'RegisteredMPC', {
-      headers: ["Name", "HostName", "DateRegistered", "Tag", "PCName","Port","Tag","Authority"]
+      headers: ['uniqueID', 'hostName','port', 'name', 'dateRegistered', 'tag', 'pcName'],
+      showLabels: true,
+      useHeader : true, 
     });
   }
 
