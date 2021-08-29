@@ -12,7 +12,7 @@ namespace MicroservicesPortChooserBL
     public class Register
     {
         private static ConcurrentDictionary<string, Register> register = new ConcurrentDictionary<string, Register>();
-        static string DbName = "Data Source=MSPC.db";
+        public static string DbName = "Data Source=MSPC.db";
         public async static Task<Register> AddRegister(Register r)
         {
             var parameters = new DynamicParameters();

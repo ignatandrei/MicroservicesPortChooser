@@ -64,7 +64,9 @@ namespace MicroservicesPortChooserWeb
                 c.IncludeExceptionDetails = (context, ex) => true;                
             });
             services.AddBlockly();
-            services.AddHealthChecks();
+            services
+                .AddHealthChecks()
+                .AddSqlite(Register.DbName);
             services
                  .AddHealthChecksUI(setupSettings: setup =>
                  {
@@ -72,6 +74,7 @@ namespace MicroservicesPortChooserWeb
                      //setup.AddHealthCheckEndpoint("endpoint2", "health-messagebrokers");
                      //setup.AddWebhookNotification("webhook1", uri: "/notify", payload: "{...}");
                  })
+                 
                 .AddInMemoryStorage();
         }
 
