@@ -45,18 +45,20 @@ namespace MSPCWebExtension
             await Task.Delay(5000, stoppingToken);
             using var h = new HttpClient();
             h.BaseAddress = new Uri(configData.registerUrl);
+            string machineName = Environment.MachineName;
+            
             var p = new PortService(h);
             foreach (var addres in add)
             {
                 var url = addres;
                 if (url.Contains("*"))
-                    url = url.Replace("*", Environment.MachineName);
+                    url = url.Replace("*", machineName);
 
                 Console.WriteLine($"try to register {url}");
                 var u = new Uri(url);
                 string host = u.Host;
                 if (host == "[::]" || host == "0.0.0.0")
-                    host = Environment.MachineName;
+                    host = machineName;
 
                 var r = new Register(configData.appName, host, u.Port, configData.tag, u.Authority);
                 r.PCName = Environment.MachineName;

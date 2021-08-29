@@ -1,7 +1,9 @@
 using AMSWebAPI;
+using HealthChecks.UI.Client;
 using Hellang.Middleware.ProblemDetails;
 using MicroservicesPortChooserBL;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
@@ -62,6 +64,15 @@ namespace MicroservicesPortChooserWeb
                 c.IncludeExceptionDetails = (context, ex) => true;                
             });
             services.AddBlockly();
+            services.AddHealthChecks();
+            services
+                 .AddHealthChecksUI(setupSettings: setup =>
+                 {
+                     setup.AddHealthCheckEndpoint("myself", "/healthz");
+                     //setup.AddHealthCheckEndpoint("endpoint2", "health-messagebrokers");
+                     //setup.AddWebhookNotification("webhook1", uri: "/notify", payload: "{...}");
+                 })
+                .AddInMemoryStorage();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -103,6 +114,12 @@ namespace MicroservicesPortChooserWeb
             {
                 endpoints.MapControllers();
                 endpoints.UseAMS();
+                endpoints.MapHealthChecksUI();
+                endpoints.MapHealthChecks("/healthz", new HealthCheckOptions
+                {
+                    Predicate = _ => true,
+                    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+                });
                 endpoints.MapFallbackToFile("/static/{**slug}", "index.html");
             });
         }
