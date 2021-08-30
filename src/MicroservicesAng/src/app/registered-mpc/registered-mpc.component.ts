@@ -17,7 +17,7 @@ export class RegisteredMPCComponent implements OnInit , AfterViewInit {
   tab = document.createElement('div');
   showTabulator: boolean = false;
 
-
+  dataFiltered: Register[] = [];
   data: Register[]=[];
   constructor(private mpcService: MPCService, private shepherdService: ShepherdService) { }
   onHelp(): void {
@@ -119,7 +119,7 @@ export class RegisteredMPCComponent implements OnInit , AfterViewInit {
     this.mpcService.getRegisterMS().subscribe(
       data => {
         this.data = data.map(it=>new Register(it));
-
+        this.dataFiltered = this.data;
         this.drawTable(data);
       }
     );
@@ -156,7 +156,17 @@ export class RegisteredMPCComponent implements OnInit , AfterViewInit {
     if(x) x.appendChild(this.tab);
     hot.redraw(true);
   }
+  applyFilter(event: Event) {
+    let filterValue = (event.target as HTMLInputElement).value;
+    filterValue= filterValue.toLowerCase().trim();
+    if(filterValue==""){
+      this.dataFiltered=this.data;
+      return;
+    }
 
+    this.dataFiltered = this.data.filter(d => d.Details.toLowerCase().indexOf(filterValue) > 1);
+    // console.log(this.dataFiltered);
+  }
   compare(a: number | string |Date, b: number | string|Date, isAsc: boolean) : number {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
