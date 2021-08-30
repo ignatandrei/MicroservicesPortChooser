@@ -15,6 +15,8 @@ import { ShepherdService } from 'angular-shepherd';
 export class RegisteredMPCComponent implements OnInit , AfterViewInit {
 
   tab = document.createElement('div');
+  showTabulator: boolean = false;
+
 
   data: Register[]=[];
   constructor(private mpcService: MPCService, private shepherdService: ShepherdService) { }
@@ -116,7 +118,8 @@ export class RegisteredMPCComponent implements OnInit , AfterViewInit {
   LoadData() : void {
     this.mpcService.getRegisterMS().subscribe(
       data => {
-        this.data = data;
+        this.data = data.map(it=>new Register(it));
+
         this.drawTable(data);
       }
     );
@@ -140,18 +143,14 @@ export class RegisteredMPCComponent implements OnInit , AfterViewInit {
        },
        {title:"hostName", field:"hostName", sorter:"string", headerFilter:true},
         {title:"Name", field:"name", sorter:"string",  headerFilter:true} ,
-        {title:"dateRegistered", field:"dateRegistered", sorter:"string"  ,headerFilter:true},
+        {title:"Port", field:"port", sorter:"string"  ,headerFilter:true},
+        {title:"Date Registered", field:"dateRegistered", sorter:"string"  ,headerFilter:true},
+      
         {title:"tag", field:"tag", sorter:"string"  ,headerFilter:true},
-        {title:"pcName", field:"pcName", sorter:"string" ,headerFilter:true},
-        {title:"Details", field:"pcName", sorter:"string", formatter:function(cell, formatterParams, onRendered){
-      
-          return JSON.stringify( cell.getData()); //return the contents of the cell;
-      }},
+        {title:"pcName", field:"pcName", sorter:"string" ,headerFilter:true}
         
-
       ],
-      layout: 'fitColumns'
-      
+      layout:"fitColumns",      
     });
     var x =document.getElementById('my-tabular-table');
     if(x) x.appendChild(this.tab);

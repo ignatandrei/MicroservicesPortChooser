@@ -6,7 +6,7 @@
     *ngIf="data.length > 0">
     
     Download  
-    </button>
+    </button>    
     {{data.length}} services
     <button  mat-mini-fab
 (click)="onHelp()"
@@ -16,7 +16,7 @@
 
 </p>
 
-<table matSort border="1" (matSortChange)="sortData($event)" class="listMSPC-help">
+<table *ngIf="!showTabulator" matSort border="1" (matSortChange)="sortData($event)" class="listMSPC-help">
     <thead>
         <tr>
             <th>Number</th>
@@ -47,17 +47,20 @@
                 Host: {{item.hostName}}
                 </td>
                 <td> 
-                    Local: {{item.dateRegistered | date:'long'}}
+                    <b>Local</b>: {{item.dateRegistered | date:'long'}}
                     <br/>
                     UTC:{{item.dateRegistered.toLocaleString()}}
                 </td>   
 
                 
                 <td > {{item.tag}} </td>
-                <td > {{item | json }} </td>
+                <td > {{item.Details}} </td>
         </tr>
     </tbody>
 </table>
+
+<div id="my-tabular-table" [hidden]="!showTabulator" ></div>
+
 <br />
 <button 
 mat-raised-button
@@ -69,6 +72,10 @@ LoadFromDatabase
 
 <br />
 <br />
-<div [hidden]="data.length<20" >Fast searching</div>
+<mat-slide-toggle
+class="example-margin"
+[(ngModel)]="showTabulator"
+>
+Show Tabulator
+</mat-slide-toggle>
 
-<div id="my-tabular-table" [hidden]="data.length<20" ></div>

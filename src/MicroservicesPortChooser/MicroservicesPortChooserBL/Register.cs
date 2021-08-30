@@ -75,7 +75,11 @@ namespace MicroservicesPortChooserBL
         {
             get
             {
-                return $"{HostName}_{Port}";
+                var name= $"{HostName}_{Port}";
+                if(PCName?.Trim().Length>0)
+                    return name+=$"_{PCName}";
+
+                return name;
             }
         }
         public string PCName { get; set; }
