@@ -1,88 +1,84 @@
-<p class="first-element-help"><button 
+<p class="first-element-help">
+  <button
     mat-raised-button
-    class ="download-help"
+    class="download-help"
     color="primary"
     (click)="exportToCSV()"
     *ngIf="data.length > 0"
-    matBadge="{{data.length}}" matBadgePosition="below" matBadgeColor="accent"
-    >
-    
-    Download  
-    </button>    
-     services
-    <button  mat-mini-fab
-(click)="onHelp()"
->
-<mat-icon>help</mat-icon>
-</button>
-
+    matBadge="{{ data.length }}"
+    matBadgePosition="below"
+    matBadgeColor="accent"
+  >
+    Download
+  </button>
+  services
+  <button mat-mini-fab (click)="onHelp()">
+    <mat-icon>help</mat-icon>
+  </button>
 </p>
-
-<mat-form-field appearance="standard">
-    <mat-label>Filter {{dataFiltered.length}} </mat-label>
-    <input matInput (keyup)="applyFilter($event)" >
+<div *ngIf="!showTabulator">
+  <mat-form-field appearance="standard">
+    <mat-label>Filter {{ dataFiltered.length }} </mat-label>
+    <input matInput (keyup)="applyFilter($event)" />
   </mat-form-field>
 
-<table *ngIf="!showTabulator" matSort border="1" (matSortChange)="sortData($event)" class="listMSPC-help">
+  <table
+    matSort
+    border="1"
+    (matSortChange)="sortData($event)"
+    class="listMSPC-help"
+  >
     <thead>
-        <tr>
-            <th>Number</th>
-            <th mat-sort-header="uniqueID" > Name </th>
-            <th mat-sort-header="dateRegistered" > Date registered </th>
-            <th mat-sort-header="tag" > Tag</th>
-            <th> Details </th>
-        </tr>
+      <tr>
+        <th>Number</th>
+        <th mat-sort-header="uniqueID">Name</th>
+        <th mat-sort-header="dateRegistered">Date registered</th>
+        <th mat-sort-header="tag">Tag</th>
+        <th>Details</th>
+      </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let item of dataFiltered; let i = index">
-            <td > {{i+1}} 
-                <button 
-                mat-raised-button
-                color="warn"
-                (click)="deleteFromDatabase(item)"
-                >
-                Delete
-                </button>
-                
+      <tr *ngFor="let item of dataFiltered; let i = index">
+        <td>
+          {{ i + 1 }}
+          <button
+            mat-raised-button
+            color="warn"
+            (click)="deleteFromDatabase(item)"
+          >
+            Delete
+          </button>
+        </td>
+        <td>
+          <a
+            href="http://{{ item.hostName }}:{{ item.port }}/"
+            target="_blank"
+            >{{ item.name }}</a
+          >
+          <br />
+          Port: {{ item.port }} Host: {{ item.hostName }}
+        </td>
+        <td>
+          <b>Local</b>: {{ item.dateRegistered | date: "long" }}
+          <br />
+          UTC:{{ item.dateRegistered.toLocaleString() }}
+        </td>
 
-
-            </td>
-            <td> 
-                <a href="http://{{item.hostName}}:{{item.port}}/" target="_blank">{{item.name}}</a>
-                <br />
-                Port: {{item.port}}
-                Host: {{item.hostName}}
-                </td>
-                <td> 
-                    <b>Local</b>: {{item.dateRegistered | date:'long'}}
-                    <br/>
-                    UTC:{{item.dateRegistered.toLocaleString()}}
-                </td>   
-
-                
-                <td > {{item.tag}} </td>
-                <td > {{item.Details}} </td>
-        </tr>
+        <td>{{ item.tag }}</td>
+        <td>{{ item.Details }}</td>
+      </tr>
     </tbody>
-</table>
-
-<div id="my-tabular-table" [hidden]="!showTabulator" ></div>
+  </table>
+</div>
+<div id="my-tabular-table" [hidden]="!showTabulator"></div>
 
 <br />
-<button 
-mat-raised-button
-color="primary"
-(click)="loadFromDatabase()"
->
-LoadFromDatabase
+<button mat-raised-button color="primary" (click)="loadFromDatabase()">
+  LoadFromDatabase
 </button>
 
 <br />
 <br />
-<mat-slide-toggle
-class="example-margin"
-[(ngModel)]="showTabulator"
->
-Show Tabulator
+<mat-slide-toggle class="example-margin" [(ngModel)]="showTabulator">
+  Show Tabulator
 </mat-slide-toggle>
-
