@@ -109,7 +109,7 @@ export class RegisteredMPCComponent implements OnInit , AfterViewInit {
   }
   exportToCSV() {
     new AngularCsv(this.data, 'RegisteredMPC', {
-      headers: ['uniqueID', 'hostName','port', 'name', 'dateRegistered', 'tag', 'pcName'],
+      headers: ['uniqueID', 'hostName','port', 'name', 'dateRegistered', 'tag', 'pcName','Details'],
       showLabels: true,
       useHeader : true, 
     });
@@ -131,7 +131,7 @@ export class RegisteredMPCComponent implements OnInit , AfterViewInit {
       clipboard:true,           
       reactiveData:true, //enable data reactivity
       columns: [
-        {title:"ID", field:"name", formatter:function(cell, formatterParams, onRendered){
+        {title:"ID", field:"name", formatter:function(cell:any, formatterParams:any, onRendered:any){
           return JSON.stringify( cell.getRow().getPosition()+1) ; 
           
        },
@@ -147,7 +147,8 @@ export class RegisteredMPCComponent implements OnInit , AfterViewInit {
         {title:"Date Registered", field:"dateRegistered", sorter:"string"  ,headerFilter:true},
       
         {title:"tag", field:"tag", sorter:"string"  ,headerFilter:true},
-        {title:"pcName", field:"pcName", sorter:"string" ,headerFilter:true}
+        {title:"pcName", field:"pcName", sorter:"string" ,headerFilter:true},
+        {title:"Details", field:"details", sorter:"string" ,headerFilter:true},
         
       ],
       layout:"fitColumns",      

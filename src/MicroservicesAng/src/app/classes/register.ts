@@ -4,7 +4,7 @@ export class Register{
     public constructor( r: Register | null){
         if(r){
             Object.assign(this, r);
-            this.Details=JSON.stringify(this);
+            
         }    
     }   
     dateRegistered : Date = new Date();
@@ -15,5 +15,7 @@ export class Register{
     tag : string= "";
     pcName:string = "";
 
-    Details : string="asdasd";
+    get Details():string {
+        return JSON.stringify(this);
+    }
 }
