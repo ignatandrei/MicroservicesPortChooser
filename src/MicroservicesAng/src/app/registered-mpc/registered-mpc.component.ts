@@ -120,7 +120,7 @@ export class RegisteredMPCComponent implements OnInit , AfterViewInit {
       data => {
         this.data = data.map(it=>new Register(it));
         this.dataFiltered = this.data;
-        this.drawTable(data);
+        this.drawTable(this.data);
       }
     );
 
@@ -172,13 +172,13 @@ export class RegisteredMPCComponent implements OnInit , AfterViewInit {
   }
 
   sortData(sort: Sort) {
-    const data1 = this.data.slice();
+    const data1 = this.dataFiltered.slice();
     if (!sort.active || sort.direction === '') {
-      this.data = data1;
+      this.dataFiltered = data1;
       return;
     }
 
-    this.data = data1.sort((a, b) => {
+    this.dataFiltered = data1.sort((a, b) => {
       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
         case 'uniqueID': return this.compare(a.uniqueID, b.uniqueID, isAsc);
