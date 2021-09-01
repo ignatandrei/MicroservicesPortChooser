@@ -18,4 +18,7 @@ export class Register{
     get Details():string {
         return JSON.stringify(this);
     }
+    set Details(details:string){
+        //do nothing
+    }
 }

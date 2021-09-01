@@ -5,6 +5,7 @@ import {Sort} from '@angular/material/sort';
 import Tabulator from 'tabulator-tables';
 import { AngularCsv } from 'angular-csv-ext/dist/Angular-csv';
 import { ShepherdService } from 'angular-shepherd';
+import { registerLocaleData } from '@angular/common';
 
 
 @Component({
@@ -126,6 +127,7 @@ export class RegisteredMPCComponent implements OnInit , AfterViewInit {
 
   }
   private drawTable(tableData:Register[]): void {
+    // console.log(tableData)
     var hot= new Tabulator(this.tab, {
       data: tableData,
       clipboard:true,           
@@ -148,7 +150,7 @@ export class RegisteredMPCComponent implements OnInit , AfterViewInit {
       
         {title:"tag", field:"tag", sorter:"string"  ,headerFilter:true},
         {title:"pcName", field:"pcName", sorter:"string" ,headerFilter:true},
-        {title:"Details", field:"details", sorter:"string" ,headerFilter:true},
+        {title:"Details", field:"Details", sorter:"string" ,headerFilter:true},
         
       ],
       layout:"fitColumns",      
@@ -182,7 +184,8 @@ export class RegisteredMPCComponent implements OnInit , AfterViewInit {
     this.dataFiltered = data1.sort((a, b) => {
       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
-        case 'uniqueID': return this.compare(a.uniqueID, b.uniqueID, isAsc);
+      
+        case 'name': return this.compare(a.name, b.name, isAsc);
         case 'dateRegistered': return this.compare(a.dateRegistered, b.dateRegistered, isAsc);
         case 'tag': return this.compare(a.tag, b.tag, isAsc);
         default: return 0;
