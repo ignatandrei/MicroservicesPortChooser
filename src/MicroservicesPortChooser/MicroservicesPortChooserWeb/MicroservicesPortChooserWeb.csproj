@@ -31,6 +31,14 @@
     <PackageReference Include="RSCG_AMS" Version="2021.7.6.628" ReferenceOutputAssembly="false" OutputItemType="Analyzer" />
 
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="appSettingsEditor" Version="2021.3.21.2300" />
+    <PackageReference Include="appSettingsEditorAPI" Version="2021.3.21.2300" />
+  	<CompilerVisibleItemMetadata Include="AdditionalFiles" MetadataName="generateAPI" />
+    <AdditionalFiles Include="appsettings.json" generateAPI="true" >
+    		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</AdditionalFiles>
+</ItemGroup>
 
   
 </Project>

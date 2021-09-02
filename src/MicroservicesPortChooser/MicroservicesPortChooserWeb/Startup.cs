@@ -1,4 +1,5 @@
 using AMSWebAPI;
+using appSettingsEditor;
 using HealthChecks.UI.Client;
 using Hellang.Middleware.ProblemDetails;
 using MicroservicesPortChooserBL;
@@ -123,6 +124,7 @@ namespace MicroservicesPortChooserWeb
                     Predicate = _ => true,
                     ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
                 });
+                endpoints.MapSettingsView<SettingsJson.appsettings>(Configuration);
                 endpoints.MapFallbackToFile("/static/{**slug}", "index.html");
             });
         }
