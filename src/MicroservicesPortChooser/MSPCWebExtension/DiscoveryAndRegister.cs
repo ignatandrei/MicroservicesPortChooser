@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Hosting.Server.Features;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using MSPC_DAL;
 using MSPC_Interfaces;
 using System;
 using System.Collections.Generic;
@@ -18,11 +19,13 @@ namespace MSPCWebExtension
 {
     public class DiscoveryAndRegister : BackgroundService
     {
+        private readonly IServiceProvider sp;
         private readonly IConfiguration config;
         private readonly IServiceProvider serviceProvider;
 
-        public DiscoveryAndRegister(IConfiguration config, IServiceProvider serviceProvider)
+        public DiscoveryAndRegister(IServiceProvider sp, IConfiguration config, IServiceProvider serviceProvider)
         {
+            this.sp = sp;
             this.config = config;
             this.serviceProvider = serviceProvider;
         }
@@ -47,7 +50,11 @@ namespace MSPCWebExtension
             using var h = new HttpClient();
             h.BaseAddress = new Uri(configData.registerUrl);
             string machineName = Environment.MachineName;
-            var repo = s.Features.Get<IRepository>();
+            var repo = sp.GetService(typeof(IRepository)) as IRepository;
+            if(repo == null)
+            {
+                repo = new Repository();
+            }
             var p = new PortService(h);
             foreach (var addres in add)
             {

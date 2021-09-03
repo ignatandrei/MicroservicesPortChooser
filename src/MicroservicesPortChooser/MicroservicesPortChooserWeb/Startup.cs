@@ -14,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using MSPC_DAL;
+using MSPC_Interfaces;
 using MSPCWebExtension;
 using NetCore2Blockly;
 using Swashbuckle.AspNetCore.SwaggerGen;
@@ -66,6 +67,8 @@ namespace MicroservicesPortChooserWeb
                 c.IncludeExceptionDetails = (context, ex) => true;                
             });
             services.AddBlockly();
+            services.AddTransient<IRepository, Repository>();
+            services.AddTransient<IRegister, Register>();
             services
                 .AddHealthChecks()
                 .AddSqlite(Repository.DbName);

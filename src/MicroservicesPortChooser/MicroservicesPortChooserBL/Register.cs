@@ -59,7 +59,7 @@ namespace MicroservicesPortChooserBL
             this.repository = repository;
         }
 
-        private  Register()
+        public Register()
         {
             this.dateRegistered = DateTime.UtcNow;
         }

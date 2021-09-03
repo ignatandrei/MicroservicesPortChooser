@@ -14,11 +14,12 @@ namespace MicroservicesPortChooserWeb.Controllers
     [Route("api/v{version:apiVersion}/[controller]/[action]")]
     public class PortChooserController : ControllerBase
     {
-
+        private readonly Register register;
         private readonly ILogger<PortChooserController> _logger;
 
-        public PortChooserController(ILogger<PortChooserController> logger)
+        public PortChooserController([FromServices] Register register, ILogger<PortChooserController> logger)
         {
+            this.register = register;
             _logger = logger;
         }
 
@@ -28,7 +29,7 @@ namespace MicroservicesPortChooserWeb.Controllers
             var host = this.Request.GetRemoteIP();
 
             var port = mspc.GetDeterministicPort(name);
-            var r = await new Register(repository).AddNew(name, host, port, "");
+            var r = await register.AddNew(name, host, port, "");
             return (r.Port);
             
         }
@@ -39,7 +40,7 @@ namespace MicroservicesPortChooserWeb.Controllers
             var host = this.Request.GetRemoteIP();
 
             var port = mspc.GetNonDeterministicPort(name);
-            var r = await new Register(repo).AddNew(name, host, port, "");
+            var r = await register.AddNew(name, host, port, "");
             return r.Port;
             
         }

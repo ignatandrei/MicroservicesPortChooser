@@ -24,12 +24,12 @@ namespace MicroservicesPortChooserWeb.Controllers
         }
 
         [HttpGet("{name}/{tag?}")]
-        public async Task<int> GetDeterministicPortFrom([FromServices] MSPC mspc,[FromServices]IRepository repo, string name, string tag)
+        public async Task<int> GetDeterministicPortFrom([FromServices] MSPC mspc,[FromServices]Register register, string name, string tag)
         {
             var host = this.Request.GetRemoteIP();
 
             var port =mspc.GetDeterministicPort(name,tag);
-            var r = await new Register(repo).AddNew(name, host, port, tag);
+            var r = await register.AddNew(name, host, port, tag);
             return r.Port;
             
         }

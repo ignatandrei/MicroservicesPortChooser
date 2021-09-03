@@ -38,8 +38,21 @@ namespace MSPC_DAL
         public async Task<IRegister[]> LoadFromDatabase()
         {
             using var connection = new SqliteConnection(DbName);
-            var data = await connection.QueryAsync<IRegister>("select * from MSPC_Register");
+            var data = await connection.QueryAsync<RegFake>("select * from MSPC_Register");
             return data.ToArray();
         }
+    }
+    class RegFake : IRegister
+    {
+        public string Authority { get; set; }
+        public DateTimeOffset dateRegistered { get; set; } 
+
+        public string HostName { get; set; }
+        public string Name { get; set; } 
+        public string PCName { get; set; }
+        public int Port { get; set; }
+        public string Tag { get; set; }
+
+        public string UniqueID { get; set; }
     }
 }
