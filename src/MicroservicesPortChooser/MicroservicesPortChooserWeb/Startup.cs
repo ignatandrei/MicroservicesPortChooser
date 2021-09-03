@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using MSPC_DAL;
 using MSPCWebExtension;
 using NetCore2Blockly;
 using Swashbuckle.AspNetCore.SwaggerGen;
@@ -67,7 +68,7 @@ namespace MicroservicesPortChooserWeb
             services.AddBlockly();
             services
                 .AddHealthChecks()
-                .AddSqlite(Register.DbName);
+                .AddSqlite(Repository.DbName);
             services
                  .AddHealthChecksUI(setupSettings: setup =>
                  {

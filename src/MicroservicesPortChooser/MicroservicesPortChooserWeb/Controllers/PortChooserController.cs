@@ -1,6 +1,7 @@
 ﻿using MicroservicesPortChooserBL;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using MSPC_Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,22 +23,24 @@ namespace MicroservicesPortChooserWeb.Controllers
         }
 
         [HttpGet("{name}")]
-        public async Task<int> GetDeterministicPortFrom([FromServices] MSPC mspc, string name)
+        public async Task<int> GetDeterministicPortFrom([FromServices] MSPC mspc,[FromServices] IRepository repository, string name)
         {
             var host = this.Request.GetRemoteIP();
 
             var port = mspc.GetDeterministicPort(name);
-            return (await Register.AddNew(name,host, port, "")).Port;
+            var r = await new Register(repository).AddNew(name, host, port, "");
+            return (r.Port);
             
         }
         [HttpGet("{name}")]
-        public async Task<int> GetNonDeterministicPortFrom([FromServices] MSPC mspc, string name)
+        public async Task<int> GetNonDeterministicPortFrom([FromServices] IRepository repo,[FromServices] MSPC mspc, string name)
         {
 
             var host = this.Request.GetRemoteIP();
 
-            var port = mspc.GetNonDeterministicPort(name); 
-            return (await Register.AddNew(name,host, port, "")).Port;
+            var port = mspc.GetNonDeterministicPort(name);
+            var r = await new Register(repo).AddNew(name, host, port, "");
+            return r.Port;
             
         }
 

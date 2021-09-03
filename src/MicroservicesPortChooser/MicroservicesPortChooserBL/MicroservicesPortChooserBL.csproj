@@ -19,5 +19,9 @@
     <PackageReference Include="Microsoft.Data.Sqlite" Version="5.0.9" />
     <PackageReference Include="RSCG_AMS" Version="2021.7.6.628" ReferenceOutputAssembly="false" OutputItemType="Analyzer" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MSPC_DAL\MSPC_DAL.csproj" />
+    <ProjectReference Include="..\MSPC_Interfaces\MSPC_Interfaces.csproj" />
+  </ItemGroup>
 
 </Project>

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Hosting.Server.Features;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using MSPC_Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,7 +47,7 @@ namespace MSPCWebExtension
             using var h = new HttpClient();
             h.BaseAddress = new Uri(configData.registerUrl);
             string machineName = Environment.MachineName;
-            
+            var repo = s.Features.Get<IRepository>();
             var p = new PortService(h);
             foreach (var addres in add)
             {
@@ -60,7 +61,7 @@ namespace MSPCWebExtension
                 if (host == "[::]" || host == "0.0.0.0")
                     host = machineName;
 
-                var r = new Register(configData.appName, host, u.Port, configData.tag, u.Authority);
+                var r = await new Register(repo).AddNew( configData.appName, host,u.Port, configData.tag, u.Authority);
                 r.PCName = Environment.MachineName;
                 try
                 {

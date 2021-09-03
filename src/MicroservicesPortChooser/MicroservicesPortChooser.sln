@@ -11,6 +11,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroservicesPortChooserWeb
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MSPCWebExtension", "MSPCWebExtension\MSPCWebExtension.csproj", "{37A534A8-6851-4304-A5B6-2EFD9FCA4C5A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSPC_Interfaces", "MSPC_Interfaces\MSPC_Interfaces.csproj", "{1987B4D8-E8DC-4467-9B5C-C8E001290395}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSPC_DAL", "MSPC_DAL\MSPC_DAL.csproj", "{A38964F5-3FFE-4D5B-98B9-5D30408ED303}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{37A534A8-6851-4304-A5B6-2EFD9FCA4C5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37A534A8-6851-4304-A5B6-2EFD9FCA4C5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37A534A8-6851-4304-A5B6-2EFD9FCA4C5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1987B4D8-E8DC-4467-9B5C-C8E001290395}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1987B4D8-E8DC-4467-9B5C-C8E001290395}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1987B4D8-E8DC-4467-9B5C-C8E001290395}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1987B4D8-E8DC-4467-9B5C-C8E001290395}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A38964F5-3FFE-4D5B-98B9-5D30408ED303}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A38964F5-3FFE-4D5B-98B9-5D30408ED303}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A38964F5-3FFE-4D5B-98B9-5D30408ED303}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A38964F5-3FFE-4D5B-98B9-5D30408ED303}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,6 +1,7 @@
 ﻿using MicroservicesPortChooserBL;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MSPC_Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,28 +16,28 @@ namespace MicroservicesPortChooserWeb.Controllers
     public class RegisterController : ControllerBase
     {
         [HttpGet]
-        public Register[] GetAll()
+        public IRegister[] GetAll()
         {
             return Register.RegisteredMSPC();
         }
         [HttpGet]
-        public Task<int> LoadFromDatabase()
+        public Task<int> LoadFromDatabase([FromServices]IRepository repo)
         {
             //do copy constructor
-            return Register.LoadFromDatabase();
+            return new Register(repo).LoadFromDatabase();
 
         }
         [HttpPost]
-        public Task<Register> AddNew(Register r)
+        public Task<Register> AddNew([FromServices] IRepository repo,Register r)
         {
             //do copy constructor
-            return Register.AddRegister(r);
+            return new Register(repo).AddRegister(r);
 
         }
         [HttpDelete("{host}/{port}")]
-        public bool UnRegister(string host, UInt16 port)
+        public Task<bool> UnRegister([FromServices] IRepository repo,string host, UInt16 port)
         {
-            return Register.UnRegister(host, port);
+            return new Register(repo).UnRegister(host, port);
         }
     }
 }
