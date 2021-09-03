@@ -39,6 +39,14 @@ namespace MSPC_DAL
         {
             using var connection = new SqliteConnection(DbName);
             var data = await connection.QueryAsync<RegFake>("select * from MSPC_Register");
+            foreach (var item in data)
+            {
+                if(string.IsNullOrEmpty(item.UniqueID))
+                {
+                    item.UniqueID = (item as IRegister).GenerateUniqueID();
+                }
+            }
+            
             return data.ToArray();
         }
     }

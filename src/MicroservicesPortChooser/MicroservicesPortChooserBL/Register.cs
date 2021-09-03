@@ -77,11 +77,8 @@ namespace MicroservicesPortChooserBL
         {
             get
             {
-                var name = $"{HostName}_{Port}";
-                if (PCName?.Trim().Length > 0)
-                    return name += $"_{PCName}";
-
-                return name;
+                
+                return (this as IRegister).GenerateUniqueID();
             }
         }
         public string PCName { get; set; }
