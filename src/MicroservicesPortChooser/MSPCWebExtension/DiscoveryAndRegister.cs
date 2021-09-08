@@ -68,7 +68,12 @@ namespace MSPCWebExtension
                 if (host == "[::]" || host == "0.0.0.0")
                     host = machineName;
 
-                var r = await new Register(repo).AddNew( configData.appName, host,u.Port, configData.tag, u.Authority);
+                var r = new Register(repo);
+                r.Name = configData.appName;
+                r.HostName = host;
+                r.Port = u.Port;
+                r.Tag = configData.tag;
+                r.Authority = u.Authority;
                 r.PCName = Environment.MachineName;
                 try
                 {

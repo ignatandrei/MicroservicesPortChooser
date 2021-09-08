@@ -55,7 +55,7 @@ namespace MicroservicesPortChooserBL
             }
             return data.Count();
         }
-        public Register(IRepository repository):base()
+        public Register(IRepository repository):this()
         {
             this.repository = repository;
         }
