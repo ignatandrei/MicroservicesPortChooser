@@ -1,5 +1,4 @@
 ﻿{
-
   "$schema": "http://json.schemastore.org/launchsettings.json",
   "iisSettings": {
     "windowsAuthentication": false,
@@ -23,8 +22,11 @@
       "dotnetRunMessages": "true",
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "https://microservicesportchooser.azurewebsites.net",
-      "applicationUrl1": "https://localhost:5000"
+      "applicationUrl": "https://localhost:5001;http://localhost:5000",
+      "applicationUrl1": "https://localhost:5001;http://localhost:56884",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
     }
   }
 }

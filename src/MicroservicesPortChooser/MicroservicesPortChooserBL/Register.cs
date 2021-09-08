@@ -48,6 +48,7 @@ namespace MicroservicesPortChooserBL
         public async Task<int> LoadFromDatabase()
         {
             var data = await repository.LoadFromDatabase();
+            register.Clear();
             foreach (var r in data)
             {
                 register.AddOrUpdate(r.UniqueID, r, (key, r) => r);
