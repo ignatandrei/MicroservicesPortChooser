@@ -20,11 +20,12 @@ namespace MSPC_DAL
             parameters.Add("@Tag", r.Tag);
             parameters.Add("@Authority", r.Authority);
             parameters.Add("@PCName", r.PCName);
+            parameters.Add("@stringRegisteredDate", r.dateRegistered.ToString("o"));
             using var connection = new SqliteConnection(DbName);
 
             await connection.ExecuteAsync(
-                "insert into MSPC_Register(Name, Hostname,Port, Tag, Authority, PCName) values" +
-                "(@Name, @HostName,@Port, @Tag, @Authority,@PCName)", parameters);
+                "insert into MSPC_Register(Name, Hostname,Port, Tag, Authority, PCName,stringRegisteredDate) values" +
+                "(@Name, @HostName,@Port, @Tag, @Authority,@PCName,@stringRegisteredDate)", parameters);
             return r;
         }
         public Task<int> UnRegister(string host, UInt16 port)
@@ -62,5 +63,17 @@ namespace MSPC_DAL
         public string Tag { get; set; }
 
         public string UniqueID { get; set; }
+
+        public string stringRegisteredDate
+        {
+            get
+            {
+                return dateRegistered.ToString("o");
+            }
+            set
+            {
+                dateRegistered = DateTimeOffset.Parse(value);
+            }
+        }
     }
 }
