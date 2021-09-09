@@ -88,5 +88,7 @@ namespace MicroservicesPortChooserBL
         public int Port { get; set; }
         public string Tag { get; set; }
         public string Authority { get; set; }
+            
+        public IRegister[] History { get; set; }
     }
 }

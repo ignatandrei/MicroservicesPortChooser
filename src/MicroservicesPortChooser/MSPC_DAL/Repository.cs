@@ -2,6 +2,7 @@
 using Microsoft.Data.Sqlite;
 using MSPC_Interfaces;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -39,7 +40,7 @@ namespace MSPC_DAL
         public async Task<IRegister[]> LoadFromDatabase()
         {
             using var connection = new SqliteConnection(DbName);
-            var data = await connection.QueryAsync<RegFake>("select * from MSPC_Register");
+            var data = (await connection.QueryAsync<RegFake>("select * from MSPC_Register")).ToArray();
             foreach (var item in data)
             {
                 if(string.IsNullOrEmpty(item.UniqueID))
@@ -47,12 +48,35 @@ namespace MSPC_DAL
                     item.UniqueID = (item as IRegister).GenerateUniqueID();
                 }
             }
-            
-            return data.ToArray();
+            var groupUniqueId = data.GroupBy(it => it.UniqueID).Select(it => new { it.Key, it }).ToArray();
+
+            if (groupUniqueId.Length == data.Length)
+            {
+                return data;
+            }
+            var ret = new List<IRegister>();
+
+            foreach(var item in groupUniqueId)
+            {
+                var maxDate = item.it.Max(it => it.dateRegistered);
+                var itemMax = item.it.First(it => it.dateRegistered == maxDate);
+                itemMax.AddHistory(item.it.Where(i=>i != itemMax).ToArray());
+                ret.Add(itemMax);
+            }
+            return ret.ToArray();
         }
     }
     class RegFake : IRegister
     {
+        private List<RegFake> history;
+        public RegFake()
+        {
+            history = new List<RegFake>();
+        }
+        public void AddHistory(RegFake[] hist)
+        {
+            history.AddRange(hist);
+        }
         public string Authority { get; set; }
         public DateTimeOffset dateRegistered { get; set; } 
 
@@ -75,5 +99,7 @@ namespace MSPC_DAL
                 dateRegistered = DateTimeOffset.Parse(value);
             }
         }
+
+        public IRegister[] History { get =>  history.ToArray();  }
     }
 }

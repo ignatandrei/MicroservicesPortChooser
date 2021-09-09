@@ -12,5 +12,7 @@ namespace MSPC_Interfaces
         int Port { get; set; }
         string Tag { get; set; }
         string UniqueID { get; }
+
+        IRegister[] History { get; }
     }
 }
