@@ -1,4 +1,6 @@
-﻿namespace MSPCWebExtension
+﻿using System.Reflection;
+
+namespace MSPCWebExtension
 {
     class ConfigDataMSPC
     {
@@ -7,5 +9,12 @@
         public string appName { get; set; }
         public string registerUrl { get; set; }
 
+        public void ConfigureDefaults()
+        {
+            if (string.IsNullOrWhiteSpace(appName))
+                appName = Assembly.GetEntryAssembly().GetName().Name;
+            if (string.IsNullOrWhiteSpace(registerUrl))
+                registerUrl = "https://microservicesportchooser.azurewebsites.net/api/v1/";
+        }
     }
 }

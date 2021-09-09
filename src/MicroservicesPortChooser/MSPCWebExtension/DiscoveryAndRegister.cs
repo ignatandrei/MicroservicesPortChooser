@@ -41,10 +41,11 @@ namespace MSPCWebExtension
 
             var configData = new ConfigDataMSPC();
             config.GetSection("MSPC").Bind(configData);
-            if (string.IsNullOrWhiteSpace(configData.appName))
-                configData.appName = Assembly.GetEntryAssembly().GetName().Name;
-            if (string.IsNullOrWhiteSpace(configData.registerUrl))
-                configData.appName = "https://microservicesportchooser.azurewebsites.net/api/v1/";
+            if(configData == null)
+            {
+                configData = new ConfigDataMSPC();
+            }
+            configData.ConfigureDefaults();
 
             await Task.Delay(5000, stoppingToken);
             using var h = new HttpClient();
