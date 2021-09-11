@@ -106,7 +106,10 @@ export class DisplayRegisterComponent implements OnInit {
   }
   deleteFromDatabase(register: Register) {
     this.mpcService.deleteFromDatabase(register.port,register.hostName).subscribe(
-      //it => this.LoadData()
+      it => {
+        var data1 = this.data.filter(it=>!(it.hostName == register.hostName && it.port == register.port));
+        this.data = data1;
+      }
     );
   }
 
