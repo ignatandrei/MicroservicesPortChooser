@@ -28,7 +28,7 @@ namespace MicroservicesPortChooserWeb.Controllers
         {
             var host = this.Request.GetRemoteIP();
 
-            var port = mspc.GetDeterministicPort(name);
+            var port = mspc.GetDeterministicPort(name);            
             var r = await register.AddNew(name, host, port, "");
             return (r.Port);
             

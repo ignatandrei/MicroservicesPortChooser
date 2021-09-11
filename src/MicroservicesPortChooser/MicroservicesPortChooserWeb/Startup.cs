@@ -69,6 +69,7 @@ namespace MicroservicesPortChooserWeb
             services.AddBlockly();
             services.AddTransient<IRepository, Repository>();
             services.AddTransient<IRegister, Register>();
+            services.AddTransient<Register, Register>();
             services
                 .AddHealthChecks()
                 .AddSqlite(Repository.DbName);

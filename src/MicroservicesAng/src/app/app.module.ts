@@ -45,6 +45,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Mpcv2Component } from './mpcv2/mpcv2.component';
 import { RegisteredMPCComponent } from './registered-mpc/registered-mpc.component';
+import { DisplayRegisterComponent } from './display-register/display-register.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { RegisteredMPCComponent } from './registered-mpc/registered-mpc.componen
     PrimaryNavigComponent,
     MPCv1Component,
     Mpcv2Component,
-    RegisteredMPCComponent
+    RegisteredMPCComponent,
+    DisplayRegisterComponent
   ],
   imports: [
     BrowserModule,
