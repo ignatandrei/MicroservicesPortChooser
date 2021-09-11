@@ -51,8 +51,8 @@
           <td>{{ item.tag }}</td>
           <td [hidden]="!ShowHistory">
             <button               mat-raised-button
-            color="primary"
-(click)="openDialog(item)">History</button>  
+            color="primary" *ngIf="item.history.length > 0"
+(click)="openDialog(item)">History ({{item.history.length}})</button>  
             </td>
           <td>{{ item.Details }}</td>
         </tr>
