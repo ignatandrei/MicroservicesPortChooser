@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { Sort } from '@angular/material/sort';
 import { Register } from '../classes/register';
 import { MPCService } from '../services/mpcv1.service';
 import Tabulator from 'tabulator-tables';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-display-register',
@@ -12,13 +13,14 @@ import Tabulator from 'tabulator-tables';
 export class DisplayRegisterComponent implements OnInit {
 
   private dataInner: Register[] = [];
-  
+  ShowHistory:boolean =true;  
   get data(): Register[] {
     return this.dataInner;
   }
+  
   @Input() 
   set data(value: Register[]) {
-    console.log("set" + value?.length)
+    //window.alert("set" + value?.length)
     this.dataInner = value;
     if (this.dataInner?.length > 0) {
       this.dataFiltered = this.dataInner;
@@ -31,7 +33,37 @@ export class DisplayRegisterComponent implements OnInit {
 
   dataFiltered: Register[] = [];
 
-  constructor(private mpcService: MPCService ) { }
+  constructor(private mpcService: MPCService , public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) dataHistory: Register[]) { 
+
+    if(dataHistory?.length> 0){
+      this.ShowHistory = false;
+      var sorted=dataHistory.sort((a,b)=>{
+        try {
+          return b.dateRegistered.getTime() -a.dateRegistered.getTime();  
+        } catch (error) {
+          return -1;
+        }
+        });
+      this.data=sorted;
+    }
+
+  }
+
+  openDialog(r:Register): void {
+    //window.alert(r.history.length);
+    const dialogRef = this.dialog.open(DisplayRegisterComponent, {
+      //width: '250px',
+      data: r.history,
+      maxHeight: '90vh',
+      
+    });
+
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log('The dialog was closed');
+    //   this.animal = result;
+    // });
+  }
+
 
   ngOnInit(): void {
     this.dataFiltered = this.data;

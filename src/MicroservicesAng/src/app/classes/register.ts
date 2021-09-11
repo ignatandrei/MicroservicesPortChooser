@@ -16,7 +16,8 @@ export class Register{
     pcName:string = "";
 
     get Details():string {
-        return JSON.stringify(this);
+        const { history, ...rest } = this;
+        return JSON.stringify(rest);
     }
     set Details(details:string){
         //do nothing

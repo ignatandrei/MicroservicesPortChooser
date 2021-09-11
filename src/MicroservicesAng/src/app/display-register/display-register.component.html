@@ -17,15 +17,15 @@
           <th mat-sort-header="name">Name</th>
           <th mat-sort-header="dateRegistered">Date registered</th>
           <th mat-sort-header="tag">Tag</th>
-          <th >History</th>
+          <th [hidden]="!ShowHistory" >History</th>
           <th>Details</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let item of dataFiltered; let i = index">
           <td>
-            {{ i + 1 }}
-            <button
+            {{ i + 1 }} 
+            <button *ngIf="ShowHistory"
               mat-raised-button
               color="warn"
               (click)="deleteFromDatabase(item)"
@@ -49,7 +49,11 @@
           </td>
   
           <td>{{ item.tag }}</td>
-          <td>History</td>
+          <td [hidden]="!ShowHistory">
+            <button               mat-raised-button
+            color="primary"
+(click)="openDialog(item)">History</button>  
+            </td>
           <td>{{ item.Details }}</td>
         </tr>
       </tbody>
