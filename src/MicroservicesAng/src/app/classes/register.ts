@@ -6,6 +6,7 @@ export class Register{
             Object.assign(this, r);
             this.history = r.history?.map(h => new Register(h));
         }    
+        this.history=this.history||[];
     }   
     dateRegistered : Date = new Date();
     uniqueID: string = "";
