@@ -8,13 +8,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using DasMulli.DataBuilderGenerator;
 namespace MicroservicesPortChooserBL
 {
+    [GenerateDataBuilder]
     public class Register : IRegister
     {
         private static ConcurrentDictionary<string, IRegister> register = new ConcurrentDictionary<string, IRegister>();
-        private readonly IRepository repository;
+        public IRepository repository { get; internal set; }
 
         public async Task<Register> AddRegister(Register r)
         {
@@ -28,6 +29,7 @@ namespace MicroservicesPortChooserBL
         }
         public Task<Register> AddNew(string name, string host, int port, string tag = "", string authority = "http")
         {
+            //var rb = new RegisterBuilder(this);
             var r = new Register(repository);
             r.Name = name;
             r.HostName = host;
@@ -73,7 +75,7 @@ namespace MicroservicesPortChooserBL
         //    this.Tag = tag;
         //    Authority = authority;
         //}
-        public DateTimeOffset dateRegistered { get; private set; }
+        public DateTimeOffset dateRegistered { get; internal set; }
         public string UniqueID
         {
             get
