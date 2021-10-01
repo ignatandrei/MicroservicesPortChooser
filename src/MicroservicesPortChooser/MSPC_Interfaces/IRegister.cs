@@ -2,6 +2,10 @@
 
 namespace MSPC_Interfaces
 {
+    public partial class Helpers
+    {
+        public partial ISystem_Environment FromStaticEnvironment();
+    }
     public interface IRegister
     {
         string Authority { get; set; }
@@ -12,7 +16,7 @@ namespace MSPC_Interfaces
         int Port { get; set; }
         string Tag { get; set; }
         string UniqueID { get; }
-
+        string EnvData { get; }
         IRegister[] History { get; }
     }
 }

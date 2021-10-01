@@ -75,6 +75,8 @@ namespace MicroservicesPortChooserBL
         //    this.Tag = tag;
         //    Authority = authority;
         //}
+
+        public string EnvData { get; set; }
         public DateTimeOffset dateRegistered { get; internal set; }
         public string UniqueID
         {
