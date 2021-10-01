@@ -15,7 +15,7 @@ export class Register{
     port : number=0;
     tag : string= "";
     pcName:string = "";
-
+    envData: string="";
     get Details():string {
         const { history, ...rest } = this;
         return JSON.stringify(rest);
@@ -24,4 +24,13 @@ export class Register{
         //do nothing
     }
     history:Register[] = [];
+
+    get EnvironmentData(): any{
+        try{
+            return JSON.parse(this.envData);
+        }
+        catch(e){
+            return {};
+        }
+    }
 }

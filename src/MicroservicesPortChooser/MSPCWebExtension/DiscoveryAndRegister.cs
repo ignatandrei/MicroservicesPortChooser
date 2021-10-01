@@ -77,7 +77,7 @@ namespace MSPCWebExtension
                 r.Tag = configData.tag;
                 r.Authority = u.Authority;
                 r.PCName = Environment.MachineName;
-                var env = new Helpers().FromStaticEnvironment();
+                var env = new Helpers().FromStaticEnvironment();                
                 r.EnvData = JsonSerializer.Serialize(env);
 
                 try
