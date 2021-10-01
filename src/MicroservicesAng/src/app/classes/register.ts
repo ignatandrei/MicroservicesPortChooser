@@ -1,4 +1,14 @@
-
+export class ISystem_Environment{
+    public CurrentDirectory: string='';
+    public CommandLine: string='';
+    public ProcessorCount: string='';
+    public MachineName : string='';
+    public UserDomainName : string='';
+    public UserName : string='';
+    public Is64BitProcess : boolean=false;
+    public Is64BitOperatingSystem : boolean=false;
+    
+}
 export class Register{
 
     public constructor( r: Register | null){
@@ -8,7 +18,7 @@ export class Register{
         }    
         this.history=this.history||[];
     }   
-    dateRegistered : Date = new Date();
+    dateRegistered : Date = new Date(); 
     uniqueID: string = "";
     name :string= "";
     hostName :string= "";
@@ -24,13 +34,17 @@ export class Register{
         //do nothing
     }
     history:Register[] = [];
-
-    get EnvironmentData(): any{
+    envCache : ISystem_Environment|null = null;
+    get EnvironmentData(): ISystem_Environment|null {
         try{
-            return JSON.parse(this.envData);
+            if(this.envCache != null)
+                return this.envCache;
+
+            this.envCache= JSON.parse(this.envData) as ISystem_Environment;
+            return this.envCache;
         }
         catch(e){
-            return {};
+            return null;
         }
     }
 }

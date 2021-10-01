@@ -1,66 +1,85 @@
-
 <div *ngIf="!showTabulator">
-    <mat-form-field appearance="standard">
-      <mat-label>Filter {{ dataFiltered.length }} </mat-label>
-      <input matInput (keyup)="applyFilter($event)" />
-    </mat-form-field>
-  
-    <table
-      matSort
-      border="1"
-      (matSortChange)="sortData($event)"
-      class="listMSPC-help"
-    >
-      <thead>
-        <tr>
-          <th>Number</th>
-          <th mat-sort-header="name">Name</th>
-          <th mat-sort-header="dateRegistered">Date registered</th>
-          <th mat-sort-header="tag">Tag</th>
-          <th [hidden]="!ShowHistory" >History</th>
-          <th>Details</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of dataFiltered; let i = index">
-          <td>
-            {{ i + 1 }} 
-            <button *ngIf="ShowHistory"
+  <mat-form-field appearance="standard">
+    <mat-label>Filter {{ dataFiltered.length }} </mat-label>
+    <input matInput (keyup)="applyFilter($event)" />
+  </mat-form-field>
+
+  <table
+    matSort
+    border="1"
+    (matSortChange)="sortData($event)"
+    class="listMSPC-help"
+  >
+    <thead>
+      <tr>
+        <th>Number</th>
+        <th mat-sort-header="name">Name</th>
+        <th mat-sort-header="dateRegistered">Date registered</th>
+        <th mat-sort-header="tag">Tag</th>
+        <th>Details</th>
+        <th [hidden]="ShowHistory">Json</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of dataFiltered; let i = index">
+        <td>
+          {{ i + 1 }}
+<p></p>
+          
+            <button 
+              mat-raised-button
+              color="primary"
+              *ngIf="ShowHistory && item.history.length > 0"
+              (click)="openDialog(item)"
+            >
+              History ({{ item.history.length }})
+            </button>
+            <p></p>
+          
+            <button
+              *ngIf="ShowHistory"
               mat-raised-button
               color="warn"
               (click)="deleteFromDatabase(item)"
             >
               Delete
             </button>
-          </td>
-          <td>
-            <a
-              href="http://{{ item.hostName }}:{{ item.port }}/"
-              target="_blank"
-              >{{ item.name }}</a
-            >
-            <br />
-            Port: {{ item.port }} Host: {{ item.hostName }}
-          </td>
-          <td>
-            <b>Local</b>: {{ item.dateRegistered | date: "long" }}
-            <br />
-            <i>UTC</i>:{{ item.dateRegistered.toLocaleString() }}
-          </td>
-  
-          <td>{{ item.tag }}</td>
-          <td [hidden]="!ShowHistory">
-            <button               mat-raised-button
-            color="primary" *ngIf="item.history.length > 0"
-(click)="openDialog(item)">History ({{item.history.length}})</button>  
-            </td>
-          <td>{{ item.Details }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div id="my-tabular-table" [hidden]="!showTabulator"></div>
-  <br />
+            
+        </td>
+        <td>
+          <a
+            href="http://{{ item.hostName }}:{{ item.port }}/"
+            target="_blank"
+            >{{ item.name }}</a
+          >
+          <br />
+          Port: {{ item.port }} Host: {{ item.hostName }}
+        </td>
+        <td>
+          <b>Local</b>: {{ item.dateRegistered | date: "long" }}
+          <br />
+          <i>UTC</i>:{{ item.dateRegistered.toLocaleString() }}
+        </td>
+
+        <td>{{ item.tag }}</td>
+        <td>
+          <span *ngIf="item.EnvironmentData != null">
+            <ul>
+              <li>Folder:{{ item.EnvironmentData.CurrentDirectory }}</li>
+              <li>CMD: {{ item.EnvironmentData.CommandLine}} </li>
+              <li>Machine: {{item.EnvironmentData.MachineName}}</li>
+              <li>ProcessorCount: {{item.EnvironmentData.ProcessorCount}}</li>
+              <li>User: {{item.EnvironmentData.UserDomainName }} {{item.EnvironmentData.UserName }}</li>
+            </ul>
+          </span>
+        </td>
+        <td [hidden]="ShowHistory">{{ item.Details }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div id="my-tabular-table" [hidden]="!showTabulator"></div>
+<br />
 <br />
 <mat-slide-toggle class="example-margin" [(ngModel)]="showTabulator">
   Show Tabulator
