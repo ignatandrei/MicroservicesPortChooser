@@ -24,12 +24,14 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MicroservicesPortChooserBL\MicroservicesPortChooserBL.csproj" PrivateAssets="all" />
-  </ItemGroup>
+    <ProjectReference Include="..\MicroservicesPortChooserBL\MicroservicesPortChooserBL.csproj" PrivateAssets="all" />   
+   <ProjectReference Include="..\MSPC_DAL\MSPC_DAL.csproj" PrivateAssets="all" />
+   <ProjectReference Include="..\MSPC_Interfaces\MSPC_Interfaces.csproj" PrivateAssets="all" />
+ </ItemGroup>
 
   <PropertyGroup>
-    <Version>2021.10.02.900</Version>
-    <PackageVersion>2021.10.02.900</PackageVersion>
+    <Version>2021.10.02.1139</Version>
+    <PackageVersion>2021.10.02.1139</PackageVersion>
     <Authors>Andrei Ignat</Authors>
     <PackageId>MicroservicesPortChooser</PackageId>
     <Description>This package lets put a single port for your microservice. </Description>
