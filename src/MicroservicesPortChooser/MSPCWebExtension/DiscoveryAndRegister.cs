@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Hosting.Server.Features;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using MSPC_DAL;
 using MSPC_Interfaces;
 using System;
@@ -22,13 +23,12 @@ namespace MSPCWebExtension
     {
         private readonly IServiceProvider sp;
         private readonly IConfiguration config;
-        private readonly IServiceProvider serviceProvider;
+        
 
-        public DiscoveryAndRegister(IServiceProvider sp, IConfiguration config, IServiceProvider serviceProvider)
+        public DiscoveryAndRegister(IServiceProvider sp, IConfiguration config)
         {
             this.sp = sp;
-            this.config = config;
-            this.serviceProvider = serviceProvider;
+            this.config = config;            
         }
         private async Task<bool> RegisterMe(IServer s, CancellationToken stoppingToken)
         {
@@ -93,14 +93,42 @@ namespace MSPCWebExtension
             }
             return true;
         }
+        ILogger log;
+        private void LogInfo(string message)
+        {
+            if (log == null) {
+                log = sp.GetService(typeof(ILogger<DiscoveryAndRegister>)) as ILogger;
+            }
+            if(log == null)
+            {
+                Console.WriteLine(message);
+                return;
+            }
+            log.LogInformation(message);
+
+        }
+        private void LogError(string message, Exception ex)
+        {
+            if (log == null)
+            {
+                log = sp.GetService(typeof(ILogger<DiscoveryAndRegister>)) as ILogger;
+            }
+            if (log == null)
+            {
+                Console.WriteLine($"{message} : {ex.Message}");
+                return;
+            }
+            log.LogError(ex,message);
+
+        }
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
 
             while (!stoppingToken.IsCancellationRequested)
             {
-                var s = serviceProvider.GetService(typeof(IServer)) as IServer;
+                var s = sp.GetService(typeof(IServer)) as IServer;
 
-                Console.WriteLine($"waiting for IServer : {s == null}");               
+                LogInfo($"waiting for IServer : {s == null}");               
                 await Task.Delay(5000, stoppingToken);
                 try
                 {
@@ -110,7 +138,7 @@ namespace MSPCWebExtension
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"error in register : {ex.Message}");
+                    LogError("error in register",ex);
                 }
 
             }
