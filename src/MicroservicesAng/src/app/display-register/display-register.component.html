@@ -1,4 +1,13 @@
 <div *ngIf="!showTabulator">
+  <mat-form-field appearance="fill">
+    <mat-label>Choose</mat-label>
+    <mat-select [(ngModel)]="selectedFilter">
+      <mat-option *ngFor="let item of filterString" [value]="item" >
+        {{item}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
   <mat-form-field appearance="standard">
     <mat-label>Filter {{ dataFiltered.length }} </mat-label>
     <input matInput (keyup)="applyFilter($event)" />

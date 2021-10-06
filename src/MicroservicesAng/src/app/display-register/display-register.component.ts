@@ -12,6 +12,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 })
 export class DisplayRegisterComponent implements OnInit {
 
+  selectedFilter: string = "contains";
+  filterString:string[]=["contains","does not contain"];
   private dataInner: Register[] = [];
   ShowHistory:boolean =true;  
   get data(): Register[] {
