@@ -14,6 +14,7 @@ export class DisplayRegisterComponent implements OnInit {
 
   selectedFilter: string = "contains";
   filterString:string[]=["contains","does not contain"];
+  filterUser:string="";
   private dataInner: Register[] = [];
   ShowHistory:boolean =true;  
   get data(): Register[] {
@@ -106,15 +107,36 @@ export class DisplayRegisterComponent implements OnInit {
     hot.redraw(true);
   }
   applyFilter(event: Event) {
-    let filterValue = (event.target as HTMLInputElement).value;
-    filterValue= filterValue.toLowerCase().trim();
-    if(filterValue==""){
+    this.filterUser= (event.target as HTMLInputElement).value;
+    this.filterUser= this.filterUser.toLowerCase().trim();
+    console.log(event); 
+    this.applyFilterValue(this.filterUser);
+  }
+  applyFilterDefault(){
+    this.applyFilterValue(this.filterUser);
+  }
+  applyFilterValue(value: string){
+
+    value=value||'';
+    console.log(value);
+    if(value===""){
+      console.log('b');
       this.dataFiltered=this.data;
       return;
     }
-
-    this.dataFiltered = this.data.filter(d => d.Details.toLowerCase().indexOf(filterValue) > 1);
-    // console.log(this.dataFiltered);
+    console.log('asd');
+    console.log(this.selectedFilter);
+    switch (this.selectedFilter) {
+      case "contains":
+          this.dataFiltered = this.data.filter(d => d.Details.toLowerCase().indexOf(value) > 1);
+          break;
+      case "does not contain":
+          this.dataFiltered = this.data.filter(d => d.Details.toLowerCase().indexOf(value) < 0);
+          break;
+      default:
+          window.alert("Invalid filter:"+ this.selectedFilter);    
+    }
+    // console.log(this.dataFiltered); 
   }
   compare(a: number | string |Date, b: number | string|Date, isAsc: boolean) : number {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
