@@ -30,8 +30,8 @@
  </ItemGroup>
 
   <PropertyGroup>
-    <Version>2021.10.02.1139</Version>
-    <PackageVersion>2021.10.02.1139</PackageVersion>
+    <Version>2021.11.15.2019</Version>
+    <PackageVersion>2021.11.15.2019</PackageVersion>
     <Authors>Andrei Ignat</Authors>
     <PackageId>MicroservicesPortChooser</PackageId>
     <Description>This package lets put a single port for your microservice. </Description>

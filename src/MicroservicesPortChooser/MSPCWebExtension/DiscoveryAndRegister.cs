@@ -67,7 +67,7 @@ namespace MSPCWebExtension
                 Console.WriteLine($"try to register {url}");
                 var u = new Uri(url);
                 string host = u.Host;
-                if (host == "[::]" || host == "0.0.0.0")
+                if (host == "[::]" || host == "0.0.0.0" || host=="::"|| host=="*")
                     host = machineName;
 
                 var r = new Register(repo);
