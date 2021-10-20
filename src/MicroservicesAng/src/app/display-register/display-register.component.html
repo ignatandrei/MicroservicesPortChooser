@@ -11,10 +11,10 @@
 
   <mat-form-field appearance="standard">
     <mat-label>Filter {{ dataFiltered.length }} </mat-label>
-    <input matInput (keyup)="applyFilter($event)" /> 
+    <input matInput (keyup)="applyFilter($event)" [(ngModel)]="filterUser" /> 
   </mat-form-field>
   <br />
-  <a href='{{myLink}}'  target="_blank">{{myLink}}</a>
+  <a *ngIf="ShowHistory" href='{{myLink}}'  target="_blank">{{myLink}}</a>
 
   <table
     matSort

@@ -5,6 +5,7 @@ import { MPCService } from '../services/mpcv1.service';
 import Tabulator from 'tabulator-tables';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { environment } from 'src/environments/environment';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-display-register',
@@ -37,7 +38,7 @@ export class DisplayRegisterComponent implements OnInit {
 
   dataFiltered: Register[] = [];
 
-  constructor(private mpcService: MPCService , public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) dataHistory: Register[]) { 
+  constructor(private router: ActivatedRoute ,private mpcService: MPCService , public dialog: MatDialog, @Inject(MAT_DIALOG_DATA) dataHistory: Register[]) { 
 
     if(dataHistory?.length> 0){
       this.ShowHistory = false;
@@ -72,7 +73,27 @@ export class DisplayRegisterComponent implements OnInit {
   ngOnInit(): void {
     this.dataFiltered = this.data;
     this.drawTable(this.data);
-
+    this.router.queryParams.subscribe(params => {
+      var arrKeys=Object.keys(params);
+      console.log(arrKeys.length);
+      for(var i=0;i<arrKeys.length;i++){
+        var element=arrKeys[i];
+        
+        console.log(element);
+        // console.log(this.filterString.findIndex(it=>it == element));
+        if(this.filterString.findIndex(it=>it == element)> -1){
+          console.log("found")
+          this.selectedFilter=element;
+          this.filterUser=params[element];
+          console.log(this.filterUser);
+          window.setTimeout(()=>{
+          this. applyFilterDefault();
+          },1000);
+        }
+      };
+      // console.log(params);
+      
+    })
   }
   private drawTable(tableData:Register[]): void {
     // console.log(tableData)
@@ -110,7 +131,7 @@ export class DisplayRegisterComponent implements OnInit {
   applyFilter(event: Event) {
     this.filterUser= (event.target as HTMLInputElement).value;
     this.filterUser= this.filterUser.toLowerCase().trim();
-    console.log(event); 
+    //console.log(event); 
     this.myLink = environment.url + "static/services?"+ this.selectedFilter+ "=" + this.filterUser;
     this.applyFilterValue(this.filterUser);
   }
@@ -120,21 +141,22 @@ export class DisplayRegisterComponent implements OnInit {
   applyFilterValue(value: string){
 
     value=value||'';
-    console.log(value);
+    //console.log(value);
     if(value===""){
-      console.log('b');
+      //console.log('b');
       this.dataFiltered=this.data;
       return;
     }
-    console.log('asd');
-    console.log(this.selectedFilter);
+    //console.log('asd');
     switch (this.selectedFilter) {
       case "Contains":
           this.dataFiltered = this.data.filter(d => d.Details.toLowerCase().indexOf(value) > 1);
           break;
-      case "NotContain":
-          this.dataFiltered = this.data.filter(d => d.Details.toLowerCase().indexOf(value) < 0);
-          break;
+      case "NotContain":{
+        this.dataFiltered = this.data.filter(d => d.Details.toLowerCase().indexOf(value) < 0);
+        break;
+      }
+        
       default:
           window.alert("Invalid filter:"+ this.selectedFilter);    
     }
