@@ -4,6 +4,7 @@ import { Register } from '../classes/register';
 import { MPCService } from '../services/mpcv1.service';
 import Tabulator from 'tabulator-tables';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-display-register',
@@ -11,9 +12,9 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
   styleUrls: ['./display-register.component.css']
 })
 export class DisplayRegisterComponent implements OnInit {
-
-  selectedFilter: string = "contains";
-  filterString:string[]=["contains","does not contain"];
+  filterString=["NotContain", "Contains"];
+  myLink: string = "";
+  selectedFilter: string = "Contains";
   filterUser:string="";
   private dataInner: Register[] = [];
   ShowHistory:boolean =true;  
@@ -110,6 +111,7 @@ export class DisplayRegisterComponent implements OnInit {
     this.filterUser= (event.target as HTMLInputElement).value;
     this.filterUser= this.filterUser.toLowerCase().trim();
     console.log(event); 
+    this.myLink = environment.url + "static/services?"+ this.selectedFilter+ "=" + this.filterUser;
     this.applyFilterValue(this.filterUser);
   }
   applyFilterDefault(){
@@ -127,10 +129,10 @@ export class DisplayRegisterComponent implements OnInit {
     console.log('asd');
     console.log(this.selectedFilter);
     switch (this.selectedFilter) {
-      case "contains":
+      case "Contains":
           this.dataFiltered = this.data.filter(d => d.Details.toLowerCase().indexOf(value) > 1);
           break;
-      case "does not contain":
+      case "NotContain":
           this.dataFiltered = this.data.filter(d => d.Details.toLowerCase().indexOf(value) < 0);
           break;
       default:
