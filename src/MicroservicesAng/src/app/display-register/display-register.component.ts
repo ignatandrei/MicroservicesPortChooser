@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import {  AfterViewInit, Component, Inject, Input, OnInit } from '@angular/core';
 import { Sort } from '@angular/material/sort';
 import { Register } from '../classes/register';
 import { MPCService } from '../services/mpcv1.service';
@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './display-register.component.html',
   styleUrls: ['./display-register.component.css']
 })
-export class DisplayRegisterComponent implements OnInit {
+export class DisplayRegisterComponent implements OnInit , AfterViewInit {
   filterString=["NotContain", "Contains"];
   myLink: string = "";
   selectedFilter: string = "Contains";
@@ -53,6 +53,10 @@ export class DisplayRegisterComponent implements OnInit {
     }
 
   }
+  ngAfterViewInit(): void {
+  
+    this.applyQueryFilterValues();
+  }
 
   openDialog(r:Register): void {
     //window.alert(r.history.length);
@@ -69,17 +73,14 @@ export class DisplayRegisterComponent implements OnInit {
     // });
   }
 
-
-  ngOnInit(): void {
-    this.dataFiltered = this.data;
-    this.drawTable(this.data);
+  applyQueryFilterValues(){
     this.router.queryParams.subscribe(params => {
       var arrKeys=Object.keys(params);
       console.log(arrKeys.length);
       for(var i=0;i<arrKeys.length;i++){
         var element=arrKeys[i];
         
-        console.log(element);
+        // console.log(element);
         // console.log(this.filterString.findIndex(it=>it == element));
         if(this.filterString.findIndex(it=>it == element)> -1){
           console.log("found")
@@ -94,6 +95,10 @@ export class DisplayRegisterComponent implements OnInit {
       // console.log(params);
       
     })
+  }
+  ngOnInit(): void {
+    this.dataFiltered = this.data;
+    this.drawTable(this.data);
   }
   private drawTable(tableData:Register[]): void {
     // console.log(tableData)
