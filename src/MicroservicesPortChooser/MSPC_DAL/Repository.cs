@@ -69,6 +69,9 @@ namespace MSPC_DAL
 
         public async Task<IRegister[]> LoadFromYear(int year, int? month)
         {
+            if ((month ?? 0) < 1)
+                month = null;
+                
             using var connection = new SqliteConnection(DbName);
             var query = "select * from MSPC_Register";
 
@@ -107,6 +110,7 @@ namespace MSPC_DAL
                 itemMax.AddHistory(item.it.Where(i => i != itemMax).ToArray());
                 ret.Add(itemMax);
             }
+            ret.ForEach(it => { it.EnvData = null; it.History = null; });
             return ret.ToArray();
         }
     }

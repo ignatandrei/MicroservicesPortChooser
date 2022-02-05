@@ -27,10 +27,11 @@ namespace MicroservicesPortChooserWeb.Controllers
             return new Register(repo).LoadFromDatabase();
 
         }
-        [HttpGet("{year}/{month?}")]
-        public Task<IRegister[]> LoadFromYear([FromServices] IRepository repo, int year, int? month)
+        [HttpGet("{year:int}/{month:int?}")]
+        public Task<IRegister[]> LoadFromYear([FromServices] IRepository repo, int year, int? month=null)
         {
             //do copy constructor
+            
             return new Register(repo).LoadFromYear(year,month);
 
         }

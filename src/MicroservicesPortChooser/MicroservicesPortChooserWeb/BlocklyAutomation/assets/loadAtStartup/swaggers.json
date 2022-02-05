@@ -1,7 +1,7 @@
 [
 	{
 		"id": "LocalSite",
-		"link": "/swagger/v1/swagger.json"
+		"link": "/swagger/v2/swagger.json"
 	},
 	{
 		"id": "_MyPC",

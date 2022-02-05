@@ -1,10 +1,12 @@
 ﻿using MSPC_Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text.Json;
 
 namespace MSPC_DAL
 {
-    class RegFake : IRegister
+    class RegFake : IRegisterParse
     {
         private List<RegFake> history;
         public RegFake()
@@ -38,8 +40,74 @@ namespace MSPC_DAL
             }
         }
 
-        public IRegister[] History { get =>  history.ToArray();  }
+        public IRegister[] History { get => history.ToArray(); 
+            set { 
+                if (value == null) 
+                    history = new List<RegFake>();
+                else
+                    throw new NotImplementedException(); 
+            }
+        }
 
         public string EnvData { get; set; }
+        public string UserName { get  {
+                try
+                {
+                    var d = JsonDocument.Parse(EnvData);
+                    var props = d.RootElement.EnumerateObject();
+                    foreach (var item in props)
+                    {
+                        if (item.Name == nameof(UserName))
+                            return item.Value.ToString();
+                    }
+
+                    return null;
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+            set => throw new NotImplementedException(); }
+        public string CurrentDirectory { get {
+                try
+                {
+                    var d = JsonDocument.Parse(EnvData);
+                    var props = d.RootElement.EnumerateObject();
+                    foreach (var item in props)
+                    {
+                        if (item.Name == nameof(CurrentDirectory))
+                            return item.Value.ToString();
+                    }
+
+                    return null;
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+
+            }
+            set => throw new NotImplementedException(); }
+        public long ProcessId { get
+            {
+                try
+                {
+                    var d = JsonDocument.Parse(EnvData);
+                    var props = d.RootElement.EnumerateObject();
+                    foreach (var item in props)
+                    {
+                        if (item.Name == nameof(ProcessId))
+                            return long.Parse(item.Value.ToString());
+                    }
+
+                    return 0;
+                }
+                catch (Exception)
+                {
+                    return 0;
+                }
+
+            } set => throw new NotImplementedException(); }
     }
 }
