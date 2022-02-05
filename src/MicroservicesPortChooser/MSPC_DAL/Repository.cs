@@ -71,14 +71,20 @@ namespace MSPC_DAL
         {
             using var connection = new SqliteConnection(DbName);
             var query = "select * from MSPC_Register";
-            
-                query += "where strftime('%y', dateRegistered)=@year";
 
-            if (month!= null)
-                query += " and strftime('%m', dateRegistered)=@month";
+            string val = year.ToString();
+            var nr = 4;
             
+            if (month != null)
+            {
+                val += "-" + month.Value.ToString("0#");
+                nr = 7;
+            }
+            query += $" where substr(stringRegisteredDate,1,  {nr})=@val";
 
-            var data = (await connection.QueryAsync<RegFake>(query)).ToArray();
+
+
+            var data = (await connection.QueryAsync<RegFake>(query, new { val })).ToArray();
             foreach (var item in data)
             {
                 if (string.IsNullOrEmpty(item.UniqueID))
