@@ -66,5 +66,42 @@ namespace MSPC_DAL
             }
             return ret.ToArray();
         }
+
+        public async Task<IRegister[]> LoadFromYear(int year, int? month)
+        {
+            using var connection = new SqliteConnection(DbName);
+            var query = "select * from MSPC_Register";
+            
+                query += "where strftime('%y', dateRegistered)=@year";
+
+            if (month!= null)
+                query += " and strftime('%m', dateRegistered)=@month";
+            
+
+            var data = (await connection.QueryAsync<RegFake>(query)).ToArray();
+            foreach (var item in data)
+            {
+                if (string.IsNullOrEmpty(item.UniqueID))
+                {
+                    item.UniqueID = (item as IRegister).GenerateUniqueID();
+                }
+            }
+            var groupUniqueId = data.GroupBy(it => it.UniqueID).Select(it => new { it.Key, it }).ToArray();
+
+            if (groupUniqueId.Length == data.Length)
+            {
+                return data;
+            }
+            var ret = new List<IRegister>();
+
+            foreach (var item in groupUniqueId)
+            {
+                var maxDate = item.it.Max(it => it.dateRegistered);
+                var itemMax = item.it.First(it => it.dateRegistered == maxDate);
+                itemMax.AddHistory(item.it.Where(i => i != itemMax).ToArray());
+                ret.Add(itemMax);
+            }
+            return ret.ToArray();
+        }
     }
 }

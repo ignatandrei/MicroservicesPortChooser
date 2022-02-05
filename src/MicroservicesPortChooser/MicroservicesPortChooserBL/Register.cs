@@ -47,6 +47,11 @@ namespace MicroservicesPortChooserBL
             r.Port = port;
             return register.Remove(r.UniqueID, out _);
         }
+        public async Task<IRegister[]> LoadFromYear(int year, int? month)
+        {
+            var data = await repository.LoadFromYear(year, month);
+            return data;
+        }
         public async Task<int> LoadFromDatabase()
         {
             var data = await repository.LoadFromDatabase();
