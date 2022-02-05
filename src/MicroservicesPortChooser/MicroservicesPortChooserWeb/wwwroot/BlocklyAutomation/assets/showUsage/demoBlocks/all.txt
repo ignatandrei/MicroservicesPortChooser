@@ -1,0 +1,8 @@
+﻿[
+    {
+        "id":  "EurRon",
+        "description":  "exchange currency",
+        "categories":  "exchange;http;",
+        "blocks":  "text;httprequest;text_join;text_print;ttsBlock"
+    }
+]

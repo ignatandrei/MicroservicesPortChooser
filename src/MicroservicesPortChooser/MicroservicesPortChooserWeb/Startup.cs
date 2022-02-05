@@ -93,6 +93,7 @@ namespace MicroservicesPortChooserWeb
             app.UseProblemDetails();
             app.UseCors("AllowAll");
             app.UseBlocklyUI(env);
+            var q = NetCore2BlocklyNew.Extensions.FileProvider;
             //app.UseHttpsRedirection();
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
