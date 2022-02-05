@@ -16,7 +16,7 @@ using Microsoft.OpenApi.Models;
 using MSPC_DAL;
 using MSPC_Interfaces;
 using MSPCWebExtension;
-using NetCore2Blockly;
+using NetCore2BlocklyNew;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace MicroservicesPortChooserWeb
@@ -66,7 +66,6 @@ namespace MicroservicesPortChooserWeb
             {
                 c.IncludeExceptionDetails = (context, ex) => true;                
             });
-            services.AddBlockly();
             services.AddTransient<IRepository, Repository>();
             services.AddTransient<IRegister, Register>();
             services.AddTransient<Register, Register>();
@@ -93,8 +92,7 @@ namespace MicroservicesPortChooserWeb
             }
             app.UseProblemDetails();
             app.UseCors("AllowAll");
-            app.UseBlocklyUI();
-            app.UseBlockly();
+            app.UseBlocklyUI(env);
             //app.UseHttpsRedirection();
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
@@ -131,6 +129,7 @@ namespace MicroservicesPortChooserWeb
                 });
                 endpoints.MapSettingsView<SettingsJson.appsettings>(Configuration);
                 endpoints.MapFallbackToFile("/static/{**slug}", "index.html");
+                endpoints.UseBlocklyAutomation();
             });
         }
     }
