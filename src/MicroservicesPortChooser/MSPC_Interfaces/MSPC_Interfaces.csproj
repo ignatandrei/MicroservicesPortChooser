@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="RSCG_Static" Version="2021.8.31.2037" />
+    <PackageReference Include="RSCG_Static" Version="2021.12.18.2037" />
   </ItemGroup>
 
 </Project>

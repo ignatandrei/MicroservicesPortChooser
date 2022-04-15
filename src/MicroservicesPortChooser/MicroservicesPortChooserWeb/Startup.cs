@@ -128,7 +128,7 @@ namespace MicroservicesPortChooserWeb
                     Predicate = _ => true,
                     ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
                 });
-                endpoints.MapSettingsView<SettingsJson.appsettings>(Configuration);
+                //endpoints.MapSettingsView<MicroservicesPortChooserWeb.SettingsJson.appsettings>(Configuration);
                 endpoints.MapFallbackToFile("/static/{**slug}", "index.html");
                 endpoints.UseBlocklyAutomation();
             });

@@ -6,19 +6,19 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="6.0.0" />
     
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
     <None Include="../../../MSPCWebExtension.md" Pack="true" PackagePath="\" />
     <None Include="../../../docs/MSPCWebExtension.png" Pack="true" PackagePath="\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="HttpClientGenerator" Version="0.5.3" OutputItemType="Analyzer" PrivateAssets="All" />
-    <PackageReference Include="AMS_Base" Version="2021.7.6.628" />
-    <PackageReference Include="RSCG_AMS" Version="2021.7.6.628" ReferenceOutputAssembly="false" OutputItemType="Analyzer" PrivateAssets="All" />
-    <PackageReference Include="Teronis.MSBuild.Packaging.ProjectBuildInPackage" Version="0.1.7">
+    <PackageReference Include="HttpClientGenerator" Version="0.6.1" OutputItemType="Analyzer" PrivateAssets="All" />
+    <PackageReference Include="AMS_Base" Version="2022.4.7.1155" />
+    <PackageReference Include="RSCG_AMS" Version="2022.4.7.1155" ReferenceOutputAssembly="false" OutputItemType="Analyzer" PrivateAssets="All" />
+    <PackageReference Include="Teronis.MSBuild.Packaging.ProjectBuildInPackage" Version="1.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
