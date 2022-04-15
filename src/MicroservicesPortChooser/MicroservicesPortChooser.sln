@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31515.178
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32407.343
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroservicesPortChooserBL", "MicroservicesPortChooserBL\MicroservicesPortChooserBL.csproj", "{41F7AB1E-2A47-4D89-B90C-6EBD5C46C27D}"
 EndProject
@@ -11,9 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroservicesPortChooserWeb
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MSPCWebExtension", "MSPCWebExtension\MSPCWebExtension.csproj", "{37A534A8-6851-4304-A5B6-2EFD9FCA4C5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSPC_Interfaces", "MSPC_Interfaces\MSPC_Interfaces.csproj", "{1987B4D8-E8DC-4467-9B5C-C8E001290395}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MSPC_Interfaces", "MSPC_Interfaces\MSPC_Interfaces.csproj", "{1987B4D8-E8DC-4467-9B5C-C8E001290395}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSPC_DAL", "MSPC_DAL\MSPC_DAL.csproj", "{A38964F5-3FFE-4D5B-98B9-5D30408ED303}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MSPC_DAL", "MSPC_DAL\MSPC_DAL.csproj", "{A38964F5-3FFE-4D5B-98B9-5D30408ED303}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TBD", "TBD\TBD.csproj", "{0B1EAC87-04F9-49B9-A55A-9BA0C6B223D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{A38964F5-3FFE-4D5B-98B9-5D30408ED303}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A38964F5-3FFE-4D5B-98B9-5D30408ED303}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A38964F5-3FFE-4D5B-98B9-5D30408ED303}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B1EAC87-04F9-49B9-A55A-9BA0C6B223D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B1EAC87-04F9-49B9-A55A-9BA0C6B223D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B1EAC87-04F9-49B9-A55A-9BA0C6B223D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B1EAC87-04F9-49B9-A55A-9BA0C6B223D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
