@@ -9,16 +9,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
-
+//https://andrewlock.net/exploring-dotnet-6-part-6-supporting-integration-tests-with-webapplicationfactory-in-dotnet-6/
+//https://docs.microsoft.com/en-us/aspnet/core/test/integration-tests?view=aspnetcore-6.0
 namespace MSPCTest
 {
     [FeatureDescription("This will test just the register the name when calling the controllers")]
     [Label(nameof(TestRegister))]
-    public partial class TestRegister: IClassFixture<WebApplicationFactory<Startup>>
+    public partial class TestRegister: IClassFixture<WebApplicationFactory<Program>>
     {
-        private readonly WebApplicationFactory<Startup> _factory;
+        private readonly WebApplicationFactory<Program> _factory;
         
-        public TestRegister(WebApplicationFactory<Startup> factory)
+        public TestRegister(WebApplicationFactory<Program> factory)
         {
             _factory = factory;
         }

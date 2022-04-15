@@ -6,7 +6,7 @@ name: Azure App Service - MicroservicesPortChooser(Production), Build and deploy
 env:
   AZURE_WEBAPP_NAME: MicroservicesPortChooser    # set this to your application's name
   AZURE_WEBAPP_PACKAGE_PATH: 'src/MicroservicesPortChooser/MicroservicesPortChooserWeb'      # set this to the path to your web app project, defaults to the repository root
-  DOTNET_VERSION: '5.0.x'           # set this to the dot net version to use
+  DOTNET_VERSION: '6.0.x'           # set this to the dot net version to use
 on:
   workflow_dispatch:
   push:
