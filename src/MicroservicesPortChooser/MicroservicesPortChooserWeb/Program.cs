@@ -101,3 +101,6 @@ app.UseEndpoints(endpoints =>
     endpoints.MapFallbackToFile("/static/{**slug}", "index.html");
     endpoints.UseBlocklyAutomation();
 });
+
+//needed for tests
+public partial class Program { }

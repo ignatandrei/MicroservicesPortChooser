@@ -5,6 +5,9 @@
 	  <Nullable>enable</Nullable>
 	  <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
+	<ItemGroup>
+		<InternalsVisibleTo Include="MSPCTest" />
+	</ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AspNetCore.HealthChecks.SqLite" Version="6.0.2" />
