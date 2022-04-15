@@ -2,26 +2,47 @@
 using LightBDD.Framework.Scenarios;
 using LightBDD.XUnit2;
 using MicroservicesPortChooserWeb;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.AspNetCore.TestHost;
+using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
-//https://andrewlock.net/exploring-dotnet-6-part-6-supporting-integration-tests-with-webapplicationfactory-in-dotnet-6/
-//https://docs.microsoft.com/en-us/aspnet/core/test/integration-tests?view=aspnetcore-6.0
+
 namespace MSPCTest
 {
+    public class Test: WebApplicationFactory<Program> 
+    {
+        public Test()
+        {
+            
+        }
+        protected override TestServer CreateServer(IWebHostBuilder builder)
+        {
+            return base.CreateServer(builder);
+        }
+        protected override IHost CreateHost(IHostBuilder builder)
+        {
+            builder.ConfigureServices(services =>
+            {
+                
+            });
+            return base.CreateHost(builder);
+        }
+    }
     [FeatureDescription("This will test just the register the name when calling the controllers")]
     [Label(nameof(TestRegister))]
     public partial class TestRegister: IClassFixture<WebApplicationFactory<Program>>
     {
         private readonly WebApplicationFactory<Program> _factory;
         
-        public TestRegister(WebApplicationFactory<Program> factory)
+        public TestRegister()
         {
-            _factory = factory;
+            _factory = new Test();
         }
         [Scenario]
 
