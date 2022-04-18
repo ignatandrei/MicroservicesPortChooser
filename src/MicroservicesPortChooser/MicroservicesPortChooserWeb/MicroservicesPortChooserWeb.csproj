@@ -24,9 +24,12 @@
     </PackageReference>
     <PackageReference Include="ThisAssembly" Version="1.0.9" />
     <PackageReference Include="Hellang.Middleware.ProblemDetails" Version="6.4.1" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.3" />
+
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Generator\MSPC_CRUD\MSPC_CRUD.Context\MSPC_CRUD.Context.csproj" />
     <ProjectReference Include="..\MicroservicesPortChooserBL\MicroservicesPortChooserBL.csproj" />
     <ProjectReference Include="..\MSPCWebExtension\MSPCWebExtension.csproj" />
   </ItemGroup>
@@ -48,7 +51,16 @@
 		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
 		<CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)GeneratedX</CompilerGeneratedFilesOutputPath>
 	</PropertyGroup>
+	<ItemGroup>
+		<AdditionalFiles Include="controller.txt" />
+
+		<CompilerVisibleProperty Include="GenerateStep" />
+
+	</ItemGroup>
+	<PropertyGroup>
+		<GenerateStep>Controller</GenerateStep>
+	</PropertyGroup>
 
 
-  
+
 </Project>

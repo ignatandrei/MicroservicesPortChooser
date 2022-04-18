@@ -39,6 +39,14 @@ builder.Services.AddProblemDetails(c =>
 builder.Services.AddTransient<IRepository, Repository>();
 builder.Services.AddTransient<IRegister, Register>();
 builder.Services.AddTransient<Register, Register>();
+builder.Services.AddDbContextFactory<ApplicationDBContext>(
+
+        options =>
+        {
+            options.UseSqlite(Repository.DbName);
+        }
+     )
+   ;
 builder.Services
     .AddHealthChecks()
     .AddSqlite(Repository.DbName);
