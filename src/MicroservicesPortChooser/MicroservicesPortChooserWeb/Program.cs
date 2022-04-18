@@ -1,4 +1,6 @@
-
+using AMS_Base;
+[assembly: VersionReleased(Name = "CRUD", ISODateTime = "2022-04-18", recordData = RecordData.Merges)]
+[assembly: AMS_Base.VersionReleased(Name = "FutureRelease", ISODateTime = "9999-04-16", recordData = AMS_Base.RecordData.Merges)]
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
