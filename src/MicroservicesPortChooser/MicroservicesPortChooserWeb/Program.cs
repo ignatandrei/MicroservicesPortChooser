@@ -97,10 +97,11 @@ app.UseEndpoints(endpoints =>
         Predicate = _ => true,
         ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
     });
-    //endpoints.MapSettingsView<MicroservicesPortChooserWeb.SettingsJson.appsettings>(Configuration);
+    endpoints.MapSettingsView<MicroservicesPortChooserWeb.SettingsJson.appsettings>(app.Configuration);
     endpoints.MapFallbackToFile("/static/{**slug}", "index.html");
     endpoints.UseBlocklyAutomation();
 });
 
+app.Run();
 //needed for tests
 public partial class Program { }
