@@ -1,0 +1,13 @@
+﻿{
+	"version":"2022.4.15.615",
+	"connections":[
+	{
+		"Provider": "Microsoft.EntityFrameworkCore.Sqlite",
+		"FolderForContext": "..\\MSPC_CRUD.Context\\Generated",
+		"FolderForClasses": "..\\MSPC_CRUD.Models\\Generated",
+		"ProjectWithDesigner": "..\\MSPC_CRUD.WebAPI\\",
+		"NameContext": "ApplicationDBContext",
+		"ConnectionString":"Data Source=C:\\Users\\Surface1\\Documents\\GitHub\\MicroservicesPortChooser\\src\\MicroservicesPortChooser\\MicroservicesPortChooserWeb\\MSPC.db"
+	}
+	]
+}
