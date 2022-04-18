@@ -26,4 +26,5 @@ global using Microsoft.AspNetCore.HttpOverrides;
 global using MSPC_DAL;
 global using NetCore2BlocklyNew;
 global using MicroservicesPortChooserWeb;
-
+global using Microsoft.EntityFrameworkCore;
+global using Generated;
