@@ -28,7 +28,9 @@ export class DisplayRegisterComponent implements OnInit , AfterViewInit {
     //window.alert("set" + value?.length)
     this.dataInner = value;
     if (this.dataInner?.length > 0) {
+      
       this.dataFiltered = this.dataInner;
+      this.applyFilterDefault();
       this.drawTable(this.dataInner);
     }
   }
