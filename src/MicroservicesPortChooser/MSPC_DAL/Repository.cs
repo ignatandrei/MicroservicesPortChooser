@@ -10,9 +10,8 @@ namespace MSPC_DAL
 {
     public class Repository : IRepository
     {
-        public static string DbName1 = "Data Source=MSPC.db";
-        public static string DbName = @"Data Source=C:\Users\Surface1\Desktop\MSPC.db";
-
+        public static string DbName = "Data Source=MSPC.db";
+        
         public async Task<IRegister> AddRegister(IRegister r)
         {
             var parameters = new DynamicParameters();
