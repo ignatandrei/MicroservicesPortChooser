@@ -8,5 +8,8 @@ namespace MSPC_Interfaces
         Task<IRegister[]> LoadFromDatabase();
         Task<IRegister[]> LoadFromYear(int year, int? month);
         Task<int> UnRegister(string host, ushort port);
+
+        Task<long> DeleteHistory();
+        Task<long> DeleteLastYear();
     }
 }

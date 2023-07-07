@@ -10,7 +10,8 @@ namespace MSPC_DAL
 {
     public class Repository : IRepository
     {
-        public static string DbName = "Data Source=MSPC.db";
+        public static string DbName1 = "Data Source=MSPC.db";
+        public static string DbName = @"Data Source=C:\Users\Surface1\Desktop\MSPC.db";
 
         public async Task<IRegister> AddRegister(IRegister r)
         {
@@ -37,6 +38,31 @@ namespace MSPC_DAL
                 "delete from MSPC_Register where Hostname= @host and Port= @port "
                 , new { host, port });
 
+        }
+        public async Task<long> DeleteLastYear()
+        {
+            var query = "delete from MSPC_Register";
+            var year = DateTime.UtcNow.Year ;
+            string val = year.ToString();
+            var nr = 4;
+            query += $" where substr(stringRegisteredDate,1,  {nr})<@val";
+            using var connection = new SqliteConnection(DbName);
+            return await connection.ExecuteAsync(query, new { val });    
+            
+        }
+        public async Task<long> DeleteHistory()
+        {
+            long total = 0;
+            var data = await LoadFromDatabase();
+            using var connection = new SqliteConnection(DbName);
+            foreach (var item in data)
+            {
+                var nr= await connection.ExecuteAsync(
+                    "delete from MSPC_Register where Hostname= @host and Port= @port and stringRegisteredDate<@regDate "
+                    , new { host=  item.HostName, port=item.Port,regDate=item.dateRegistered.ToString("o") });
+                total+= nr;
+            }
+            return total;
         }
         public async Task<IRegister[]> LoadFromDatabase()
         {

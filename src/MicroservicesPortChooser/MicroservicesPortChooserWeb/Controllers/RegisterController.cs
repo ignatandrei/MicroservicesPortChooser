@@ -39,4 +39,14 @@ public class RegisterController : ControllerBase
     {
         return new Register(repo).UnRegister(host, port);
     }
+    [HttpDelete("")]
+    public Task<long> DeleteHistory([FromServices] IRepository repo)
+    {
+        return new Register(repo).DeleteHistory();
+    }
+    [HttpDelete("")]
+    public Task<long> DeleteLastYear([FromServices] IRepository repo)
+    {
+        return new Register(repo).DeleteLastYear();
+    }
 }

@@ -52,6 +52,18 @@ namespace MicroservicesPortChooserBL
             var data = await repository.LoadFromYear(year, month);
             return data;
         }
+        public async Task<long> DeleteLastYear()
+        {
+            var data = await repository.DeleteLastYear();
+            await LoadFromDatabase();
+            return data;
+        }
+        public async Task<long> DeleteHistory()
+        {
+            var data = await repository.DeleteHistory();
+            await LoadFromDatabase();
+            return data;
+        }
         public async Task<int> LoadFromDatabase()
         {
             var data = await repository.LoadFromDatabase();
