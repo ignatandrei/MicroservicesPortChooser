@@ -1,20 +1,18 @@
-﻿using System.Reflection;
+﻿
+namespace MSPCWebExtension;
 
-namespace MSPCWebExtension
+class ConfigDataMSPC
 {
-    class ConfigDataMSPC
+    public string tag { get; set; }
+
+    public string appName { get; set; }
+    public string registerUrl { get; set; }
+
+    public void ConfigureDefaults()
     {
-        public string tag { get; set; }
-
-        public string appName { get; set; }
-        public string registerUrl { get; set; }
-
-        public void ConfigureDefaults()
-        {
-            if (string.IsNullOrWhiteSpace(appName))
-                appName = Assembly.GetEntryAssembly().GetName().Name;
-            if (string.IsNullOrWhiteSpace(registerUrl))
-                registerUrl = "https://microservicesportchooser.azurewebsites.net/api/v1/";
-        }
+        if (string.IsNullOrWhiteSpace(appName))
+            appName = Assembly.GetEntryAssembly().GetName().Name;
+        if (string.IsNullOrWhiteSpace(registerUrl))
+            registerUrl = "https://microservicesportchooser.azurewebsites.net/api/v1/";
     }
 }

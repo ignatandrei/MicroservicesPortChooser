@@ -1,0 +1,11 @@
+﻿global using Dapper;
+global using Microsoft.Data.Sqlite;
+global using MSPC_DAL;
+global using MSPC_Interfaces;
+global using System;
+global using System.Collections.Concurrent;
+global using System.Collections.Generic;
+global using System.Linq;
+global using System.Text;
+global using System.Threading.Tasks;
+global using DasMulli.DataBuilderGenerator;

@@ -1,15 +1,12 @@
-﻿using System.Threading.Tasks;
+﻿namespace MSPC_Interfaces;
 
-namespace MSPC_Interfaces
+public interface IRepository
 {
-    public interface IRepository
-    {
-        Task<IRegister> AddRegister(IRegister r);
-        Task<IRegister[]> LoadFromDatabase();
-        Task<IRegister[]> LoadFromYear(int year, int? month);
-        Task<int> UnRegister(string host, ushort port);
+    Task<IRegister> AddRegister(IRegister r);
+    Task<IRegister[]> LoadFromDatabase();
+    Task<IRegister[]> LoadFromYear(int year, int? month);
+    Task<int> UnRegister(string host, ushort port);
 
-        Task<long> DeleteHistory();
-        Task<long> DeleteLastYear();
-    }
+    Task<long> DeleteHistory();
+    Task<long> DeleteLastYear();
 }
