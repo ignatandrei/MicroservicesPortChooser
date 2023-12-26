@@ -11,3 +11,4 @@ global using System.Collections.Generic;
 global using System.Linq;
 global using System.Threading.Tasks;
 global using Generated;
+global using RSCG_UtilityTypesCommon;

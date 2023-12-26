@@ -73,7 +73,8 @@ values
     {
         //using var connection = new SqliteConnection(DbName);
         var connection = context.Database;
-        var data = (connection.SqlQuery<RegFake>($"select * from MSPC_Register")).ToArray();
+        var dataDB = (connection.SqlQuery<RegFakeDb>($"select * from MSPC_Register")).ToArray();
+        var data = dataDB.Select(it => (RegFake)it  ).ToArray();
         foreach (var item in data)
         {
             if(string.IsNullOrEmpty(item.UniqueID))
@@ -81,6 +82,7 @@ values
                 item.UniqueID = (item as IRegister).GenerateUniqueID();
             }
         }
+
         var groupUniqueId = data.GroupBy(it => it.UniqueID).Select(it => new { it.Key, it }).ToArray();
 
         if (groupUniqueId.Length == data.Length)

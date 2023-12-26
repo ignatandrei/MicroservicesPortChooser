@@ -1,5 +1,6 @@
-﻿namespace MSPC_DAL;
-
+﻿
+namespace MSPC_DAL;
+[Omit("RegFakeDb", nameof(History))]
 class RegFake : IRegisterParse
 {
     private List<RegFake> history;

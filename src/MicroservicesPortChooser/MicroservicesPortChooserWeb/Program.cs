@@ -1,8 +1,16 @@
 
 var builder = WebApplication.CreateBuilder(args);
 
+var assControllers = typeof(UtilsControllers).Assembly;
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(c =>
+    {
+        c.JsonSerializerOptions.PropertyNamingPolicy = new LowerCaseNamingPolicy();
+    })
+      //.PartManager.ApplicationParts.Add(new AssemblyPart(assControllers)); ;
+;
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<MSPC>();
@@ -81,6 +89,8 @@ app.UseSwagger();
 
 app.UseSwaggerUI(c =>
 {
+    c.DefaultModelsExpandDepth(-1);
+    c.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.None);   
     //c.SwaggerEndpoint("/swagger/v1/swagger.json", "MicroservicesPortChooserWeb v1");
     foreach (var description in provider.ApiVersionDescriptions)
     {
