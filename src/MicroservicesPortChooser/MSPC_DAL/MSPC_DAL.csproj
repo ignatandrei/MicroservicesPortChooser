@@ -3,7 +3,9 @@
 
   <ItemGroup>
     <PackageReference Include="Dapper.Contrib" />
-    <!--<PackageReference Include="Microsoft.Data.Sqlite" />-->
+	<PackageReference Include="RSCG_UtilityTypes" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+	<PackageReference Include="RSCG_UtilityTypesCommon" />
+	  <!--<PackageReference Include="Microsoft.Data.Sqlite" />-->
     <PackageReference Include="System.Text.Json" />
 
   </ItemGroup>

@@ -6,7 +6,11 @@
 
   <ItemGroup>
     <!--<PackageReference Include="AspNetCore.HealthChecks.SqLite" />-->
-    <PackageReference Include="AspNetCore.HealthChecks.UI" />
+	  <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" />
+	  <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" />
+	  <PackageReference Include="Microsoft.CodeAnalysis.CSharp" />
+	  <PackageReference Include="Microsoft.CodeAnalysis.Common"/>
+	  <PackageReference Include="AspNetCore.HealthChecks.UI" />
     <PackageReference Include="AspNetCore.HealthChecks.UI.Client" />
     <PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" />
@@ -31,6 +35,7 @@
 	</PropertyGroup>
 		<ItemGroup>
     <ProjectReference Include="..\Generator\MSPC_CRUD20231225\MSPC_CRUD20231225\MSPC_CRUD20231225.Context\MSPC_CRUD20231225.Context.csproj" />
+    <ProjectReference Include="..\Generator\MSPC_CRUD20231225\MSPC_CRUD20231225\MSPC_CRUD20231225.Controllers\MSPC_CRUD20231225.Controllers.csproj" />
     <ProjectReference Include="..\MicroservicesPortChooserBL\MicroservicesPortChooserBL.csproj" />
     <ProjectReference Include="..\MSPCWebExtension\MSPCWebExtension.csproj" />
   </ItemGroup>

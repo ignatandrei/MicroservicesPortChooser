@@ -3,16 +3,23 @@
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>
   <ItemGroup>
+  <PackageVersion Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.8.0" />
+  <PackageVersion Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="4.8.0" />
+  <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.8.0" />
+  <PackageVersion Include="Microsoft.CodeAnalysis.Common" Version="4.8.0" />
+
     <PackageVersion Include="AMS_Base" Version="2023.5.21.1551" />
     <PackageVersion Include="Dapper.Contrib" Version="2.0.78" />
     <PackageVersion Include="DasMulli.DataBuilderGenerator" Version="2.0.0" />
     <PackageVersion Include="Microsoft.Data.Sqlite" Version="8.0.0" />
-    <PackageVersion Include="RSCG_AMS" Version="2023.5.21.1551"  />
-		<PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
-		<PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.0" />
-		<PackageVersion Include="QueryGenerator" Version="2022.7.11.615"  />
-	  <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
-	  <PackageVersion Include="System.ComponentModel.Annotations" Version="5.0.0" />
+    <PackageVersion Include="RSCG_AMS" Version="2023.5.21.1551" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.0" />
+    <PackageVersion Include="QueryGenerator" Version="2022.7.11.615" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
+    <PackageVersion Include="RSCG_UtilityTypes" Version="2023.1223.1230" />
+    <PackageVersion Include="RSCG_UtilityTypesCommon" Version="2023.1223.1230" />
+    <PackageVersion Include="System.ComponentModel.Annotations" Version="5.0.0" />
     <PackageVersion Include="AspNetCore.HealthChecks.SqLite" Version="8.0.0" />
     <PackageVersion Include="AspNetCore.HealthChecks.UI" Version="8.0.0" />
     <PackageVersion Include="AspNetCore.HealthChecks.UI.Client" Version="8.0.0" />
@@ -26,22 +33,20 @@
     <PackageVersion Include="ThisAssembly" Version="1.4.1">
     </PackageVersion>
     <PackageVersion Include="Hellang.Middleware.ProblemDetails" Version="6.5.1" />
-	  <PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.0" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.0" />
     <PackageVersion Include="System.Text.Json" Version="8.0.0" />
     <PackageVersion Include="RSCG_Static" Version="2023.8.23.2100" />
     <PackageVersion Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.2.0" />
     <PackageVersion Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.0" />
     <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
-
     <PackageVersion Include="HttpClientGenerator" Version="0.6.1" OutputItemType="Analyzer" PrivateAssets="All" />
     <PackageVersion Include="AMS_Base" Version="2023.5.21.1551" />
     <PackageVersion Include="RSCG_AMS" Version="2023.5.21.1551" ReferenceOutputAssembly="false" OutputItemType="Analyzer" PrivateAssets="All" />
     <PackageVersion Include="Teronis.MSBuild.Packaging.ProjectBuildInPackage" Version="1.0.0">
     </PackageVersion>
-        <PackageVersion Include="appSettingsEditor" Version="2021.4.2.1059" />
+    <PackageVersion Include="appSettingsEditor" Version="2021.4.2.1059" />
     <PackageVersion Include="appSettingsEditorAPI" Version="2021.4.2.1059" />
     <PackageVersion Include="AMSWebAPI" Version="2023.5.21.1551" />
-
     <PackageVersion Include="LightBDD" Version="2.1.0" />
     <PackageVersion Include="LightBDD.XUnit2" Version="3.4.1" />
     <PackageVersion Include="Microsoft.AspNetCore.Mvc.Testing" Version="6.0.4" />
@@ -51,7 +56,5 @@
     </PackageVersion>
     <PackageVersion Include="coverlet.collector" Version="3.1.2">
     </PackageVersion>
-
-
   </ItemGroup>
 </Project>
