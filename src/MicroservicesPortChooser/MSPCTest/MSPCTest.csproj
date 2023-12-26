@@ -6,7 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="LightBDD"  />
+	  <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" />
+	  <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" />
+	  <PackageReference Include="Microsoft.CodeAnalysis.CSharp" />
+	  <PackageReference Include="Microsoft.CodeAnalysis.Common"/>
+
+	  <PackageReference Include="LightBDD"  />
     <PackageReference Include="LightBDD.XUnit2"  />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
