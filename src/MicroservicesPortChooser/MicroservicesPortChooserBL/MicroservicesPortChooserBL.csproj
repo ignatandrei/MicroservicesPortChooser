@@ -1,8 +1,14 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 
   <ItemGroup>
     <None Remove="MSPC.db" />
+    <None Remove="Templating\ClassDebuggerDisplay.txt" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <AdditionalFiles Include="Templating\ClassDebuggerDisplay.txt" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,9 +23,11 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>-->
     <PackageReference Include="Dapper.Contrib" />
-    <PackageReference Include="DasMulli.DataBuilderGenerator"  />
+      
+    <PackageReference Include="RSCG_Templating" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+    <PackageReference Include="RSCG_TemplatingCommon" />
     <!--<PackageReference Include="Microsoft.Data.Sqlite"  />-->
-    <PackageReference Include="RSCG_AMS"  ReferenceOutputAssembly="false" OutputItemType="Analyzer" />
+    <PackageReference Include="RSCG_AMS" ReferenceOutputAssembly="false" OutputItemType="Analyzer" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MSPC_DAL\MSPC_DAL.csproj" />

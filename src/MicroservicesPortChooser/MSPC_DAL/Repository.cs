@@ -4,10 +4,10 @@ namespace MSPC_DAL;
 
 public class Repository : IRepository
 {
-    public static string DbName = "Data Source=MSPC.db";
-    private readonly ApplicationDBContext context;
+    //public static string DbName = "Data Source=MSPC.db";
+    private readonly ApplicationDBContext? context;
 
-    public Repository(ApplicationDBContext context)
+    public Repository(ApplicationDBContext? context)
     {
         this.context = context;
     }

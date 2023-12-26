@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions"  />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Binder"  />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" />
     
   </ItemGroup>
   <ItemGroup>
@@ -15,10 +15,10 @@
     <None Include="../../../docs/MSPCWebExtension.png" Pack="true" PackagePath="\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="HttpClientGenerator" OutputItemType="Analyzer" PrivateAssets="All" />
     <PackageReference Include="AMS_Base" />
-    <PackageReference Include="RSCG_AMS"  ReferenceOutputAssembly="false" OutputItemType="Analyzer" PrivateAssets="All" />
-    <PackageReference Include="Teronis.MSBuild.Packaging.ProjectBuildInPackage" >
+    <PackageReference Include="Refit" />
+    <PackageReference Include="RSCG_AMS" ReferenceOutputAssembly="false" OutputItemType="Analyzer" PrivateAssets="All" />
+    <PackageReference Include="Teronis.MSBuild.Packaging.ProjectBuildInPackage">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>

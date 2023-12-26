@@ -15,7 +15,7 @@ public class DiscoveryAndRegister : BackgroundService
     {
         if (s == null)
             return false;
-        var db = sp.GetRequiredService<ApplicationDBContext>();
+        //var db = sp.GetRequiredService<ApplicationDBContext>();
 
         var add = s?.Features?.Get<IServerAddressesFeature>()?.Addresses?.ToArray();
         var nrAddresses = add?.Length ?? 0;
@@ -35,12 +35,13 @@ public class DiscoveryAndRegister : BackgroundService
         using var h = new HttpClient();
         h.BaseAddress = new Uri(configData.registerUrl);
         string machineName = Environment.MachineName;
-        var repo = sp.GetService(typeof(IRepository)) as IRepository;
-        if(repo == null)
-        {
-            repo = new Repository(db);
-        }
-        var p = new PortService(h);
+        var repo =new Repository(null);
+        //var repo = sp.GetService(typeof(IRepository)) as IRepository;
+        //if(repo == null)
+        //{
+        //    repo = new Repository(null);
+        //}
+        var p = RestService.For<IPortService>(h);
         foreach (var addres in add)
         {
             var url = addres;
@@ -65,8 +66,8 @@ public class DiscoveryAndRegister : BackgroundService
 
             try
             {
-                await p.AddNew(r);
-                Console.WriteLine($"done register {url}");
+                var q=await p.AddNew(r);
+                Console.WriteLine($"done register {url} with "+q.UniqueID);
             }
             catch (Exception ex)
             {

@@ -13,6 +13,6 @@ class ConfigDataMSPC
         if (string.IsNullOrWhiteSpace(appName))
             appName = Assembly.GetEntryAssembly().GetName().Name;
         if (string.IsNullOrWhiteSpace(registerUrl))
-            registerUrl = "https://microservicesportchooser.azurewebsites.net/api/v1/";
+            registerUrl = "https://microservicesportchooser.azurewebsites.net/";
     }
 }

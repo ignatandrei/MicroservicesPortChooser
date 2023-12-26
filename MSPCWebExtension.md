@@ -38,7 +38,7 @@ and in appsettings.json
 "MSPC": {
   "tag": "Here_You_Can_Put_Tags",
   "appName": "Port Chooser ",
-  "registerUrl": "https://microservicesportchooser.azurewebsites.net/api/v1/",
+  "registerUrl": "https://microservicesportchooser.azurewebsites.net/",
 }
 ```
 And see the result at https://microservicesportchooser.azurewebsites.net/static/services

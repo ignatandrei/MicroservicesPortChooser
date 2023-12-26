@@ -8,7 +8,7 @@ builder.Services.AddControllers()
     {
         c.JsonSerializerOptions.PropertyNamingPolicy = new LowerCaseNamingPolicy();
     })
-      //.PartManager.ApplicationParts.Add(new AssemblyPart(assControllers)); ;
+//.PartManager.ApplicationParts.Add(new AssemblyPart(assControllers)); ;
 ;
 
 builder.Services.AddEndpointsApiExplorer();

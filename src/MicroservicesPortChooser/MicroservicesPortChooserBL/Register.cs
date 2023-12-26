@@ -1,7 +1,16 @@
-﻿namespace MicroservicesPortChooserBL;
+﻿using RSCG_UtilityTypesCommon;
 
-[GenerateDataBuilder]
-public class Register : IRegister
+namespace MicroservicesPortChooserBL;
+/// <summary>
+/// generated from Omit in Register
+/// </summary>
+public partial class RegisterAPI
+{
+
+}
+[IGenerateDataFromClass("ClassDebuggerDisplay")]
+[Omit("RegisterAPI",nameof(History),nameof(repository))]
+public partial class Register : IRegister
 {
     
     private static ConcurrentDictionary<string, IRegister> register = new ConcurrentDictionary<string, IRegister>();
@@ -91,6 +100,10 @@ public class Register : IRegister
         {
             
             return (this as IRegister).GenerateUniqueID();
+        }
+        set
+        {
+
         }
     }
     public string PCName { get; set; }

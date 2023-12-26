@@ -28,10 +28,11 @@ public class RegisterController : ControllerBase
     //}
 
     [HttpPost]
-    public Task<Register> AddNew([FromServices] IRepository repo,Register r)
+    public Task<Register> AddNew([FromServices] IRepository repo,[FromBody] RegisterAPI r)
     {
         //do copy constructor
-        return new Register(repo).AddRegister(r);
+        var reg = (Register)r;
+        return new Register(repo).AddRegister(reg! );
 
     }
     [HttpDelete("{host}/{port}")]
