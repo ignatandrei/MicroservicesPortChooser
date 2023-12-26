@@ -8,7 +8,7 @@ builder.Services.AddControllers()
     {
         c.JsonSerializerOptions.PropertyNamingPolicy = new LowerCaseNamingPolicy();
     })
-//.PartManager.ApplicationParts.Add(new AssemblyPart(assControllers)); ;
+    .PartManager.ApplicationParts.Add(new AssemblyPart(assControllers))
 ;
 
 builder.Services.AddEndpointsApiExplorer();
@@ -69,13 +69,18 @@ builder.Services
 
     .AddInMemoryStorage();
 
+//builder.Services
+//    .AddRazorComponents()
+//    .AddInteractiveWebAssemblyComponents();
+
 var app = builder.Build();
 var provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+//if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
 }
+//app.UseWebAssemblyDebugging();
 app.UseProblemDetails();
 app.UseCors("AllowAll");
 app.UseBlocklyUI(app.Environment);
@@ -116,8 +121,11 @@ app.MapHealthChecks("/healthz", new HealthCheckOptions
 });
 //app.MapSettingsView<MicroservicesPortChooserWeb.SettingsJson.appsettings>(app.Configuration);
 app.MapFallbackToFile("/static/{**slug}", "index.html");
+//app.MapFallbackToFile("/blazor/{**slug}", "/blazor/index.html");
+
 app.UseBlocklyAutomation();
 
+    
 app.Run();
 //needed for tests
 public partial class Program { }

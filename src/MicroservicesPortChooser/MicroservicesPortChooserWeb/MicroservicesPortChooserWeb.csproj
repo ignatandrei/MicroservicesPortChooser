@@ -6,10 +6,11 @@
 
   <ItemGroup>
     <!--<PackageReference Include="AspNetCore.HealthChecks.SqLite" />-->
+	  <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" />
 	  <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" />
 	  <PackageReference Include="Microsoft.CodeAnalysis.Workspaces.Common" />
 	  <PackageReference Include="Microsoft.CodeAnalysis.CSharp" />
-	  <PackageReference Include="Microsoft.CodeAnalysis.Common"/>
+	  <PackageReference Include="Microsoft.CodeAnalysis.Common" />
 	  <PackageReference Include="AspNetCore.HealthChecks.UI" />
     <PackageReference Include="AspNetCore.HealthChecks.UI.Client" />
     <PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" />
