@@ -1,9 +1,8 @@
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<MSPC>();
@@ -38,24 +37,27 @@ builder.Services.AddProblemDetails(c =>
 builder.Services.AddTransient<IRepository, Repository>();
 builder.Services.AddTransient<IRegister, Register>();
 builder.Services.AddTransient<Register, Register>();
+var cn = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContextFactory<ApplicationDBContext>(
 
         options =>
         {
-            options.UseSqlite(Repository.DbName);
+            //options.UseSqlite(Repository.DbName);
+            options.UseSqlServer(cn);
         }
      )
    ;
 builder.Services
     .AddHealthChecks()
-    .AddSqlite(Repository.DbName);
+    //.AddSqlite(Repository.DbName)
+    ;
 builder.Services
      .AddHealthChecksUI(setupSettings: setup =>
      {
          setup.AddHealthCheckEndpoint("myself", "/healthz");
-                 //setup.AddHealthCheckEndpoint("endpoint2", "health-messagebrokers");
-                 //setup.AddWebhookNotification("webhook1", uri: "/notify", payload: "{...}");
-             })
+         //setup.AddHealthCheckEndpoint("endpoint2", "health-messagebrokers");
+         //setup.AddWebhookNotification("webhook1", uri: "/notify", payload: "{...}");
+     })
 
     .AddInMemoryStorage();
 
@@ -94,20 +96,17 @@ app.UseRouting();
 
 //app.UseAuthorization();
 
-app.UseEndpoints(endpoints =>
+app.MapControllers();
+app.UseAMS();
+app.MapHealthChecksUI();
+app.MapHealthChecks("/healthz", new HealthCheckOptions
 {
-    endpoints.MapControllers();
-    endpoints.UseAMS();
-    endpoints.MapHealthChecksUI();
-    endpoints.MapHealthChecks("/healthz", new HealthCheckOptions
-    {
-        Predicate = _ => true,
-        ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
-    });
-    endpoints.MapSettingsView<MicroservicesPortChooserWeb.SettingsJson.appsettings>(app.Configuration);
-    endpoints.MapFallbackToFile("/static/{**slug}", "index.html");
-    endpoints.UseBlocklyAutomation();
+    Predicate = _ => true,
+    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
 });
+//app.MapSettingsView<MicroservicesPortChooserWeb.SettingsJson.appsettings>(app.Configuration);
+app.MapFallbackToFile("/static/{**slug}", "index.html");
+app.UseBlocklyAutomation();
 
 app.Run();
 //needed for tests

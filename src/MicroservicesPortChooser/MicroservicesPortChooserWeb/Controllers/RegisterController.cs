@@ -18,14 +18,14 @@ public class RegisterController : ControllerBase
         return new Register(repo).LoadFromDatabase();
 
     }
-    [HttpGet("{year:int}/{month:int?}")]
-    public Task<IRegister[]> LoadFromYear([FromServices] IRepository repo, int year, int? month=null)
-    {
-        //do copy constructor
+    //[HttpGet("{year:int}/{month:int?}")]
+    //public Task<IRegister[]> LoadFromYear([FromServices] IRepository repo, int year, int? month=null)
+    //{
+    //    //do copy constructor
         
-        return new Register(repo).LoadFromYear(year,month);
+    //    return new Register(repo).LoadFromYear(year,month);
 
-    }
+    //}
 
     [HttpPost]
     public Task<Register> AddNew([FromServices] IRepository repo,Register r)

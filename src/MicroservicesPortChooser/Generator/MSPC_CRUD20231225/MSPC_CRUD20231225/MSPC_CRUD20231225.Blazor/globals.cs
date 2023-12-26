@@ -1,0 +1,10 @@
+global using GeneratorFromDB;
+global using Microsoft.AspNetCore.Components.Web;
+global using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+global using Microsoft.Extensions.Configuration;
+global using Microsoft.Extensions.Hosting;
+global using Microsoft.FluentUI.AspNetCore.Components;
+global using MSPC_CRUD20231225.Blazor;
+global using MSPC_CRUD20231225.Blazor.Classes;
+global using System.Globalization;
+global using System.Net.Http.Json;

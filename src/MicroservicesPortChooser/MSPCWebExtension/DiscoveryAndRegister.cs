@@ -15,6 +15,8 @@ public class DiscoveryAndRegister : BackgroundService
     {
         if (s == null)
             return false;
+        var db = sp.GetRequiredService<ApplicationDBContext>();
+
         var add = s?.Features?.Get<IServerAddressesFeature>()?.Addresses?.ToArray();
         var nrAddresses = add?.Length ?? 0;
         Console.WriteLine($"nr adresses {nrAddresses}");
@@ -36,7 +38,7 @@ public class DiscoveryAndRegister : BackgroundService
         var repo = sp.GetService(typeof(IRepository)) as IRepository;
         if(repo == null)
         {
-            repo = new Repository();
+            repo = new Repository(db);
         }
         var p = new PortService(h);
         foreach (var addres in add)

@@ -1,0 +1,450 @@
+﻿@using global::Generated
+@inject NavigationManager navigationManager
+<FluentButton  Loading="@loading"
+              OnClick="@LoadData" Appearance="Appearance.Accent">LoadData @nrRecordsLoaded / @totalRecords</FluentButton>
+
+@if (ExistsFilter())
+{
+    <text>
+        @recordFiltered records Filtered with : @filterText
+    </text>
+}
+
+
+<FluentDataGrid @ref="gridMSPC_Register" ResizableColumns=true Items="@dataForQuery" Virtualize="true" GenerateHeader="GenerateHeaderOption.Sticky" >
+    <PropertyColumn Property="@(p => p.number)" Sortable="true"  IsDefaultSortColumn="true" InitialSortDirection="SortDirection.Descending" >
+       
+    </PropertyColumn>
+        <TemplateColumn Title="Authority" SortBy="@sortByAuthority">
+        <ColumnOptions>
+            Authority => @filters[eMSPC_RegisterColumns.Authority]
+            <div class="search-box">
+                <FluentSearch type="search" Autofocus=true @bind-Value=filters[eMSPC_RegisterColumns.Authority] @oninput='(e)=>HandleColumnsFilter(eMSPC_RegisterColumns.Authority,e)' @bind-Value:after='()=>HandleClearColumnsFilter(eMSPC_RegisterColumns.Authority)' Placeholder="Authority..." />
+            </div>
+        </ColumnOptions>
+        <ChildContent>
+                                <div>@context.data.Authority</div>
+                            </ChildContent>
+        
+
+
+    </TemplateColumn>
+        <TemplateColumn Title="EnvData" SortBy="@sortByEnvData">
+        <ColumnOptions>
+            EnvData => @filters[eMSPC_RegisterColumns.EnvData]
+            <div class="search-box">
+                <FluentSearch type="search" Autofocus=true @bind-Value=filters[eMSPC_RegisterColumns.EnvData] @oninput='(e)=>HandleColumnsFilter(eMSPC_RegisterColumns.EnvData,e)' @bind-Value:after='()=>HandleClearColumnsFilter(eMSPC_RegisterColumns.EnvData)' Placeholder="EnvData..." />
+            </div>
+        </ColumnOptions>
+        <ChildContent>
+                                <div>@context.data.EnvData</div>
+                            </ChildContent>
+        
+
+
+    </TemplateColumn>
+        <TemplateColumn Title="Hostname" SortBy="@sortByHostname">
+        <ColumnOptions>
+            Hostname => @filters[eMSPC_RegisterColumns.Hostname]
+            <div class="search-box">
+                <FluentSearch type="search" Autofocus=true @bind-Value=filters[eMSPC_RegisterColumns.Hostname] @oninput='(e)=>HandleColumnsFilter(eMSPC_RegisterColumns.Hostname,e)' @bind-Value:after='()=>HandleClearColumnsFilter(eMSPC_RegisterColumns.Hostname)' Placeholder="Hostname..." />
+            </div>
+        </ColumnOptions>
+        <ChildContent>
+                                <div>@context.data.Hostname</div>
+                            </ChildContent>
+        
+
+
+    </TemplateColumn>
+        <TemplateColumn Title="Name" SortBy="@sortByName">
+        <ColumnOptions>
+            Name => @filters[eMSPC_RegisterColumns.Name]
+            <div class="search-box">
+                <FluentSearch type="search" Autofocus=true @bind-Value=filters[eMSPC_RegisterColumns.Name] @oninput='(e)=>HandleColumnsFilter(eMSPC_RegisterColumns.Name,e)' @bind-Value:after='()=>HandleClearColumnsFilter(eMSPC_RegisterColumns.Name)' Placeholder="Name..." />
+            </div>
+        </ColumnOptions>
+        <ChildContent>
+                                <div>@context.data.Name</div>
+                            </ChildContent>
+        
+
+
+    </TemplateColumn>
+        <TemplateColumn Title="PCName" SortBy="@sortByPCName">
+        <ColumnOptions>
+            PCName => @filters[eMSPC_RegisterColumns.PCName]
+            <div class="search-box">
+                <FluentSearch type="search" Autofocus=true @bind-Value=filters[eMSPC_RegisterColumns.PCName] @oninput='(e)=>HandleColumnsFilter(eMSPC_RegisterColumns.PCName,e)' @bind-Value:after='()=>HandleClearColumnsFilter(eMSPC_RegisterColumns.PCName)' Placeholder="PCName..." />
+            </div>
+        </ColumnOptions>
+        <ChildContent>
+                                <div>@context.data.PCName</div>
+                            </ChildContent>
+        
+
+
+    </TemplateColumn>
+        <TemplateColumn Title="Port" SortBy="@sortByPort">
+        <ColumnOptions>
+            Port => @filters[eMSPC_RegisterColumns.Port]
+            <div class="search-box">
+                <FluentSearch type="search" Autofocus=true @bind-Value=filters[eMSPC_RegisterColumns.Port] @oninput='(e)=>HandleColumnsFilter(eMSPC_RegisterColumns.Port,e)' @bind-Value:after='()=>HandleClearColumnsFilter(eMSPC_RegisterColumns.Port)' Placeholder="Port..." />
+            </div>
+        </ColumnOptions>
+        <ChildContent>
+                                <div>@context.data.Port</div>
+                            </ChildContent>
+        
+
+
+    </TemplateColumn>
+        <TemplateColumn Title="Tag" SortBy="@sortByTag">
+        <ColumnOptions>
+            Tag => @filters[eMSPC_RegisterColumns.Tag]
+            <div class="search-box">
+                <FluentSearch type="search" Autofocus=true @bind-Value=filters[eMSPC_RegisterColumns.Tag] @oninput='(e)=>HandleColumnsFilter(eMSPC_RegisterColumns.Tag,e)' @bind-Value:after='()=>HandleClearColumnsFilter(eMSPC_RegisterColumns.Tag)' Placeholder="Tag..." />
+            </div>
+        </ColumnOptions>
+        <ChildContent>
+                                <div>@context.data.Tag</div>
+                            </ChildContent>
+        
+
+
+    </TemplateColumn>
+        <TemplateColumn Title="stringRegisteredDate" SortBy="@sortBystringRegisteredDate">
+        <ColumnOptions>
+            stringRegisteredDate => @filters[eMSPC_RegisterColumns.stringRegisteredDate]
+            <div class="search-box">
+                <FluentSearch type="search" Autofocus=true @bind-Value=filters[eMSPC_RegisterColumns.stringRegisteredDate] @oninput='(e)=>HandleColumnsFilter(eMSPC_RegisterColumns.stringRegisteredDate,e)' @bind-Value:after='()=>HandleClearColumnsFilter(eMSPC_RegisterColumns.stringRegisteredDate)' Placeholder="stringRegisteredDate..." />
+            </div>
+        </ColumnOptions>
+        <ChildContent>
+                                <div>@context.data.stringRegisteredDate</div>
+                            </ChildContent>
+        
+
+
+    </TemplateColumn>
+    </FluentDataGrid>
+
+
+@code {
+    [Inject(Key = "db")]
+    public HttpClient? HttpClient_WebApi { get; set; } = null;
+
+    [Parameter]
+    public string? database { get; set; } = null;
+
+    [Parameter]
+    public string? table { get; set; } = null;
+
+    [Parameter]
+    public long? totalRecords { get; set; } = null;
+
+    List<DataWithNumber<MSPC_Register>> dataArr = [];
+    private FluentDataGrid<DataWithNumber<MSPC_Register>>? gridMSPC_Register;
+    public long recordFiltered  => Filtered.LongLength;
+    public bool loading = false;
+
+    
+    private void GotoTableRow(string table, string rowId)
+    {
+        navigationManager.NavigateTo(string.Format("databases/{0}/tables/{1}/rows/{2}", database, table, rowId),true);
+        
+    }
+        
+    
+    private DataWithNumber<MSPC_Register>[] Filtered
+    {
+        get
+        {
+            var arr = dataArr.ToArray();
+            var existingFilters = filters.Where(x => !string.IsNullOrWhiteSpace(x.Value)).ToArray();
+            foreach (var item in filters)
+            {
+                switch (item.Key)
+                {
+                                    case eMSPC_RegisterColumns.Authority:
+                        arr = arr
+                        .Where(x => 
+                        
+                        {
+                            try
+                            {
+                                return x.data.Authority.ToString().Contains(item.Value, StringComparison.CurrentCultureIgnoreCase);
+
+                            }
+                            catch
+                            {
+                                return false;
+                            }
+                        }
+                        
+                        
+                        )
+
+                        .ToArray();
+                        break;
+                    case eMSPC_RegisterColumns.EnvData:
+                        arr = arr
+                        .Where(x => 
+                        
+                        {
+                            try
+                            {
+                                return x.data.EnvData.ToString().Contains(item.Value, StringComparison.CurrentCultureIgnoreCase);
+
+                            }
+                            catch
+                            {
+                                return false;
+                            }
+                        }
+                        
+                        
+                        )
+
+                        .ToArray();
+                        break;
+                    case eMSPC_RegisterColumns.Hostname:
+                        arr = arr
+                        .Where(x => 
+                        
+                        {
+                            try
+                            {
+                                return x.data.Hostname.ToString().Contains(item.Value, StringComparison.CurrentCultureIgnoreCase);
+
+                            }
+                            catch
+                            {
+                                return false;
+                            }
+                        }
+                        
+                        
+                        )
+
+                        .ToArray();
+                        break;
+                    case eMSPC_RegisterColumns.Name:
+                        arr = arr
+                        .Where(x => 
+                        
+                        {
+                            try
+                            {
+                                return x.data.Name.ToString().Contains(item.Value, StringComparison.CurrentCultureIgnoreCase);
+
+                            }
+                            catch
+                            {
+                                return false;
+                            }
+                        }
+                        
+                        
+                        )
+
+                        .ToArray();
+                        break;
+                    case eMSPC_RegisterColumns.PCName:
+                        arr = arr
+                        .Where(x => 
+                        
+                        {
+                            try
+                            {
+                                return x.data.PCName.ToString().Contains(item.Value, StringComparison.CurrentCultureIgnoreCase);
+
+                            }
+                            catch
+                            {
+                                return false;
+                            }
+                        }
+                        
+                        
+                        )
+
+                        .ToArray();
+                        break;
+                    case eMSPC_RegisterColumns.Port:
+                        arr = arr
+                        .Where(x => 
+                        
+                        {
+                            try
+                            {
+                                return x.data.Port.ToString().Contains(item.Value, StringComparison.CurrentCultureIgnoreCase);
+
+                            }
+                            catch
+                            {
+                                return false;
+                            }
+                        }
+                        
+                        
+                        )
+
+                        .ToArray();
+                        break;
+                    case eMSPC_RegisterColumns.Tag:
+                        arr = arr
+                        .Where(x => 
+                        
+                        {
+                            try
+                            {
+                                return x.data.Tag.ToString().Contains(item.Value, StringComparison.CurrentCultureIgnoreCase);
+
+                            }
+                            catch
+                            {
+                                return false;
+                            }
+                        }
+                        
+                        
+                        )
+
+                        .ToArray();
+                        break;
+                    case eMSPC_RegisterColumns.stringRegisteredDate:
+                        arr = arr
+                        .Where(x => 
+                        
+                        {
+                            try
+                            {
+                                return x.data.stringRegisteredDate.ToString().Contains(item.Value, StringComparison.CurrentCultureIgnoreCase);
+
+                            }
+                            catch
+                            {
+                                return false;
+                            }
+                        }
+                        
+                        
+                        )
+
+                        .ToArray();
+                        break;
+                }
+            }
+            return arr;
+        }
+    }
+
+        GridSort<DataWithNumber<MSPC_Register>> sortByAuthority = GridSort<DataWithNumber<MSPC_Register>>
+       .ByAscending(p => p.data.Authority)
+       .ThenDescending(p => p.number);
+        GridSort<DataWithNumber<MSPC_Register>> sortByEnvData = GridSort<DataWithNumber<MSPC_Register>>
+       .ByAscending(p => p.data.EnvData)
+       .ThenDescending(p => p.number);
+        GridSort<DataWithNumber<MSPC_Register>> sortByHostname = GridSort<DataWithNumber<MSPC_Register>>
+       .ByAscending(p => p.data.Hostname)
+       .ThenDescending(p => p.number);
+        GridSort<DataWithNumber<MSPC_Register>> sortByName = GridSort<DataWithNumber<MSPC_Register>>
+       .ByAscending(p => p.data.Name)
+       .ThenDescending(p => p.number);
+        GridSort<DataWithNumber<MSPC_Register>> sortByPCName = GridSort<DataWithNumber<MSPC_Register>>
+       .ByAscending(p => p.data.PCName)
+       .ThenDescending(p => p.number);
+        GridSort<DataWithNumber<MSPC_Register>> sortByPort = GridSort<DataWithNumber<MSPC_Register>>
+       .ByAscending(p => p.data.Port)
+       .ThenDescending(p => p.number);
+        GridSort<DataWithNumber<MSPC_Register>> sortByTag = GridSort<DataWithNumber<MSPC_Register>>
+       .ByAscending(p => p.data.Tag)
+       .ThenDescending(p => p.number);
+        GridSort<DataWithNumber<MSPC_Register>> sortBystringRegisteredDate = GridSort<DataWithNumber<MSPC_Register>>
+       .ByAscending(p => p.data.stringRegisteredDate)
+       .ThenDescending(p => p.number);
+    
+    public IQueryable<DataWithNumber<MSPC_Register>>? dataForQuery
+    {
+        get
+        {
+            return Filtered.AsQueryable();
+        }
+    }
+
+    string nameNumberFilter = string.Empty;
+    
+    Dictionary<eMSPC_RegisterColumns, string> filters =new() {
+            {eMSPC_RegisterColumns.Authority, string.Empty},     
+                {eMSPC_RegisterColumns.EnvData, string.Empty},     
+                {eMSPC_RegisterColumns.Hostname, string.Empty},     
+                {eMSPC_RegisterColumns.Name, string.Empty},     
+                {eMSPC_RegisterColumns.PCName, string.Empty},     
+                {eMSPC_RegisterColumns.Port, string.Empty},     
+                {eMSPC_RegisterColumns.Tag, string.Empty},     
+                {eMSPC_RegisterColumns.stringRegisteredDate, string.Empty},     
+            };
+
+    public string filterText{
+        get
+        {
+            var arr = filters.Where(x => !string.IsNullOrWhiteSpace(x.Value)).Select(x => $"{x.Value} in {x.Key}").ToArray();
+            return string.Join(";", arr);
+        }
+    }
+    public bool ExistsFilter()
+    {
+        return filters.Any(x => !string.IsNullOrWhiteSpace(x.Value));
+    }
+
+    void HandleColumnsFilter(eMSPC_RegisterColumns name, ChangeEventArgs args)
+    {
+        if (args != null && args.Value != null)
+        {
+            filters[name] = args.Value.ToString() ?? "";
+        }
+    }
+    
+    private void HandleClearColumnsFilter(eMSPC_RegisterColumns name)
+    {
+        if (string.IsNullOrWhiteSpace(filters[name]))
+        {
+            filters[name] = string.Empty;
+           
+        }
+    }
+    long? nrRecordsLoaded = null;
+    private async Task LoadData()
+    {
+
+        var url = $"/api/AdvancedSearch_{database}_{table}/GetAll";
+        ArgumentNullException.ThrowIfNull(HttpClient_WebApi);
+        var data = HttpClient_WebApi.GetFromJsonAsAsyncEnumerable<MSPC_Register>(url);
+        ArgumentNullException.ThrowIfNull(data);
+        int i = 0;
+        loading = true;
+        
+        await foreach (var item in data)
+        {
+            if (item == null) continue;
+            i++;
+            if(i ==1){
+                dataArr = [];
+            }
+            dataArr.Add(new DataWithNumber<MSPC_Register>(i, item));
+            if ((i<100 && i%10==0) || (i>100 && i < 900 && i % 100 == 0) || (i > 900 && i % 1000 == 0))
+            {
+                //Console.WriteLine($"i={i}");
+                nrRecordsLoaded = i;
+
+                await InvokeAsync(StateHasChanged);
+                await Task.Delay(i<500? 1_000:2_000);
+            }
+        }
+        nrRecordsLoaded = i;
+
+        await InvokeAsync(StateHasChanged);
+        loading= false;
+    }
+}

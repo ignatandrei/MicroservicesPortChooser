@@ -1,0 +1,15 @@
+{
+	"version":"2023.12.9.2128",
+	"connections":[
+	{
+		"Enabled":true,
+		"NameContext": "ApplicationDBContext",
+		"Provider": "Microsoft.EntityFrameworkCore.SqlServer",
+		"ProjectForContext": "..\\MSPC_CRUD20231225.Context\\MSPC_CRUD20231225.Context.csproj",
+		"ProjectForClasses": "..\\MSPC_CRUD20231225.Models\\MSPC_CRUD20231225.Models.csproj",
+		"ProjectWithDesigner": "..\\MSPC_CRUD20231225.Controllers\\MSPC_CRUD20231225.Controllers.csproj",
+		"ConnectionString":"Server=127.0.0.1;User ID=sa;Password=<YourStrong@Passw0rd>;Initial Catalog=PortChooser;TrustServerCertificate=true;",
+		"ProjectCRA":"..\\MSPC_CRUD20231225.GeneratorCRA\\MSPC_CRUD20231225.GeneratorCRA.csproj"
+	}
+	]
+}

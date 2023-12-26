@@ -1,5 +1,5 @@
 ﻿global using Dapper;
-global using Microsoft.Data.Sqlite;
+//global using Microsoft.Data.Sqlite;
 global using MSPC_DAL;
 global using MSPC_Interfaces;
 global using System;

@@ -2,13 +2,14 @@
 
 
   <ItemGroup>
-    <PackageReference Include="Dapper.Contrib"  />
-    <PackageReference Include="Microsoft.Data.Sqlite"  />
-    <PackageReference Include="System.Text.Json"  />
+    <PackageReference Include="Dapper.Contrib" />
+    <!--<PackageReference Include="Microsoft.Data.Sqlite" />-->
+    <PackageReference Include="System.Text.Json" />
 
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Generator\MSPC_CRUD20231225\MSPC_CRUD20231225\MSPC_CRUD20231225.Context\MSPC_CRUD20231225.Context.csproj" />
     <ProjectReference Include="..\MSPC_Interfaces\MSPC_Interfaces.csproj" />
   </ItemGroup>
 

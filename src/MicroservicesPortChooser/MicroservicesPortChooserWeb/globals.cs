@@ -18,7 +18,7 @@ global using Microsoft.OpenApi.Models;
 global using Swashbuckle.AspNetCore.SwaggerGen;
 global using Microsoft.AspNetCore.Builder;
 global using AMSWebAPI;
-global using appSettingsEditor;
+//global using appSettingsEditor;
 global using HealthChecks.UI.Client;
 global using Hellang.Middleware.ProblemDetails;
 global using Microsoft.AspNetCore.Diagnostics.HealthChecks;

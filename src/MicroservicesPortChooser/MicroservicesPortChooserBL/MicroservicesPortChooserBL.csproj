@@ -18,7 +18,7 @@
     </PackageReference>-->
     <PackageReference Include="Dapper.Contrib" />
     <PackageReference Include="DasMulli.DataBuilderGenerator"  />
-    <PackageReference Include="Microsoft.Data.Sqlite"  />
+    <!--<PackageReference Include="Microsoft.Data.Sqlite"  />-->
     <PackageReference Include="RSCG_AMS"  ReferenceOutputAssembly="false" OutputItemType="Analyzer" />
   </ItemGroup>
   <ItemGroup>

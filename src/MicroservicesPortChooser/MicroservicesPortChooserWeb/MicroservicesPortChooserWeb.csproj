@@ -5,7 +5,7 @@
 	</ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AspNetCore.HealthChecks.SqLite"  />
+    <!--<PackageReference Include="AspNetCore.HealthChecks.SqLite" />-->
     <PackageReference Include="AspNetCore.HealthChecks.UI" />
     <PackageReference Include="AspNetCore.HealthChecks.UI.Client" />
     <PackageReference Include="AspNetCore.HealthChecks.UI.InMemory.Storage" />
@@ -13,16 +13,16 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" />
     <PackageReference Include="NetCore2Blockly" />
     <PackageReference Include="Swashbuckle.AspNetCore" />
-    <PackageReference Include="Teronis.MSBuild.Packaging.ProjectBuildInPackage" >
+    <PackageReference Include="Teronis.MSBuild.Packaging.ProjectBuildInPackage">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="ThisAssembly" >
+    <PackageReference Include="ThisAssembly">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Hellang.Middleware.ProblemDetails" />
-	  <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" />
+	  <!--<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" />-->
 
   </ItemGroup>
 	<PropertyGroup>
@@ -30,24 +30,24 @@
 		<Authors>Andrei Ignat</Authors>
 	</PropertyGroup>
 		<ItemGroup>
-    <ProjectReference Include="..\Generator\MSPC_CRUD\MSPC_CRUD.Context\MSPC_CRUD.Context.csproj" />
+    <ProjectReference Include="..\Generator\MSPC_CRUD20231225\MSPC_CRUD20231225\MSPC_CRUD20231225.Context\MSPC_CRUD20231225.Context.csproj" />
     <ProjectReference Include="..\MicroservicesPortChooserBL\MicroservicesPortChooserBL.csproj" />
     <ProjectReference Include="..\MSPCWebExtension\MSPCWebExtension.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AMSWebAPI" />
-    <PackageReference Include="AMS_Base"  />
-    <PackageReference Include="RSCG_AMS"  ReferenceOutputAssembly="false" OutputItemType="Analyzer" />
+    <PackageReference Include="AMS_Base" />
+    <PackageReference Include="RSCG_AMS" ReferenceOutputAssembly="false" OutputItemType="Analyzer" />
 
   </ItemGroup>
-  <ItemGroup>
+  <!--<ItemGroup>
     <PackageReference Include="appSettingsEditor" />
     <PackageReference Include="appSettingsEditorAPI" />
   	<CompilerVisibleItemMetadata Include="AdditionalFiles" MetadataName="generateAPI" />
     <AdditionalFiles Include="appsettings.json" generateAPI="true">
     		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	</AdditionalFiles>
-</ItemGroup>
+</ItemGroup>-->
 	<PropertyGroup>
 		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
 		<CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)GeneratedX</CompilerGeneratedFilesOutputPath>

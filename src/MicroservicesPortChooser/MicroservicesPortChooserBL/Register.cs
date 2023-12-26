@@ -3,6 +3,7 @@
 [GenerateDataBuilder]
 public class Register : IRegister
 {
+    
     private static ConcurrentDictionary<string, IRegister> register = new ConcurrentDictionary<string, IRegister>();
     public IRepository repository { get; internal set; }
 
@@ -36,11 +37,11 @@ public class Register : IRegister
         r.Port = port;
         return register.Remove(r.UniqueID, out _);
     }
-    public async Task<IRegister[]> LoadFromYear(int year, int? month)
-    {
-        var data = await repository.LoadFromYear(year, month);
-        return data;
-    }
+    //public async Task<IRegister[]> LoadFromYear(int year, int? month)
+    //{
+    //    var data = await repository.LoadFromYear(year, month);
+    //    return data;
+    //}
     public async Task<long> DeleteLastYear()
     {
         var data = await repository.DeleteLastYear();
