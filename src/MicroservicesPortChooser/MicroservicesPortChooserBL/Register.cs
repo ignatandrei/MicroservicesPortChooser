@@ -7,9 +7,20 @@ namespace MicroservicesPortChooserBL;
 public partial class RegisterAPI
 {
 
+
 }
+/// <summary>
+/// generated from Omit in Register
+/// </summary>
+public partial class RegisterNoEnv
+{
+
+
+}
+
 [IGenerateDataFromClass("ClassDebuggerDisplay")]
 [Omit("RegisterAPI",nameof(History),nameof(repository))]
+[Omit("RegisterNoEnv", nameof(History), nameof(repository),nameof(EnvData))]
 public partial class Register : IRegister
 {
     
@@ -21,6 +32,25 @@ public partial class Register : IRegister
         await this.repository.AddRegister(r);
         register.AddOrUpdate(r.UniqueID, r, (key, r) => r);
         return r;
+    }
+    public static RegisterNoEnv[] RegisteredMSPCNoEnv()
+    {
+        return register.ToArray()
+            .Select(it => it.Value)
+            .Select(it=>
+            new RegisterNoEnv()
+            {
+                HostName = it.HostName,
+                Name = it.Name,
+                Port = it.Port,
+                Tag = it.Tag,
+                Authority = it.Authority,
+                PCName = it.PCName,
+                dateRegistered = it.dateRegistered,
+                UniqueID = it.UniqueID
+
+            })
+            .ToArray();
     }
     public static IRegister[] RegisteredMSPC()
     {

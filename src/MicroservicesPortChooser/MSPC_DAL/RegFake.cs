@@ -1,6 +1,6 @@
 ﻿
 namespace MSPC_DAL;
-[Omit("RegFakeDb", nameof(History))]
+[Pick("RegFakeDb", nameof(Name),nameof(HostName),nameof(Port),nameof(Tag),nameof(Authority),nameof(PCName),nameof(stringRegisteredDate),nameof(EnvData)   )]
 class RegFake : IRegisterParse
 {
     private List<RegFake> history;

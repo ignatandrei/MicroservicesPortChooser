@@ -7,7 +7,12 @@
 public class RegisterController : ControllerBase
 {
     [HttpGet]
-    public IRegister[] GetAll()
+    public RegisterNoEnv[] GetAll()
+    {
+        return Register.RegisteredMSPCNoEnv();
+    }
+    [HttpGet]
+    public IRegister[] GetAllWithAllData()
     {
         return Register.RegisteredMSPC();
     }
