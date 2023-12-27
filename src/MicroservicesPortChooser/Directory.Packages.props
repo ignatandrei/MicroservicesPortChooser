@@ -10,12 +10,10 @@
     <PackageVersion Include="Microsoft.CodeAnalysis.Workspaces.Common" Version="4.8.0" />
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.8.0" />
     <PackageVersion Include="Microsoft.CodeAnalysis.Common" Version="4.8.0" />
-    <PackageVersion Include="AMS_Base" Version="2023.5.21.1551" />
     <PackageVersion Include="Dapper.Contrib" Version="2.0.78" />
     <PackageVersion Include="DasMulli.DataBuilderGenerator" Version="2.0.0" />
     <PackageVersion Include="Microsoft.Data.Sqlite" Version="8.0.0" />
-    <PackageVersion Include="Refit" Version="7.0.0" />
-    <PackageVersion Include="RSCG_AMS" Version="2023.5.21.1551" />
+    <PackageVersion Include="Refit" Version="7.0.0" />    
     <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.0" />
     <PackageVersion Include="QueryGenerator" Version="2022.7.11.615" />
@@ -31,12 +29,9 @@
     <PackageVersion Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.1.0" />
     <PackageVersion Include="NetCore2Blockly" Version="7.2023.427.2025" />
     <PackageVersion Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-    <PackageVersion Include="Teronis.MSBuild.Packaging.ProjectBuildInPackage" Version="1.0.0">
-    </PackageVersion>
     <PackageVersion Include="ThisAssembly" Version="1.4.1">
     </PackageVersion>
     <PackageVersion Include="Hellang.Middleware.ProblemDetails" Version="6.5.1" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.0" />
     <PackageVersion Include="System.Text.Json" Version="8.0.0" />
     <PackageVersion Include="RSCG_Static" Version="2023.8.23.2100" />
     <PackageVersion Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.2.0" />

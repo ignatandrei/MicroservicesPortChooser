@@ -82,13 +82,20 @@ jobs:
         cd MicroservicesPortChooser
         dotnet build --configuration Release
         cd Generator/MSPC_CRUD20231225/MSPC_CRUD20231225/MSPC_CRUD20231225.Blazor
+        echo 'blazor files'
         dotnet publish -o Pack 
+        gci -r Pack/*.*
+
 
     - name: dotnet publish
       run: |
         #  copy blazor 
         del src/MicroservicesPortChooser/MicroservicesPortChooserWeb/wwwroot/blazor/index.html
+        echo 'blazor files'
+        gci -r src/MicroservicesPortChooser/Generator/MSPC_CRUD20231225/MSPC_CRUD20231225/MSPC_CRUD20231225.Blazor/Pack/*.*
+        
         Copy-Item -Recurse src/MicroservicesPortChooser/Generator/MSPC_CRUD20231225/MSPC_CRUD20231225/MSPC_CRUD20231225.Blazor/Pack/*.* src/MicroservicesPortChooser/MicroservicesPortChooserWeb/wwwroot/blazor/
+        
         echo 'blazor files'
         gci -r src/MicroservicesPortChooser/MicroservicesPortChooserWeb/wwwroot/blazor/*.*
         cd src 
