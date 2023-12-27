@@ -88,9 +88,9 @@ jobs:
       run: |
         #  copy blazor 
         del src/MicroservicesPortChooser/MicroservicesPortChooserWeb/wwwroot/blazor/index.html
-        copy src/MicroservicesPortChooser/Generator/MSPC_CRUD20231225/MSPC_CRUD20231225/MSPC_CRUD20231225.Blazor/Pack/*.* src/MicroservicesPortChooser/MicroservicesPortChooserWeb/wwwroot/blazor/
+        Copy-Item -Recurse src/MicroservicesPortChooser/Generator/MSPC_CRUD20231225/MSPC_CRUD20231225/MSPC_CRUD20231225.Blazor/Pack/*.* src/MicroservicesPortChooser/MicroservicesPortChooserWeb/wwwroot/blazor/
         echo 'blazor files'
-        ls -lh src/MicroservicesPortChooser/MicroservicesPortChooserWeb/wwwroot/blazor/*.*
+        gci -r src/MicroservicesPortChooser/MicroservicesPortChooserWeb/wwwroot/blazor/*.*
         cd src 
         cd MicroservicesPortChooser
         cd MicroservicesPortChooserWeb        
