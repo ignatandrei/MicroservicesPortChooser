@@ -66,6 +66,7 @@
 	</ItemGroup>
 	<PropertyGroup>
 		<GenerateStep>Controller</GenerateStep>
+		<DefaultItemExcludes>$(DefaultItemExcludes);wwwroot/blazor/**</DefaultItemExcludes> 
 	</PropertyGroup>
 
 

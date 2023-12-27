@@ -10,7 +10,25 @@ builder.Services.AddControllers()
     })
     .PartManager.ApplicationParts.Add(new AssemblyPart(assControllers))
 ;
+List<Type> typesContext = new();
 
+foreach (IRegisterContext item in UtilsControllers.registerContexts)
+{
+    typesContext.Add(item.AddServices(builder.Services, builder.Configuration));
+}
+//this line register DB contexts
+builder.Services.AddTransient((ctx) =>
+{
+    Func<string, DbContext?> a = (string dbName) =>
+    {
+        var t = typesContext.First(it => it.Name == dbName);
+
+        var req = ctx.GetRequiredService(t);
+        if (req == null) return null;
+        return req as DbContext;
+    };
+    return a;
+});
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<MSPC>();
@@ -26,7 +44,11 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddHostedService<DiscoveryAndRegister>();
-builder.Services.AddApiVersioning();
+builder.Services.AddApiVersioning(act =>
+{
+    act.AssumeDefaultVersionWhenUnspecified = true;
+    act.DefaultApiVersion = new ApiVersion(1,0);
+});
 builder.Services.AddVersionedApiExplorer(options =>
 {
     options.GroupNameFormat = "'v'VVV";
@@ -45,16 +67,15 @@ builder.Services.AddProblemDetails(c =>
 builder.Services.AddTransient<IRepository, Repository>();
 builder.Services.AddTransient<IRegister, Register>();
 builder.Services.AddTransient<Register, Register>();
-var cn = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContextFactory<ApplicationDBContext>(
-
-        options =>
-        {
-            //options.UseSqlite(Repository.DbName);
-            options.UseSqlServer(cn);
-        }
-     )
-   ;
+//var cn = builder.Configuration.GetConnectionString("DefaultConnection");
+//builder.Services.AddDbContextFactory<ApplicationDBContext>(
+//        options =>
+//        {
+//            //options.UseSqlite(Repository.DbName);
+//            options.UseSqlServer(cn);
+//        }
+//     )
+//   ;
 builder.Services
     .AddHealthChecks()
     //.AddSqlite(Repository.DbName)
@@ -72,6 +93,10 @@ builder.Services
 //builder.Services
 //    .AddRazorComponents()
 //    .AddInteractiveWebAssemblyComponents();
+
+builder.Services.AddServerSideBlazor();
+builder.Services.AddRazorPages();
+builder.Services.AddRazorComponents();
 
 var app = builder.Build();
 var provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
@@ -105,7 +130,10 @@ app.UseSwaggerUI(c =>
     );
 
 app.UseDefaultFiles();
-app.UseStaticFiles();
+app.UseStaticFiles(new StaticFileOptions
+{
+    ServeUnknownFileTypes = true
+});
 
 app.UseRouting();
 
@@ -125,7 +153,23 @@ app.MapFallbackToFile("/static/{**slug}", "index.html");
 
 app.UseBlocklyAutomation();
 
-    
+app.MapWhen(ctx => ctx.Request.Path.StartsWithSegments("/blazor"), admin =>
+{
+    admin.UseBlazorFrameworkFiles();
+    //admin.UsePathBase("/blazor");
+    //admin.UseStaticFiles(new StaticFileOptions
+    //{
+    //    ServeUnknownFileTypes = true
+    //});
+    admin.UseRouting();
+    admin.UseEndpoints(endpoints =>
+    {
+        // Blazor
+        //endpoints.MapBlazorHub();
+        endpoints.MapFallbackToFile("/blazor/index.html");
+    });
+});
+
 app.Run();
 //needed for tests
 public partial class Program { }

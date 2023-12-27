@@ -11,13 +11,12 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 builder.Services.AddFluentUIComponents();
 
 var hostApi = builder.Configuration["HOSTAPI"];
-if (string.IsNullOrEmpty(hostApi))
+//TODO: andrei hostApi=="/"
+if (string.IsNullOrEmpty(hostApi)|| hostApi=="/")
 {
     hostApi = builder.HostEnvironment.BaseAddress;
-    if (!hostApi.EndsWith("/"))
-    {
-        hostApi += "/";
-    }
+    var uri= new Uri(hostApi);
+    hostApi = $"{uri.Scheme}://{uri.Host}:{uri.Port}/";
     var dict = new Dictionary<string, string?> { { "HOSTAPI", hostApi } };
     builder.Configuration.AddInMemoryCollection(dict.ToArray());
 }
