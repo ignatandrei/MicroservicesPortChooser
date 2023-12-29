@@ -106,6 +106,13 @@ jobs:
         cd MicroservicesPortChooser
         cd MicroservicesPortChooserWeb        
         dotnet publish -c Release -o myapp 
+        Write-Host 'after publish 1'
+        gci -r src/MicroservicesPortChooser/MicroservicesPortChooserWeb/wwwroot/blazor/*.* | Select Name
+        Write-Host 'after publish2 '
+        Copy-Item src/MicroservicesPortChooser/Generator/MSPC_CRUD20231225/MSPC_CRUD20231225/MSPC_CRUD20231225.Blazor/Pack/*  -Destination myapp/wwwroot/blazor/  -Recurse 
+        gci -r src/MicroservicesPortChooser/MicroservicesPortChooserWeb/wwwroot/blazor/*.* | Select Name
+        Write-Host 'after copy'
+
 
     - name: Run Azure webapp deploy action using publish profile credentials
       uses: azure/webapps-deploy@v2

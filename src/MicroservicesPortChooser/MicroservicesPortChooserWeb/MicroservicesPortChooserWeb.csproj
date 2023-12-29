@@ -58,14 +58,7 @@
 		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
 		<CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)GeneratedX</CompilerGeneratedFilesOutputPath>
 	</PropertyGroup>
-	<ItemGroup>
-		<AdditionalFiles Include="controller.txt" />
-
-		<CompilerVisibleProperty Include="GenerateStep" />
-
-	</ItemGroup>
 	<PropertyGroup>
-		<GenerateStep>Controller</GenerateStep>
 		<DefaultItemExcludes>$(DefaultItemExcludes);wwwroot/blazor/**</DefaultItemExcludes> 
 	</PropertyGroup>
 
