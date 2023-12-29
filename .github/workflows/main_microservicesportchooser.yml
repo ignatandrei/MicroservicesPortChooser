@@ -87,6 +87,7 @@ jobs:
         gci -r Pack/*.* | Select FullName
 
     - name: copy files blazor
+      shell: pwsh
       run: |
         #  copy blazor 
         del src/MicroservicesPortChooser/MicroservicesPortChooserWeb/wwwroot/blazor/index.html
