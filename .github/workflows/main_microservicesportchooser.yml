@@ -92,9 +92,9 @@ jobs:
         #  copy blazor 
         del src/MicroservicesPortChooser/MicroservicesPortChooserWeb/wwwroot/blazor/index.html
         Write-Host 'blazor files in pack '
-        gci -r src/MicroservicesPortChooser/Generator/MSPC_CRUD20231225/MSPC_CRUD20231225/MSPC_CRUD20231225.Blazor/Pack/*.* | Select FullName
+        # gci -r src/MicroservicesPortChooser/Generator/MSPC_CRUD20231225/MSPC_CRUD20231225/MSPC_CRUD20231225.Blazor/Pack/*.* | Select FullName
         Write-Host 'copy files blazor files in pack '        
-        Copy-Item -Recurse -path src/MicroservicesPortChooser/Generator/MSPC_CRUD20231225/MSPC_CRUD20231225/MSPC_CRUD20231225.Blazor/Pack/*.*  -Destination src/MicroservicesPortChooser/MicroservicesPortChooserWeb/wwwroot/blazor/        
+        Copy-Item src/MicroservicesPortChooser/Generator/MSPC_CRUD20231225/MSPC_CRUD20231225/MSPC_CRUD20231225.Blazor/Pack/*  -Destination src/MicroservicesPortChooser/MicroservicesPortChooserWeb/wwwroot/blazor/  -Recurse 
         Write-Host 'blazor files now in wwwroot/blazor/'
         gci -r src/MicroservicesPortChooser/MicroservicesPortChooserWeb/wwwroot/blazor/*.* | Select FullName
 
