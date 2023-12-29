@@ -84,10 +84,9 @@ jobs:
         cd Generator/MSPC_CRUD20231225/MSPC_CRUD20231225/MSPC_CRUD20231225.Blazor
         echo 'blazor files'
         dotnet publish -o Pack 
-        gci -r Pack/*.*
+        gci -r Pack/*.* | Select FullName
 
-
-    - name: dotnet publish
+    - name: copy files blazor
       run: |
         #  copy blazor 
         del src/MicroservicesPortChooser/MicroservicesPortChooserWeb/wwwroot/blazor/index.html
@@ -95,10 +94,13 @@ jobs:
         gci -r src/MicroservicesPortChooser/Generator/MSPC_CRUD20231225/MSPC_CRUD20231225/MSPC_CRUD20231225.Blazor/Pack/*.* | Select FullName
         echo 'copy files blazor files in pack '
         
-        Copy-Item -Recurse -path src/MicroservicesPortChooser/Generator/MSPC_CRUD20231225/MSPC_CRUD20231225/MSPC_CRUD20231225.Blazor/Pack/*.*  -Destination src/MicroservicesPortChooser/MicroservicesPortChooserWeb/wwwroot/blazor/
-        
-        echo 'blazor files now in wwwroot/blazor/'
+        Copy-Item -Recurse -path src/MicroservicesPortChooser/Generator/MSPC_CRUD20231225/MSPC_CRUD20231225/MSPC_CRUD20231225.Blazor/Pack/*.*  -Destination src/MicroservicesPortChooser/MicroservicesPortChooserWeb/wwwroot/blazor/        echo 'blazor files now in wwwroot/blazor/'
         gci -r src/MicroservicesPortChooser/MicroservicesPortChooserWeb/wwwroot/blazor/*.* | Select FullName
+
+    
+
+    - name: dotnet publish
+      run: |
         cd src 
         cd MicroservicesPortChooser
         cd MicroservicesPortChooserWeb        
