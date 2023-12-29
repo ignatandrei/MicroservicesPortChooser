@@ -95,7 +95,7 @@ jobs:
         gci -r src/MicroservicesPortChooser/Generator/MSPC_CRUD20231225/MSPC_CRUD20231225/MSPC_CRUD20231225.Blazor/Pack/*.* | Select FullName
         echo 'copy files blazor files in pack '
         
-        Copy-Item -Recurse -path src/MicroservicesPortChooser/Generator/MSPC_CRUD20231225/MSPC_CRUD20231225/MSPC_CRUD20231225.Blazor/Pack/*.*  -Destionation src/MicroservicesPortChooser/MicroservicesPortChooserWeb/wwwroot/blazor/
+        Copy-Item -Recurse -path src/MicroservicesPortChooser/Generator/MSPC_CRUD20231225/MSPC_CRUD20231225/MSPC_CRUD20231225.Blazor/Pack/*.*  -Destination src/MicroservicesPortChooser/MicroservicesPortChooserWeb/wwwroot/blazor/
         
         echo 'blazor files now in wwwroot/blazor/'
         gci -r src/MicroservicesPortChooser/MicroservicesPortChooserWeb/wwwroot/blazor/*.* | Select FullName
