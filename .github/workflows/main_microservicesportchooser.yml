@@ -109,7 +109,7 @@ jobs:
         Write-Host 'after publish 1'
         gci -r wwwroot/*.* | Select Name
         Write-Host 'after publish2 '
-        Copy-Item src/MicroservicesPortChooser/Generator/MSPC_CRUD20231225/MSPC_CRUD20231225/MSPC_CRUD20231225.Blazor/Pack/*  -Destination myapp/wwwroot/blazor/  -Recurse 
+        Copy-Item ../Generator/MSPC_CRUD20231225/MSPC_CRUD20231225/MSPC_CRUD20231225.Blazor/Pack/*  -Destination myapp/wwwroot/blazor/  -Recurse 
         gci -r wwwroot/blazor/*.* | Select Name
         Write-Host 'after copy'
 
