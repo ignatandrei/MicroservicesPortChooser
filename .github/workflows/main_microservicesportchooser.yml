@@ -126,7 +126,7 @@ jobs:
         cd MicroservicesPortChooser
         dotnet tool restore
         Remove-Item -Path .\PACK\* -Recurse -Force
-        dotnet r publishSiteFull
+        dotnet r publishSingleFull
     
     - name: upload artifacts web win
       uses: actions/upload-artifact@v2
