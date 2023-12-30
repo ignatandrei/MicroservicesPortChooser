@@ -5,7 +5,7 @@ name: Azure App Service - MicroservicesPortChooser(Production), Build and deploy
 
 env:
   AZURE_WEBAPP_NAME: MicroservicesPortChooser    # set this to your application's name
-  AZURE_WEBAPP_PACKAGE_PATH: 'src/MicroservicesPortChooser/MicroservicesPortChooserWeb'      # set this to the path to your web app project, defaults to the repository root
+  AZURE_WEBAPP_PACKAGE_PATH: 'src/MicroservicesPortChooser/'      # set this to the path to your web app project, defaults to the repository root
   DOTNET_VERSION: '8.0.x'           # set this to the dot net version to use
 on:
   workflow_dispatch:
@@ -81,37 +81,17 @@ jobs:
         cd src 
         cd MicroservicesPortChooser
         dotnet build --configuration Release
-        cd Generator/MSPC_CRUD20231225/MSPC_CRUD20231225/MSPC_CRUD20231225.Blazor
-        echo 'blazor files'
-        dotnet publish -o Pack 
-        gci -r Pack/*.* | Select FullName
-
-    - name: copy files blazor
-      shell: pwsh
-      run: |
-        #  copy blazor 
-        del src/MicroservicesPortChooser/MicroservicesPortChooserWeb/wwwroot/blazor/index.html
-        Write-Host 'blazor files in pack '
-        # gci -r src/MicroservicesPortChooser/Generator/MSPC_CRUD20231225/MSPC_CRUD20231225/MSPC_CRUD20231225.Blazor/Pack/*.* | Select FullName
-        Write-Host 'copy files blazor files in pack '        
-        Copy-Item src/MicroservicesPortChooser/Generator/MSPC_CRUD20231225/MSPC_CRUD20231225/MSPC_CRUD20231225.Blazor/Pack/*  -Destination src/MicroservicesPortChooser/MicroservicesPortChooserWeb/wwwroot/blazor/  -Recurse 
-        Write-Host 'blazor files now in wwwroot/blazor/'
-        gci -r src/MicroservicesPortChooser/MicroservicesPortChooserWeb/wwwroot/blazor/*.* | Select Name
-
+    
+    
     
 
     - name: dotnet publish
+      shell: pwsh
       run: |
-        cd src 
-        cd MicroservicesPortChooser
-        cd MicroservicesPortChooserWeb        
-        dotnet publish -c Release -o myapp 
-        Write-Host 'after publish 1'
-        gci -r wwwroot/*.* | Select Name
-        Write-Host 'after publish2 '
-        Copy-Item ../Generator/MSPC_CRUD20231225/MSPC_CRUD20231225/MSPC_CRUD20231225.Blazor/Pack/*  -Destination myapp/wwwroot/blazor/  -Recurse 
-        gci -r wwwroot/blazor/*.* | Select Name
-        Write-Host 'after copy'
+          cd src 
+          cd MicroservicesPortChooser
+          dotnet tool restore
+          dotnet r publishSiteFull
 
 
     - name: Run Azure webapp deploy action using publish profile credentials
@@ -120,7 +100,7 @@ jobs:
         app-name: ${{ env.AZURE_WEBAPP_NAME }} 
         slot-name: Production
         publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1E96351636EF465ABA652B668796CBFA }}
-        package: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/myapp'
+        package: '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/PACK'
 
     - name: package
       run: |
@@ -135,23 +115,23 @@ jobs:
         path: 'src/MicroservicesPortChooser/MSPCWebExtension/nugetPackage/'
 
 
-    - name: making releases
-      run: |
-        cd src
-        cd MicroservicesPortChooser
-        cd MicroservicesPortChooserWeb
-        dotnet publish -r win-x64 -c Release -o ${{env.AZURE_WEBAPP_NAME}}WinX64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=true -p:PublishPackageVersion=1.0.0
-        dotnet publish -r linux-x64 -c Release -o ${{env.AZURE_WEBAPP_NAME}}linX64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=true -p:PublishPackageVersion=1.0.0
-    - name: upload artifacts web win
-      uses: actions/upload-artifact@v2
-      with:
-        name: WebServiceWinx64
-        path: 'src/MicroservicesPortChooser/MicroservicesPortChooserWeb/${{env.AZURE_WEBAPP_NAME}}WinX64/'
+    # - name: making releases
+    #   run: |
+    #     cd src
+    #     cd MicroservicesPortChooser
+    #     cd MicroservicesPortChooserWeb
+    #     dotnet publish -r win-x64 -c Release -o ${{env.AZURE_WEBAPP_NAME}}WinX64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=true -p:PublishPackageVersion=1.0.0
+    #     dotnet publish -r linux-x64 -c Release -o ${{env.AZURE_WEBAPP_NAME}}linX64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=true -p:PublishPackageVersion=1.0.0
+    # - name: upload artifacts web win
+    #   uses: actions/upload-artifact@v2
+    #   with:
+    #     name: WebServiceWinx64
+    #     path: 'src/MicroservicesPortChooser/MicroservicesPortChooserWeb/${{env.AZURE_WEBAPP_NAME}}WinX64/'
 
-    - name: upload artifacts web linux
-      uses: actions/upload-artifact@v2
-      with:
-        name: WebServiceLinx64
-        path: 'src/MicroservicesPortChooser/MicroservicesPortChooserWeb/${{env.AZURE_WEBAPP_NAME}}linX64/'
+    # - name: upload artifacts web linux
+    #   uses: actions/upload-artifact@v2
+    #   with:
+    #     name: WebServiceLinx64
+    #     path: 'src/MicroservicesPortChooser/MicroservicesPortChooserWeb/${{env.AZURE_WEBAPP_NAME}}linX64/'
 
 

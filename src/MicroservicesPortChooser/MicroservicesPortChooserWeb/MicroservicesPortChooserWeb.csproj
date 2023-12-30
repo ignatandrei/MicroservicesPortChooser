@@ -58,9 +58,9 @@
 		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
 		<CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)GeneratedX</CompilerGeneratedFilesOutputPath>
 	</PropertyGroup>
-	<PropertyGroup>
+	<!--<PropertyGroup>
 		<DefaultItemExcludes>$(DefaultItemExcludes);wwwroot/blazor/**</DefaultItemExcludes> 
-	</PropertyGroup>
+	</PropertyGroup>-->
 	
 
 
