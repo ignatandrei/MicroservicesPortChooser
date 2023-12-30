@@ -71,11 +71,16 @@ jobs:
         copy MicroservicesAng/*.* src/MicroservicesPortChooser/MicroservicesPortChooserWeb/wwwroot/
 
 
-    - name: Set up .NET Core
-      uses: actions/setup-dotnet@v1
+    - name: Set up .NET Core 6
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 6.0.x 
+
+    - name: Set up .NET Core 8
+      uses: actions/setup-dotnet@v3
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }} 
-
+    
     - name: Build with dotnet
       run: | 
         cd src 
