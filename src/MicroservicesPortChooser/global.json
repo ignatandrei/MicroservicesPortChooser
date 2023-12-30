@@ -1,0 +1,14 @@
+{
+  "scriptShell": "pwsh", // Optional
+  "scripts": {
+    "build": "dotnet build --configuration Release",
+    "test": "dotnet test --configuration Release",
+    "ci": "dotnet r build && dotnet r test",
+    "publishBlazorWasm":"pushd Generator/MSPC_CRUD20231225/MSPC_CRUD20231225/MSPC_CRUD20231225.Blazor && dotnet publish -o PACK && popd",
+    "publishSiteFull":"dotnet r publishBlazorWasm &&  dotnet r publishSite && dotnet r copyWASM && dotnet r modifyBlazorHREF",
+    "modifyBlazorHREF":"dotnet pwsh -File ./blazorHref.ps1 -file MicroservicesPortChooserWeb/PACK/wwwroot/blazor/index.html -newRelativePath /blazor/",
+    "copyWASM":"Copy-Item Generator/MSPC_CRUD20231225/MSPC_CRUD20231225/MSPC_CRUD20231225.Blazor/Pack/wwwroot/*  -Destination MicroservicesPortChooserWeb/PACK/wwwroot/blazor/  -Recurse -Force",
+    "publishSite":"pushd MicroservicesPortChooserWeb && dotnet publish -o PACK && popd"
+  
+  }
+}

@@ -61,7 +61,7 @@
 	<PropertyGroup>
 		<DefaultItemExcludes>$(DefaultItemExcludes);wwwroot/blazor/**</DefaultItemExcludes> 
 	</PropertyGroup>
-
+	
 
 
 </Project>
