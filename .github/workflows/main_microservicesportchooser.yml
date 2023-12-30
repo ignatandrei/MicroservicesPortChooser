@@ -120,18 +120,19 @@ jobs:
         path: 'src/MicroservicesPortChooser/MSPCWebExtension/nugetPackage/'
 
 
-    # - name: making releases
-    #   run: |
-    #     cd src
-    #     cd MicroservicesPortChooser
-    #     cd MicroservicesPortChooserWeb
-    #     dotnet publish -r win-x64 -c Release -o ${{env.AZURE_WEBAPP_NAME}}WinX64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=true -p:PublishPackageVersion=1.0.0
-    #     dotnet publish -r linux-x64 -c Release -o ${{env.AZURE_WEBAPP_NAME}}linX64 --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=true -p:PublishPackageVersion=1.0.0
-    # - name: upload artifacts web win
-    #   uses: actions/upload-artifact@v2
-    #   with:
-    #     name: WebServiceWinx64
-    #     path: 'src/MicroservicesPortChooser/MicroservicesPortChooserWeb/${{env.AZURE_WEBAPP_NAME}}WinX64/'
+    - name: making releases
+      run: |
+        cd src 
+        cd MicroservicesPortChooser
+        dotnet tool restore
+        Remove-Item -Path .\PACK\* -Recurse -Force
+        dotnet r publishSiteFull
+    
+    - name: upload artifacts web win
+      uses: actions/upload-artifact@v2
+      with:
+        name: WebServiceWinx64
+        path: 'src/MicroservicesPortChooser/PACK/'
 
     # - name: upload artifacts web linux
     #   uses: actions/upload-artifact@v2
