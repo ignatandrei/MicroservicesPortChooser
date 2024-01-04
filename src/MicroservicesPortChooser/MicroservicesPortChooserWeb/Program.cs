@@ -107,7 +107,7 @@ var provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>()
     app.UseDeveloperExceptionPage();
 }
 //app.UseWebAssemblyDebugging();
-app.UseProblemDetails();
+//app.UseProblemDetails();
 app.UseCors("AllowAll");
 app.UseBlocklyUI(app.Environment);
 var q = NetCore2BlocklyNew.Extensions.FileProvider;
