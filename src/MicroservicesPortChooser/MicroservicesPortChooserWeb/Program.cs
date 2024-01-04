@@ -77,6 +77,7 @@ builder.Services.AddTransient<Register, Register>();
 //        }
 //     )
 //   ;
+/*
 builder.Services
     .AddHealthChecks()
     //.AddSqlite(Repository.DbName)
@@ -90,7 +91,7 @@ builder.Services
      })
 
     .AddInMemoryStorage();
-
+*/
 //builder.Services
 //    .AddRazorComponents()
 //    .AddInteractiveWebAssemblyComponents();
@@ -142,12 +143,14 @@ app.UseRouting();
 
 app.MapControllers();
 app.UseAMS();
+/*
 app.MapHealthChecksUI();
 app.MapHealthChecks("/healthz", new HealthCheckOptions
 {
     Predicate = _ => true,
     ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
 });
+*/
 //app.MapSettingsView<MicroservicesPortChooserWeb.SettingsJson.appsettings>(app.Configuration);
 app.MapFallbackToFile("/static/{**slug}", "index.html");
 //app.MapFallbackToFile("/blazor/{**slug}", "/blazor/index.html");
