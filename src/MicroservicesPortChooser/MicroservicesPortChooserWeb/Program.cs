@@ -60,10 +60,11 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = ThisAssembly.Project.AssemblyName, Version = "v1" });
 });
-builder.Services.AddProblemDetails(c =>
+/*builder.Services.AddProblemDetails(c =>
 {
     c.IncludeExceptionDetails = (context, ex) => true;
 });
+*/
 builder.Services.AddTransient<IRepository, Repository>();
 builder.Services.AddTransient<IRegister, Register>();
 builder.Services.AddTransient<Register, Register>();
