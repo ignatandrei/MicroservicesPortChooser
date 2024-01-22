@@ -16,6 +16,7 @@ foreach (IRegisterContext item in UtilsControllers.registerContexts)
 {
     typesContext.Add(item.AddServices(builder.Services, builder.Configuration));
 }
+
 //this line register DB contexts
 builder.Services.AddTransient((ctx) =>
 {
