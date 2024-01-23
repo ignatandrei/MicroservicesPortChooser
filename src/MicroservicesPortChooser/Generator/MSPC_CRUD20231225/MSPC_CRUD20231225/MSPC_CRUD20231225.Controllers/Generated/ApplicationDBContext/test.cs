@@ -29,5 +29,11 @@ public class testController: Controller
     public string test3()
     {
         return applicationDBContext.Database?.GetConnectionString()??"NO connection string";
+    } 
+    [HttpGet]
+    public string test4()
+    {
+        var s await applicationDBContext.MSPC_Register.ToArray();
+        return "number:"+s.Length.ToString();
     }
 }
