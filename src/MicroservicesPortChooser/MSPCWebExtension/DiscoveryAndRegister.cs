@@ -35,7 +35,7 @@ public class DiscoveryAndRegister : BackgroundService
         using var h = new HttpClient();
         h.BaseAddress = new Uri(configData.registerUrl);
         string machineName = Environment.MachineName;
-        var repo =new Repository(null);
+        //var repo =new Repository(null);
         //var repo = sp.GetService(typeof(IRepository)) as IRepository;
         //if(repo == null)
         //{
@@ -54,7 +54,7 @@ public class DiscoveryAndRegister : BackgroundService
             if (host == "[::]" || host == "0.0.0.0" || host=="::"|| host=="*" || host == "+")
                 host = machineName;
 
-            var r = new Register(repo);
+            var r = new Register();
             r.Name = configData.appName;
             r.HostName = host;
             r.Port = u.Port;
@@ -66,7 +66,8 @@ public class DiscoveryAndRegister : BackgroundService
 
             try
             {
-                var q=await p.AddNew(r);
+                Console.WriteLine($"before register {url} with ");
+                var q =await p.AddNew(r);
                 Console.WriteLine($"done register {url} with "+q.UniqueID);
             }
             catch (Exception ex)
