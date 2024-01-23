@@ -44,7 +44,7 @@ builder.Services.AddCors(options =>
                                 );
 });
 
-builder.Services.AddHostedService<DiscoveryAndRegister>();
+//builder.Services.AddHostedService<DiscoveryAndRegister>();
 builder.Services.AddApiVersioning(act =>
 {
     act.AssumeDefaultVersionWhenUnspecified = true;

@@ -15,14 +15,17 @@ public class testController: Controller
     {
         this.applicationDBContext = applicationDBContext;
     }
+    [HttpGet]
     public string test1()
     {
         return "test1";
     }
+    [HttpGet]
     public string test2()
     {
         return applicationDBContext.ContextId.InstanceId.ToString();
     }
+    [HttpGet]
     public string test3()
     {
         return applicationDBContext.Database?.GetConnectionString()??"NO connection string";
