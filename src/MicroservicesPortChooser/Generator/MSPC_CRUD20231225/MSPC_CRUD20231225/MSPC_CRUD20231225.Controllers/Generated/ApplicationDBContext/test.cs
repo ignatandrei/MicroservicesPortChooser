@@ -33,7 +33,7 @@ public class testController: Controller
     [HttpGet]
     public string test4()
     {
-        var s await applicationDBContext.MSPC_Register.ToArray();
+        var s =applicationDBContext.MSPC_Register.ToArray();
         return "number:"+s.Length.ToString();
     }
 }
