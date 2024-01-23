@@ -24,14 +24,23 @@ public class Repository : IRepository
         parameters.Add("@EnvData", r.EnvData);
         var regDate = r.dateRegistered.ToString("o");
         //using var connection = new SqliteConnection(DbName);
+        ArgumentNullException.ThrowIfNull(context);
         var connection = context.Database;
         //var data=context.MSPC_Register.ToArray();
         FormattableString fs = @$"insert into MSPC_Register(Name, Hostname,Port, Tag, Authority, PCName,stringRegisteredDate, EnvData) 
 values 
 ({r.Name}, {r.HostName},{r.Port}, {r.Tag}, {r.Authority},{r.PCName},{regDate}, {r.EnvData}
 )";
-
-        await connection.ExecuteSqlInterpolatedAsync(fs);
+        try
+        {
+            ArgumentNullException.ThrowIfNull(connection);
+            await connection.ExecuteSqlInterpolatedAsync(fs);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            throw;
+        }
         return r;
     }
     public Task<int> UnRegister(string host, UInt16 port)
