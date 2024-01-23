@@ -3,7 +3,7 @@
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>
   <ItemGroup>
-    <PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.0" />
+    <PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.1" />
     <PackageVersion Include="RSCG_Templating" Version="2023.1221.1857" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
     <PackageVersion Include="RSCG_TemplatingCommon" Version="2023.1221.1857" />
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.8.0" />
@@ -13,14 +13,34 @@
     <PackageVersion Include="Dapper.Contrib" Version="2.0.78" />
     <PackageVersion Include="DasMulli.DataBuilderGenerator" Version="2.0.0" />
     <PackageVersion Include="Microsoft.Data.Sqlite" Version="8.0.0" />
-    <PackageVersion Include="Refit" Version="7.0.0" />    
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.0" />
+    <PackageVersion Include="Refit" Version="7.0.0" />
+   <PackageVersion Include="Microsoft.EntityFrameworkCore.Abstractions" Version="8.0.1" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.1" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.1" />
+     <PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.0" />
+    <PackageVersion Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <PackageVersion Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.1">
+    </PackageVersion>
+    <PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.1" />
+    <PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.1" PrivateAssets="all" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
+    <PackageVersion Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.0" />
+        <PackageVersion Include="Microsoft.FluentUI.AspNetCore.Components" Version="4.3.1" />
+    <PackageVersion Include="Microsoft.FluentUI.AspNetCore.Components.Icons" Version="4.3.1" />
+    <PackageVersion Include="RSCG_TimeBombComment" Version="2023.12.19.1802" />
+<PackageVersion Include="NetCoreUsefullEndpoints" Version="7.2023.1216.1825" />
+        <PackageVersion Include="RSCG_WebAPIExports" Version="2023.8.16.1958" />
+<PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="8.0.1" />
+    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="8.0.0" />
+        <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="8.0.0-preview.1.23557.2" />
+
     <PackageVersion Include="QueryGenerator" Version="2022.7.11.615" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
     <PackageVersion Include="RSCG_UtilityTypes" Version="2023.1223.1230" />
     <PackageVersion Include="RSCG_UtilityTypesCommon" Version="2023.1223.1230" />
     <PackageVersion Include="System.ComponentModel.Annotations" Version="5.0.0" />
+    <PackageVersion Include="AspNetCore.HealthChecks.SqlServer" Version="8.0.0" />
     <PackageVersion Include="AspNetCore.HealthChecks.SqLite" Version="8.0.0" />
     <PackageVersion Include="AspNetCore.HealthChecks.UI" Version="8.0.0" />
     <PackageVersion Include="AspNetCore.HealthChecks.UI.Client" Version="8.0.0" />
@@ -32,10 +52,10 @@
     <PackageVersion Include="ThisAssembly" Version="1.4.1">
     </PackageVersion>
     <PackageVersion Include="Hellang.Middleware.ProblemDetails" Version="6.5.1" />
-    <PackageVersion Include="System.Text.Json" Version="8.0.0" />
+    <PackageVersion Include="System.Text.Json" Version="8.0.1" />
     <PackageVersion Include="RSCG_Static" Version="2023.8.23.2100" />
     <PackageVersion Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.2.0" />
-    <PackageVersion Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.1" />
     <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
     <PackageVersion Include="HttpClientGenerator" Version="0.6.1" OutputItemType="Analyzer" PrivateAssets="All" />
     <PackageVersion Include="AMS_Base" Version="2023.5.21.1551" />
@@ -46,13 +66,22 @@
     <PackageVersion Include="appSettingsEditorAPI" Version="2021.4.2.1059" />
     <PackageVersion Include="AMSWebAPI" Version="2023.5.21.1551" />
     <PackageVersion Include="LightBDD" Version="2.1.0" />
-    <PackageVersion Include="LightBDD.XUnit2" Version="3.4.1" />
-    <PackageVersion Include="Microsoft.AspNetCore.Mvc.Testing" Version="6.0.4" />
-    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
-    <PackageVersion Include="xunit" Version="2.4.1" />
-    <PackageVersion Include="xunit.runner.visualstudio" Version="2.4.3">
+    <PackageVersion Include="LightBDD.XUnit2" Version="3.7.0" />
+    <PackageVersion Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.1" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageVersion Include="xunit" Version="2.6.6" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="2.5.6">
     </PackageVersion>
-    <PackageVersion Include="coverlet.collector" Version="3.1.2">
+    <PackageVersion Include="coverlet.collector" Version="6.0.0">
     </PackageVersion>
+
+    <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.7.0" />
+    <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="1.7.0" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.7.0" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.GrpcNetClient" Version="1.6.0-beta.2" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="1.7.0" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="1.5.1" />
+    <PackageVersion Include="Aspire.Hosting" Version="8.0.0-preview.2.23619.3" />
+    
   </ItemGroup>
 </Project>
