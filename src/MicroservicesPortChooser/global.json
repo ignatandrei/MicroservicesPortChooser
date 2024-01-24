@@ -4,12 +4,12 @@
     "build": "dotnet build --configuration debug",
     "test": "dotnet test --configuration debug",
     "ci": "dotnet r build && dotnet r test",
-    "publishBlazorWasm":"pushd Generator/MSPC_CRUD20231225/MSPC_CRUD20231225/MSPC_CRUD20231225.Blazor && dotnet publish -r win-x64 -o ../PACK && popd",
+    "publishBlazorWasm":"pushd Generator/MSPC_CRUD20231225/MSPC_CRUD20231225/MSPC_CRUD20231225.Blazor && dotnet publish -r linux-x64 -o ../PACK && popd",
     "publishSiteFull":"dotnet r publishBlazorWasm &&  dotnet r publishSite && dotnet r copyWASM && dotnet r modifyBlazorHREF",
     "modifyBlazorHREF":"dotnet pwsh -File ./blazorHref.ps1 -file PACK/wwwroot/blazor/index.html -newRelativePath /blazor/",
     "copyWASM":"Copy-Item Generator/MSPC_CRUD20231225/MSPC_CRUD20231225/Pack/wwwroot/* -Destination PACK/wwwroot/blazor  -Recurse -Force",
-    "publishSite":"pushd MicroservicesPortChooserWeb && dotnet publish -c debug -r win-x64 -o ../PACK && popd",
-    "publishSingle":"pushd MicroservicesPortChooserWeb && dotnet publish -c debug -r win-x64 -o ../PACK --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=false && popd",
+    "publishSite":"pushd MicroservicesPortChooserWeb && dotnet publish -c debug -r linux-x64 -o ../PACK && popd",
+    "publishSingle":"pushd MicroservicesPortChooserWeb && dotnet publish -c debug -r linux-x64 -o ../PACK --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=false && popd",
     "publishSingleFull":"dotnet r publishSingle && dotnet r copyWASM && dotnet r modifyBlazorHREF"
   
   } 
