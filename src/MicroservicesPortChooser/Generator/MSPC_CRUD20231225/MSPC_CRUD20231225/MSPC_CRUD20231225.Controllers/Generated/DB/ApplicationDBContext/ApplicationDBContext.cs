@@ -10,8 +10,9 @@ namespace Generated;
 public partial class RegisterApplicationDBContext : IRegisterContext
 {
     public Type AddServices(IServiceCollection services, ConfigurationManager configuration){
-        
-        var cnString = configuration.GetConnectionString("ApplicationDBContext");
+
+        //var cnString = configuration.GetConnectionString("ApplicationDBContext");
+        var cnString = Environment.GetEnvironmentVariable("AZURE_SQL_CONNECTIONSTRING");
         if (string.IsNullOrWhiteSpace(cnString))
         {
             throw new ArgumentException("please add  connection string ApplicationDBContext into appsettings.json ");
